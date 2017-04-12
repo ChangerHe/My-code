@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Program</title>
+	<style type="text/css">
+		
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			oTab=document.getElementsByTagName('table')[0]
+			oList=document.getElementsByTagName('input')[0]
+			oName=document.getElementsByTagName('input')[1]
+			oAge=document.getElementsByTagName('input')[2]
+			oBtn=document.getElementsByTagName('input')[3]
+			oTd=document.creatElement('td')
+			for (var i = 0; i < oTab.tBodies[0].rows.length; i++) {
+				if (i%2) {oTab.tBodies[0].rows[i].style.background='#ccc'}
+					else{
+						oTab.tBodies[0].rows[i].style.background=''
+					}
+			}
+
+		}
+	</script>
+</head>
+<body>
+序号：
+<input type="text" name="Align">
+姓名：
+<input type="text" name="name">
+年龄：
+<input type="text" name="year">
+<input type="button" name="Input" value="输入">
+<table border="1px solid green" width="500px">
+	<thead>
+	<td>序号</td>
+	<td>姓名</td>
+	<td>年龄</td>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>张三</td>
+			<td>22</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>李四</td>
+			<td>12</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>王五</td>
+			<td>15</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>赵六</td>
+			<td>17</td>
+		</tr>
+		<tr></tr>
+	</tbody>
+
+</table>
+</body>
+</html>
