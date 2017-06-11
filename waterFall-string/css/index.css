@@ -1,0 +1,15 @@
+*{
+	margin:0;
+	padding:0;
+}
+.container{
+	position:relative;
+}
+img{
+	display:block;
+	width: 200px;
+	padding:10px;
+	border:1px solid #ddd;
+	margin:10px;
+	float:left;
+}
