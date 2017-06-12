@@ -1,0 +1,55 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:#fff;
+	font-family:"微软雅黑"，sans-serif;
+	font-size:12px;
+}
+.container{
+	width: 100%;
+	height:100%;
+	position:relative;
+}
+.textarea{
+	width: 70%;
+	margin:50px auto;
+	font-size: 2rem;
+
+}
+.textarea .pLeft{
+	display:block;
+	float:left;
+}
+.textarea .pRight{
+	display:block;
+	float:right;
+}
+.game-tage{
+	width: 100%;
+	padding:100px 0;
+	text-align:center;
+}
+.game-tage .self{
+	width: 168px;
+	height:133px;
+	border:none;
+}
+.game-tage span{
+	font-size:3rem;
+}
+.clickArea{
+	text-align:center;
+}
+.clickArea img{
+	width: 50px;
+	margin:5px;
+	padding:10px;
+}
+.clickArea img:hover{
+	background:#900;
+}
+.clickArea img:active{
+	background:#990;
+}
