@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淘宝三角做法css2D转换 transform/transition</title>
+<style type="text/css">
+body,ul,li{margin:0,padding:0;border:0;}
+ul{margin:100px;list-style:none;}
+a{font-size:14px;color:#3c3c3c;
+text-decoration:none;}
+ul li{width:100px;height:35px;line-height:35px;border:1px solid #foo;}
+ul li a{margin-right:10px;float:left;
+height:35px;
+line-height:35px;
+}
+
+ul li i{
+        display:block;
+        height:6px;
+        width:6px;
+        float:right;
+        margin:15px 0;
+        position:relative;
+        transition:transform 0.3s ease 0.1s;
+        -webkit-transition:-webkit-transform 0.3s ease 0.1s;
+        -ms-transition:-ms-transform 0.3s;
+        -moze-transition:-moz-transform 0.3s ease 0.1s;
+        -o-transition:-o-transform 0.3s ease 0.1s;
+        
+        }
+ul li:hover i{
+transform:rotate(180deg);
+-ms-transform:rotate(180deg); /* Internet Explorer */
+-moz-transform:rotate(180deg); /* Firefox */
+-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+-o-transform:rotate(180deg); /* Opera */
+}
+em,span{
+                width:0;
+                height:0;
+
+border-style:solid dashed dashed dashed;
+border-color:transparent;
+border-width:3px;
+position:absolute;
+top:0;
+left:0;
+}
+em{border-top-color:#3c3c3c;top:1px;}
+span{border-top-color:#fff;}
+</style>
+</head>
+
+<body>
+<ul>
+<li><a href="#">我的淘宝<i><em></em><span></span></i></a></li>
+</ul>
+</body>
+</html>
