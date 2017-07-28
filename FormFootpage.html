@@ -14,29 +14,570 @@
 	</style>
 </head>
 <body>
+
+
 </div>
 <script>
-function inherit(p) {
-	if(p == null) throw TypeError();
-	if(Object.create) {
-		return Object.create(p);
-	}
-	var t = typeof p;
-	if(t !== "object" && t !== "function") {
-		throw TypeError();
-	}
-	function f () {};
-	f.prototype = p;
-	return new f();
-}
-var a = {x:1,y:2};
-a = inherit({z:3});
-console.log(a.__proto__.z)
+// var s1 = prompt("Please input some string");
+// console.log(s1);
+var test = "aabb12e"
+var arr = test.split("");
+arr.reverse();
+var newTest = arr.join("")
+console.log(newTest);
+var UpOrLow = newTest[0].toUpperCase() + newTest.slice(1,-1).toLowerCase() + newTest[test.length-1].toUpperCase();
+console.log(UpOrLow);
 
-for ( x in a ) {
-	console.log(a[x])
-}                   
-console.log(x)
+
+
+
+// function F(){};
+// var f = new F();
+// console.log(f.constructor === F)
+
+// var f = function() { return 1};
+// var p = f.prototype;
+// var c = p.constructor;
+// var q = p.prototype;
+// console.log(f.__proto__)
+// // console.log( c === f )
+// // console.log(f)
+// console.log(f.constructor)
+// // console.log(f.__proto__)
+// // console.log(f.__proto__.__proto__)
+// // console.log(f.__proto__.__proto__.__proto__)
+// // console.log("----------------------------------")
+// // console.log(c)
+// console.log(c.constructor)
+// // console.log(c.__proto__)
+// // console.log(c.__proto__.__proto__)
+// // console.log(c.__proto__.__proto__.__proto__)
+
+// // console.log("----------------------------------")
+// // console.log(p)
+// console.log(p.constructor)
+// // console.log(p.__proto__)
+// // console.log(p.__proto__.__proto__)
+// // console.log(p.__proto__.__proto__.__proto__)
+
+
+
+// function range(from, to) {
+// 	var r = Object.create(range.methods);
+// 	r.from = from;
+// 	r.to = to;
+// 	return r;
+// }
+// range.methods = {
+// 	includes: function(x) {
+// 		return this.from <= x && x <= this.to;
+// 	},
+// 	forEach: function(f) {
+// 		for(var x = Math.ceil(this.from); x <= this.to; x++) {
+// 			f(x);
+// 		}
+// 	},
+// 	toString: function() {
+// 		return "(" + this.from + "..." + this.to + ")";
+// 	}
+// }
+
+
+// function Range(from, to) {
+// 	this.from = from;
+// 	this.to = to;
+// }
+// Range.prototype = {
+// 	constructor: Range,
+// 	includes: function(x) {
+// 		return this.from <= x && x <= this.to;
+// 	},
+// 	foreach: function(x) {
+// 		for(var i = Math.ceil(this.from);i <= this.to; i++) {
+// 			return x(i);
+// 		}
+// 	},
+// 	toString: function() {
+// 		return "(" + this.from + "..." + this.to + ")";
+// 	}
+
+// }
+// var r = new Range(1, 3);
+// console.log(Range.prototype.constructor)
+// console.log(r.includes(2));
+// console.log(r.foreach(console.log))
+// console.log(r)
+
+// function inherit(x) {
+// 	if(x == null) {
+// 		throw new Error();
+// 	}
+// 	if(typeof x !== "function" && typeof x !== "object"){
+// 		throw new Error();
+// 	}
+// 	if(Object.create) {
+// 		return Object.create(x)
+// 	}
+// 	function f() {};
+// 	f.prototype = x;
+// 	return new f();
+// }
+// console.log(typeof function(){})
+
+
+
+
+
+
+// function mapper(f) {
+// 	return function(a) {
+// 		return map(a, f);
+// 	}
+// }
+// var increment = function(x) {
+// 	return x + 1;
+// }
+// var incrementer = mapper(increment);
+// incrementer([1,2,3])
+
+
+
+
+// var data = [1,1,3,5,5];
+// function sum(x, y) {
+// 	return x + y;
+// }
+// function multiply(x, y) {
+// 	return x * y;
+// }
+// var equal = data.reduce(sum)/data.length;
+// console.log(equal);
+// var diviation = data.map(function(x){
+// 	return x - equal;
+// })
+// console.log(diviation);
+// var totalNum = diviation.map(function(x) {
+// 	return x * x;
+// })
+// console.log(totalNum);
+// var numLast = Math.sqrt(totalNum.reduce(sum)/data.length)
+// console.log(numLast)
+
+
+
+// var data = [1,1,3,5,5];
+// // 求以上数组的平均值
+// var total = 0,i,equal;
+// for(i = 0; i < data.length; i++) {
+// 	total += data[i];
+// }
+// equal = total/data.length;
+// console.log(equal);
+
+
+// // 求以上数组的标准差
+// var substract,standardDeviation,deviation,totalNum = 0;
+// for(i = 0; i < data.length; i++) {
+// 	substract = data[i] - equal;
+// 	console.log(substract)
+// 	totalNum += substract * substract
+// 	console.log(totalNum);
+// }
+
+// console.log(totalNum);
+
+// deviation = Math.sqrt(totalNum / (data.length -1));
+// console.log(deviation)
+
+// function f() {
+// 	var scope = "local";
+// 	// return new Function("return scope"); 
+// 	return function() {
+// 		return scope;
+// 	}
+// }
+// var scope = "global";
+// console.log(f()())
+
+
+
+
+// var a = 10, b = 023, c = 0x66;
+// console.log(a, b, c)
+// console.log(c.toString(16))
+// console.log(c.toString(8))
+// console.log(isNaN(true))
+// console.log(+null)
+// console.log(parseInt(c))
+// console.log(parseInt("123.23.23"))
+// console.log(parseFloat("123.23.23"))
+// console.log("\n\\1".length)
+// console.log(Number("1234"))
+
+
+
+// function add(x, y) {
+// 	return x + y;
+// }
+// var g = add.bind(null, 1 );
+// console.log(g(3))
+
+// var y = 5;
+// function add(x) {
+// 	return this.y + x;
+// }
+// var o = {y: 3};
+// var g = add.bind(o);
+// console.log(g(2))
+// console.log(add(2))
+
+
+// function check(args) {
+// 	var actual = args.length;
+// 	var expected = args.callee.length;
+// 	if(actual !== expected) {
+// 		throw new Error (" arguments is not expected .");
+// 	}
+// }
+// function test(x, y, z) {
+// 	check(arguments);
+// 	return x + y + z;
+// }
+
+// console.log(test(1,2,))
+
+// var a = uniqueInterger = function() {
+// 	var value = 0;
+// 	return function () {
+// 		return value++;
+// 	}
+
+// }()
+// console.log(a())
+// console.log(a())
+// console.log(uniqueInterger())
+// delete uniqueInterger;
+// console.log(a())
+
+// var operators = {
+// 	add: function(x, y) {
+// 		return x + y;
+// 	},
+// 	substract: function(x, y) {
+// 		return x - y;
+// 	},
+// 	multiply: function(x, y) {
+// 		return x * y;
+// 	},
+// 	divide: function(x, y) {
+// 		return x / y;
+// 	}
+
+
+// }
+
+
+// function add(x, y) {
+// 	return x + y;
+// }
+// function subtract(x, y) {
+// 	return x - y;
+// }
+// function multiply(x, y) {
+// 	return x * y;
+// }
+// function divide(x, y) {
+// 	return x / y;
+// }
+// function operator(operate, x, y) {
+// 	if(typeof operate !== "function") {
+// 		throw new Error ("not a function")
+// 	}
+// 	return operate(x, y);
+// }
+// console.log(operator(adds, 1, 2))
+
+// var a = {
+// 	name: 1,
+// 	func: function(x) {
+// 		return x * x;
+// 	}
+// }
+// console.log(a.name)
+// console.log(a.func(4))
+
+// function copy(name, age, year) {
+// 	return "name" + this.name + ",age" + this.age + ",year" + this.year + "." 
+// }
+// function easyCopy(args) {
+// 	copy(args.name, args.age || 0, args.year || 0)
+// }
+// var a = easyCopy({name:"changer",age:"23"});
+// console.log(a)
+
+
+// function getMax(a) {
+// 	var max = Number.NEGATIVE_INFINITY;
+// 	for( var i = 0; i < a.length; i++) {
+// 		if (a[i] > max) {
+// 			max = a[i];
+// 		}
+// 	}
+// 	return max;
+// }
+// n = [1,2,5,2,5,1]
+// console.log(getMax(n))
+
+
+// function a(x, y, z) {
+// 	if(arguments.length !== 3) {
+// 		throw new Error ("Wrong! this function is only want 3 arguments, but you give me " + arguments.length + " arguments!")
+// 	} else {
+// 		return x + y + z;
+// 	}
+// }
+// console.log(a(1,2))
+
+
+// function getNew(o, a) {
+// 	var a = a || [];
+// 	for(var prop in o ) {
+// 		a.push(o[prop])
+// 	}
+// 	return a;
+// }
+
+
+
+// var o = {
+// 	m: function() {
+// 		var self = this;
+// 		console.log(this === o);
+// 		f();
+// 		function f() {
+// 			console.log(this === o);
+// 			console.log(self === o);
+// 		}
+// 	}
+// }
+// o.m()
+
+
+
+// var calculator = {
+// 	operand1: 1,
+// 	operand2: 2,
+// 	add: function(){
+// 		this.result = this.operand1 + this.operand2;
+// 	}
+// }
+// console.log(calculator.add());
+// console.log(calculator.result);
+
+
+// "use strict";
+
+// var strict = (function() {
+// 	return !this;
+// }())
+// console.log(strict)
+// console.log(!window)
+// var num = 0;
+// outerMost: for( var i = 0; i < 10; i++) {
+// 	for( var j = 0; j < 10; j++){
+// 		if( i == 5 && j == 5 ) {
+// 			break outerMost;
+
+// 		}
+// 		num++;
+// 	}
+// }
+// console.log(num)
+
+// var a = {"0":"a","1":"b","2":"c",length: 3};
+// console.log(Array.prototype.join.call(a, "+"));
+
+
+// var a = [1,2,3,4,5];
+// var sum = 0;
+// a.forEach(function(v,i,a){
+// 	a[i] = v + 1;
+// })
+// console.log(a)
+
+// var stack = [];
+// console.log(stack.push(1,2,4,[1,2,3],3));
+// console.log(stack.pop())
+// console.log(stack.pop())
+
+
+// var a = [1,2,3,4,5,6,7,8];
+// // var b = a.splice(4);
+// console.log(a)
+// // console.log(b)
+// var c = a.splice(2,4)
+// console.log(c)
+// a.splice(1,0,[1,2],3)
+// console.log(a)
+// var a = [1,2,3];
+// Object.defineProperty(a, "length", {writable: false});
+// delete a[0];
+// console.log(a);
+// try {
+// a.push("abc");
+	
+// } catch {
+// console.log(a)
+	
+// } finally {
+// 	console.log("true")
+// }
+
+// var a = [1];
+// var b = a[0];
+// console.log(b);
+// a[0] = 3;
+// console.log(b)
+
+
+// function classof(o) {
+// 	if(o === null) {
+// 		return null;
+// 	}
+// 	if(o === undefined) {
+// 		return undefined;
+// 	}
+// 	return Object.prototype.toString.call(o)slice(8, -1)
+// }
+// var b;
+// o = {x:1, y:{z:[false, null, ""]}};
+// var a = JSON.stringify(o)
+// console.log(a)
+// console.log(JSON.parse(a))
+// var s = {x:1, y:2}.toString();
+// console.log(s)
+// console.log(classof(undefined))
+// console.log(classof(b))
+
+// var serialum = {
+// 	$n: 0,
+// 	x : 0,
+// 	get next() {return this.$n++;},
+// 	set next(n) {
+// 		if (n >= this.$n) this.$n = n;
+// 		else throw "a";
+// 	}
+// }
+// var o = {a:1, b:2}
+// console.log(o.__proto__)
+
+// var myVar = 100;
+// function foo() {
+// 	console.log(myVar);
+// }
+// (function() {
+// 	var myVar = 50;
+// 	foo();
+// })
+// (function(arg) {
+// 	var myVar = 1500;
+// 	arg();
+// })(foo)
+
+
+
+// var x = 10;
+// function foo() {
+// 	var y = x +5;
+// 	return y;
+// }
+// function bar() {
+// 	var x = 2;
+// 	return foo();
+// }
+// function main() {
+// 	foo();
+// 	bar();
+// 	return 0;
+// }
+// console.log(foo());  //15
+// console.log(bar());   //7
+// console.log(main());   //0
+
+
+
+// function numberGenerator() {
+// 	var num = 1;
+// 	function checkNumber() {
+// 		console.log(num);
+// 	}
+// 		num++;
+// 	return checkNumber;
+// }
+// var number = numberGenerator();
+// number();
+// number();
+
+// var hello = "hello"
+// function sayHello() {
+// 	var say = function() {
+// 		console.log(hello);
+// 	}
+// 	var hello = "hello world";
+// 	return say;
+// }
+// var sayHelloClosure = sayHello();
+// sayHelloClosure();
+
+// var x = 10;
+// function foo(a) {
+// 	var b = 20;
+// 	function bar(c) {
+// 		var d = 30;
+// 		return boop(x + a + b + c + d);
+// 	}
+// 	function boop(e) {
+// 		return e * -1;
+// 	}
+// 	return bar;
+// }
+// var moar = foo(5);
+// console.log(moar)
+
+// x = 0, y = 0, z = 0;
+// x = 10;
+// function foo() {
+// 	var y = 20;
+// 	function bar() {
+// 		var z = 15;
+// 		return x + y + z;
+// 	}
+// 	return bar;
+// }
+// console.log(foo()())
+
+// function inherit(p) {
+// 	if(p == null) throw TypeError();
+
+// 	if(Object.create) {
+// 		return Object.create(p);
+// 	}
+// 	var t = typeof p;
+// 	if(t !== "object" && t !== "function") {
+// 		throw TypeError();
+// 	}
+// 	function f () {};
+// 	f.prototype = p;
+// 	return new f();
+// }
+// var a = {x:1,y:2};
+// a = inherit({z:3});
+// console.log                                                                                                                                                                                                  (a.__proto__.z)
+
+// for ( x in a ) {
+// 	console.log(a[x])
+// }                   
+// console.log(x)
 // var string = "hello, world"
 // console.log(string.lastIndexOf("l"))
 // console.log(string.split(", "))
