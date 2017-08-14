@@ -21,7 +21,6 @@ var $ = function() {
 function Base() {
     // 我们现在创建一个节点来保存获取到的节点,并生成一个数组
     this.elements = [];
-    console.log(this.elements)
 }
 
 //获取元素的id,并将自身返回,以便进行连缀
@@ -50,24 +49,52 @@ Base.prototype.getTagName = function(tagname) {
 
 // 获取元素className并将自身返回
 // 增补内容1：获取元素的className的兼容性写法，其实原理很简单，遍历所有的属性标签，查看属性标签中的className，将需要的标签再push到elements中，即可。
-// 增补内容2: 现存一个问题,因为我为了进行兼容,是向全局调取了这个索引,因此在这个时候,就算我在之前加上了getId等的限定,都没有办法达到选取id下的class的目的,那么我现在将getclass再多传一个参数进去,作为相应的限定.
-// 现存BUG:代码中getClass仅能在第二个参数中传id值,不能传其他值,暂未解决
+// 增补内容2: 现存一个问题,为了进行兼容,是向全局调取了这个索引,因此在这个时候,就算我在之前加上了getId等的限定,都没有办法达到选取id下的class的目的,那么我现在将getclass再多传一个参数进去,作为相应的限定.
+// 现存BUG:代码中传递第二参数的时候,不能同时选到多个className或者name下的对象,只能选择第一个className或name对象
 Base.prototype.getClass = function(className, anyName) {
     var allTag = document.getElementsByTagName("*");
     if (arguments.length == 2) {
         if (/^#\w+$/.test(arguments[1])) {
             var arg = arguments[1].match(/^#(\w+)$/)[1]
             for (var j = 0; j < allTag.length; j++) {
-                if (allTag[j].getElementById(arg)) {
-                    allTag = allTag[j].getElementById(arg);
+                if (document.getElementById(arg)) {
+                    allTag = document.getElementById(arg).getElementsByTagName("*");
                 }
             }
-            console.log(allTag)
+        } else if (/^\.\w+$/.test(arguments[1])) {
+            var arg = arguments[1].match(/^\.(\w+)$/)[1];
+            if (document.getElementsByClassName(arg)) {
+                for (var k = 0; k < document.getElementsByClassName(arg).length; k++) {
+                    allTag = document.getElementsByClassName(arg)[k].getElementsByTagName("*");
+                }
+            }
+
+        } else if (/^\w+$/.test(arguments[1])) {
+            var arg = arguments[1].match(/^(\w+)$/)[1];
+            var a = [];
+            if (document.getElementsByTagName(arg)) {
+                allTag = [];
+                for (var k = 0; k < document.getElementsByTagName(arg).length; k++) {
+                    allTag = allTag.concat(document.getElementsByTagName(arg)[k].getElementsByTagName("*"));
+                }
+                console.log(allTag)
+            }
         }
     }
-    for (var i = 0; i < allTag.length; i++) {
-        if (allTag[i].className === className) {
-            this.elements.push(allTag[i])
+    if (arguments.length == 1) {
+        for (var i = 0; i < allTag.length; i++) {
+            if (allTag[i].className === className) {
+                this.elements.push(allTag[i])
+            }
+        }
+    } else if (arguments.length == 2) {
+        for (var i = 0; i < allTag.length; i++) {
+            for (var j = 0; j < allTag[i].length; j++) {
+                if (allTag[i][j].className === className) {
+                    this.elements.push(allTag[i][j])
+                }
+            }
+
         }
     }
     return this;
@@ -117,6 +144,14 @@ Base.prototype.css = function(attr, value) {
             return this.elements[i].style[attr];
         }
         this.elements[i].style[attr] = value;
+    }
+    return this;
+}
+
+// 为元素添加addClass功能,在需要的时候为元素动态添加class
+Base.prototype.addClass = function(str) {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].className = str;
     }
     return this;
 }

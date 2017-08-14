@@ -3,3 +3,15 @@
     color: red;
     font-size: 26px;
 }
+
+.a {
+    color: green;
+}
+
+.b {
+    background: #ccc;
+}
+
+.c {
+    text-decoration: underline;
+}
