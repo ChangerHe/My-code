@@ -12,7 +12,7 @@ window.onload = function() {
     console.log($().getTagName('p').html());
     console.log($().getId('box').css('color'))
         // console.log($().getId('box').css('color', 'green'))
-    console.log($().getClass("par").getElement(1))
+    console.log($().getClass("par", '#box'))
 
 
 

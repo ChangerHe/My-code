@@ -1,21 +1,13 @@
-// var Base = {
-//     getId: function(id) {
-//         return document.getElementById(id)
-//     },
-//     getName: function(name) {
-//         return document.getElementsByName(name)
-//     },
-//     getTagName: function(tag) {
-//         return document.getElementsByTagName(tag)
-//     }
-// }
-
-// 实现代码连缀的功能,使用一句代码将需求全部写好
+/* 
+ * @author: ChangerHe
+ * @descripe: 以下为对学习工作中需要用到的基础API进行了简单的封装,以达到提升开发效率的目的
+ * @version: 0.0.2
+ */
 
 /* 
- * 需求1:使用连缀的功能,将需要的css方法,html方法,click方法写好
- * 连缀功能的实现原理: 之前的设计使得返回的对象是一个divElement对象,因此我们需要将返回值设置为之前的对象即可实现连缀功能
- * 我们现在不使用之前的面向对象方法,而是使用基于原型链的方式实现代码的封装
+ * API速查表:(做完再更)
+ * 
+ * 
  */
 
 //前台类库
@@ -58,8 +50,21 @@ Base.prototype.getTagName = function(tagname) {
 
 // 获取元素className并将自身返回
 // 增补内容1：获取元素的className的兼容性写法，其实原理很简单，遍历所有的属性标签，查看属性标签中的className，将需要的标签再push到elements中，即可。
-Base.prototype.getClass = function(className) {
+// 增补内容2: 现存一个问题,因为我为了进行兼容,是向全局调取了这个索引,因此在这个时候,就算我在之前加上了getId等的限定,都没有办法达到选取id下的class的目的,那么我现在将getclass再多传一个参数进去,作为相应的限定.
+// 现存BUG:代码中getClass仅能在第二个参数中传id值,不能传其他值,暂未解决
+Base.prototype.getClass = function(className, anyName) {
     var allTag = document.getElementsByTagName("*");
+    if (arguments.length == 2) {
+        if (/^#\w+$/.test(arguments[1])) {
+            var arg = arguments[1].match(/^#(\w+)$/)[1]
+            for (var j = 0; j < allTag.length; j++) {
+                if (allTag[j].getElementById(arg)) {
+                    allTag = allTag[j].getElementById(arg);
+                }
+            }
+            console.log(allTag)
+        }
+    }
     for (var i = 0; i < allTag.length; i++) {
         if (allTag[i].className === className) {
             this.elements.push(allTag[i])
