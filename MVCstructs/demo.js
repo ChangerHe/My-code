@@ -12,9 +12,11 @@ window.onload = function() {
     // console.log($().getTagName('p').html());
     // console.log($().getId('box').css('color'))
     // console.log($().getId('box').css('color', 'green'))
+
     console.log($().getClass("par", '#box').addClass('a'))
-    console.log($().getClass("par", '.box').addClass('b'))
+        // console.log($().getClass("par", '.box').addClass('b'))
     console.log($().getClass("par", 'div').addClass('c'))
+    console.log($().getClass("par").addClass('d'))
 
 
 

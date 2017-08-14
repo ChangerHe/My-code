@@ -1,11 +1,6 @@
 @charset "utf-8";
-#box {
-    color: red;
-    font-size: 26px;
-}
-
 .a {
-    color: green;
+    color: red;
 }
 
 .b {
@@ -14,4 +9,8 @@
 
 .c {
     text-decoration: underline;
+}
+
+.d {
+    text-indent: 2em;
 }

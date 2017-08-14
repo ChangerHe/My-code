@@ -50,37 +50,12 @@ Base.prototype.getTagName = function(tagname) {
 // 获取元素className并将自身返回
 // 增补内容1：获取元素的className的兼容性写法，其实原理很简单，遍历所有的属性标签，查看属性标签中的className，将需要的标签再push到elements中，即可。
 // 增补内容2: 现存一个问题,为了进行兼容,是向全局调取了这个索引,因此在这个时候,就算我在之前加上了getId等的限定,都没有办法达到选取id下的class的目的,那么我现在将getclass再多传一个参数进去,作为相应的限定.
-// 现存BUG:代码中传递第二参数的时候,不能同时选到多个className或者name下的对象,只能选择第一个className或name对象
+// 现存BUG1:代码中传递第二参数的时候,无法传递class作为第二个参数
+// 现存BUG2:代码增加className会覆盖之前设置好的className
+// 现存BUG3: 当我们需要对className进行查找的时候,className如果被设置后,className就有两个或者多个,所以会导致后期匹配这个className的时候会失效
+// warning:第一个参数是一个纯粹的className,所以我在这么没有设置加点,但是第二个参数是要加上相应的标识的
 Base.prototype.getClass = function(className, anyName) {
     var allTag = document.getElementsByTagName("*");
-    if (arguments.length == 2) {
-        if (/^#\w+$/.test(arguments[1])) {
-            var arg = arguments[1].match(/^#(\w+)$/)[1]
-            for (var j = 0; j < allTag.length; j++) {
-                if (document.getElementById(arg)) {
-                    allTag = document.getElementById(arg).getElementsByTagName("*");
-                }
-            }
-        } else if (/^\.\w+$/.test(arguments[1])) {
-            var arg = arguments[1].match(/^\.(\w+)$/)[1];
-            if (document.getElementsByClassName(arg)) {
-                for (var k = 0; k < document.getElementsByClassName(arg).length; k++) {
-                    allTag = document.getElementsByClassName(arg)[k].getElementsByTagName("*");
-                }
-            }
-
-        } else if (/^\w+$/.test(arguments[1])) {
-            var arg = arguments[1].match(/^(\w+)$/)[1];
-            var a = [];
-            if (document.getElementsByTagName(arg)) {
-                allTag = [];
-                for (var k = 0; k < document.getElementsByTagName(arg).length; k++) {
-                    allTag = allTag.concat(document.getElementsByTagName(arg)[k].getElementsByTagName("*"));
-                }
-                console.log(allTag)
-            }
-        }
-    }
     if (arguments.length == 1) {
         for (var i = 0; i < allTag.length; i++) {
             if (allTag[i].className === className) {
@@ -88,13 +63,61 @@ Base.prototype.getClass = function(className, anyName) {
             }
         }
     } else if (arguments.length == 2) {
-        for (var i = 0; i < allTag.length; i++) {
-            for (var j = 0; j < allTag[i].length; j++) {
-                if (allTag[i][j].className === className) {
-                    this.elements.push(allTag[i][j])
+        if (/^#(\w+)$/.test(arguments[1])) {
+            var arg = arguments[1].match(/^#(\w+)$/)[1]
+            for (var j = 0; j < allTag.length; j++) {
+                console.log(arg)
+                if (document.getElementById(arg)) {
+                    allTag = document.getElementById(arg).getElementsByTagName("*");
+                    console.log(allTag)
                 }
             }
+            for (var i = 0; i < allTag.length; i++) {
+                if (allTag[i].className === className) {
+                    this.elements.push(allTag[i])
+                }
+            }
+        } else if (/^\.(\w+)$/.test(arguments[1])) {
+            var arg = arguments[1].match(/^\.(\w+)$/)[1];
+            // if (document.getElementsByClassName(arg)) {
+            //     for (var k = 0; k < document.getElementsByClassName(arg).length; k++) {
+            //         allTag = document.getElementsByClassName(arg)[k].getElementsByTagName("*");
+            //     }
+            // }
+            // thisTag = [];
+            // for (var j = 0; j < allTag.length; j++) {
+            //     console.log(allTag[j].className == arg)
+            //     if (allTag[j].className == arg) {
+            //         console.log(allTag[j])
+            //         allTag = allTag.concat(allTag[j]);
+            //     }
+            // }
+            // console.log(allTag)
+            // for (var i = 0; i < allTag.length; i++) {
+            //     for (var j = 0; j < allTag[i].length; j++) {
+            //         if (allTag[i][j].className === className) {
+            //             this.elements.push(allTag[i][j])
+            //         }
+            //     }
 
+            // }
+        } else if (/^(\w+)$/.test(arguments[1])) {
+            var arg = arguments[1].match(/^(\w+)$/)[1];
+            if (document.getElementsByTagName(arg)) {
+                allTag = [];
+                for (var k = 0; k < document.getElementsByTagName(arg).length; k++) {
+                    allTag = allTag.concat(document.getElementsByTagName(arg)[k].getElementsByTagName("*"));
+                }
+                console.log(allTag)
+            }
+            for (var i = 0; i < allTag.length; i++) {
+                for (var j = 0; j < allTag[i].length; j++) {
+                    if (allTag[i][j].className === className) {
+                        this.elements.push(allTag[i][j])
+                    }
+                }
+
+            }
         }
     }
     return this;
@@ -151,7 +174,7 @@ Base.prototype.css = function(attr, value) {
 // 为元素添加addClass功能,在需要的时候为元素动态添加class
 Base.prototype.addClass = function(str) {
     for (var i = 0; i < this.elements.length; i++) {
-        this.elements[i].className = str;
+        this.elements[i].className += " " + str;
     }
     return this;
 }
