@@ -182,6 +182,32 @@ Base.prototype.addClass = function(str) {
 }
 
 // 为元素移除不需要的className
+// 此处精妙之处在于,使用new 出来的regexp对象,替代了之前的简便写法,使我们的参数更方便的传入到了此正则表达式中
 Base.prototype.removeClass = function(str) {
+    for (var i = 0; i < this.elements.length; i++) {
+        if (this.elements[i].className.match(new RegExp('(^|\\s)' + str + '(\\s|$)')))
+            this.elements[i].className = this.elements[i].className.replace(new RegExp('(^|\\s)' + str + '(\\s|$)'), '')
+    }
+    return this;
+}
 
+// 在非行内位置添加需要的css规则
+Base.prototype.addRule = function(num, selectorText, cssText, position) {
+    var sheet = document.styleSheets[num];
+    if (typeof sheet.insertRule != 'undefined') {
+        sheet.insertRule(selectorText + "{" + cssText + "}", position)
+    } else if (typeof sheet.addRule != 'undefined') {
+        sheet.addRule(selectorText, cssText, posotion)
+    }
+    return this;
+}
+
+// 移除非行内位置的css规则
+Base.prototype.removeRule = function(num, index) {
+    var sheet = document.styleSheets[num];
+    if (typeof sheet.deleteRule != 'undefined') {
+        sheet.deleteRule(index);
+    } else if (typeof sheet.removeRule != 'undefined') {
+        sheet.removeRule(index);
+    }
 }
