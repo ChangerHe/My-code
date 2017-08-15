@@ -204,10 +204,11 @@ Base.prototype.addRule = function(num, selectorText, cssText, position) {
 
 // 移除非行内位置的css规则
 Base.prototype.removeRule = function(num, index) {
-    var sheet = document.styleSheets[num];
-    if (typeof sheet.deleteRule != 'undefined') {
-        sheet.deleteRule(index);
-    } else if (typeof sheet.removeRule != 'undefined') {
-        sheet.removeRule(index);
+        var sheet = document.styleSheets[num];
+        if (typeof sheet.deleteRule != 'undefined') {
+            sheet.deleteRule(index);
+        } else if (typeof sheet.removeRule != 'undefined') {
+            sheet.removeRule(index);
+        }
     }
-}
+    //注意:为文档的样式添加样式会破坏css的结构,因此不建议使用,当使用的时候,务必小心.
