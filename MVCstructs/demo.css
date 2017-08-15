@@ -14,3 +14,44 @@
 .d {
     text-indent: 2em;
 }
+
+#testBox {
+    width: 100px;
+    height: 100px;
+    background: #000;
+    position: absolute;
+}
+
+
+/* 博客的下拉菜单样式演示 */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+    height: 60px;
+    max-width: 1400px;
+    min-width: 1000px;
+    background: #ccc;
+}
+
+#head {
+    position: relative;
+    width: 100px;
+    height: 60px;
+    float: right;
+    margin-right: 200px;
+    background: #bbb;
+    line-height: 60px;
+    text-align: center;
+}
+
+#aUl {
+    position: absolute;
+    left: 40px;
+    top: 60px;
+    display: none;
+}

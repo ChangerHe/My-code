@@ -13,14 +13,17 @@
 //前台类库
 // 经过测试，发现因为后面所有的属性和方法都是通过一个new出来的对象设置的，而对象的数组elements是没有减少的，只有在后方增加，所以这个时候当我们为另外一个属性标签设置属性的时候，会影响到之前设置的标签属性，所以我们先直接将new出来的属性对象赋值给$符号,每次需要进行new一个新对象的时候,我们就直接调用$符号了
 // 为什么$要这样设置,因为我们每次都要新返回一个对象,如果想像jQuery的方法少一个()的话,可能需要写很多的代码才能实现,我们现在将$看做一个函数,每次需要的时候就自己创建一个并且执行它,就可以新new出一个对象了
-var $ = function() {
-    return new Base();
+var $ = function(_this) {
+    return new Base(_this);
 }
 
 // 基础库总入口
-function Base() {
+function Base(_this) {
     // 我们现在创建一个节点来保存获取到的节点,并生成一个数组
     this.elements = [];
+    if (_this != undefined) { //注：这里_this是一个对象,undefined也是一个对象,这个时候,应该使用不带引号的undefined
+        this.elements[0] = _this;
+    }
 }
 
 //获取元素的id,并将自身返回,以便进行连缀
@@ -192,6 +195,7 @@ Base.prototype.removeClass = function(str) {
 }
 
 // 在非行内位置添加需要的css规则
+// 用法实例: $().addRule(0, 'body', 'background:green', 0)
 Base.prototype.addRule = function(num, selectorText, cssText, position) {
     var sheet = document.styleSheets[num];
     if (typeof sheet.insertRule != 'undefined') {
@@ -212,3 +216,60 @@ Base.prototype.removeRule = function(num, index) {
         }
     }
     //注意:为文档的样式添加样式会破坏css的结构,因此不建议使用,当使用的时候,务必小心.
+
+// 设置移入移除的方法
+// 用法实例
+/* 
+$().getId('container').hover(function() {
+    $().getId('aUl').show();
+}, function() {
+    $().getId('aUl').hide();
+}) 
+*/
+Base.prototype.hover = function(over, out) {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].onmouseover = over;
+        this.elements[i].onmouseout = out;
+    }
+    return this;
+}
+
+// 设置显示
+Base.prototype.show = function() {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.display = "block";
+    }
+    return this;
+}
+
+// 设置隐藏
+Base.prototype.hide = function() {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.display = "none";
+    }
+    return this;
+}
+
+// 设置物体的居中
+// 增补内容1: 实现了不需传入宽高值即可居中的方法,当然,前提是你已经设置了元素的position属性.
+Base.prototype.center = function() {
+    var top = (document.documentElement.clientHeight - this.elements[0].clientHeight) / 2;
+    var left = (document.documentElement.clientWidth - this.elements[0].clientWidth) / 2;
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.top = top + 'px';
+        this.elements[i].style.left = left + 'px';
+    }
+    return this;
+}
+
+// 触发浏览器窗口事件实现物体的实时居中,而不需要刷新才能居中
+// 以下是用法实例
+/* 
+$().getId('testBox').center().resize(function() {
+    $().getId('testBox').center();
+})
+*/
+Base.prototype.resize = function(fn) {
+    window.onresize = fn;
+    return this;
+}
