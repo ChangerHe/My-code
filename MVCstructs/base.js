@@ -1,7 +1,7 @@
 /* 
  * @author: ChangerHe
  * @descripe: 以下为对学习工作中需要用到的基础API进行了简单的封装,以达到提升开发效率的目的
- * @version: 0.0.2
+ * @version: 0.0.3
  */
 
 /* 
