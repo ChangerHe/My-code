@@ -28,13 +28,31 @@ window.onload = function() {
     //     $().getId('testBox').center();
     // })
     // $().getId('container')
-    $().getId('testBox').lock().resize(function() {
-        $().getId('testBox').lock()
-    })
+    // $().getId('testBox').lock().resize(function() {
+    //     $().getId('testBox').lock()
+    // })
 
 
 
+    // var testBox = document.getElementById('testBox');
+    // testBox.onmousedown = function(e) {
+    //     var e = e || window.event;
+    //     var x = e.clientX - this.offsetLeft;
+    //     var y = e.clientY - this.offsetTop;
+    //     this.onmousemove = function(e) {
+    //         this.style.left = e.clientX - x + 'px';
+    //         this.style.top = e.clientY - y + 'px';
+    //     }
+    //     this.onmouseup = function() {
+    //         this.onmousemove = null;
+    //     }
+    // }
 
+
+    $().getId('testBox').center().drag().resize(function() {
+            $().getId('testBox').center().drag()
+        })
+        // $().getId('head').drag();
 
 
 

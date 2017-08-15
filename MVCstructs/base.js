@@ -269,17 +269,39 @@ $().getId('testBox').center().resize(function() {
     $().getId('testBox').center();
 })
 */
+// 更新内容1: 尝试实现resize功能在小块在下方的时候,重新调整窗口大小会使小块重新居中的问题,但是未实现成功,待再次更新
 Base.prototype.resize = function(fn) {
     window.onresize = fn;
+    // for (var i = 0; i < this.elements.length; i++) {
+    //     var element = this.elements[i];
+    //     window.onresize = function() {
+    //         var Left = (window.innerWidth || document.documentElement.clientWidth) - this.offsetWidth;
+    //         var Top = (window.innerHeight || document.documentElement.clientHeight) - this.offsetHeight
+    //         fn();
+    //         if (element.offsetLeft > Left) {
+    //             element.style.left = Left;
+    //         }
+    //         if (element.offsetTop > Top) {
+    //             element.style.top = Top;
+    //         }
+    //     }
+    // }
     return this;
 }
 
 // 添加锁屏遮罩(不是特别建议使用,因为其实可以设置块级元素的position为fixed之后.设置上下左右位置都为0 就可以实现了)
+// 为了避免出现浏览器改变窗口大小时出现锁屏区域无法遮盖所有文档区域的问题,以下是建议的写法:
+/* 
+$().getId('testBox').lock().resize(function() {
+    $().getId('testBox').lock()
+})
+*/
 Base.prototype.lock = function() {
     for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].style.width = (window.innerWidth || document.documentElement.clientWidth) + 'px';
         this.elements[i].style.height = (window.innerHeight || document.documentElement.clientHeight) + 'px';
         this.elements[i].style.display = 'block';
+        document.documentElement.style.overflow = 'hidden';
     }
     return this;
 }
@@ -288,6 +310,48 @@ Base.prototype.lock = function() {
 Base.prototype.unlock = function() {
     for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].style.display = 'none';
+        document.documentElement.style.overflow = 'auto';
+    }
+    return this;
+}
+
+// 拖拽功能
+// 更新内容1: 实现块状元素无法拖动至屏幕外面的功能
+// 现存较多BUG,如,可拖动至页面底部,后无法移除mousemove产生的效果,鼠标点击不动之后,如果鼠标走到浏览器外面去了,回来之后就算松开鼠标,方块也会跟着跑等问题,后期解决,现在不建议直接使用
+// 注意: 如需实现拖拽,请将块级元素设置为position:absolute;
+Base.prototype.drag = function() {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].onmousedown = function(e) {
+            var e = e || window.event;
+            var x = e.clientX - this.offsetLeft;
+            var y = e.clientY - this.offsetTop;
+            console.log(e.clientX - x, e.clientY - y)
+            this.onmousemove = function(e) {
+                var left = e.clientX - x;
+                var top = e.clientY - y;
+                if (typeof this.setCapture != 'undefined') { //解决IE下使用鼠标一直拉到最底端超出页面时页面仍然向下滚动的问题
+                    this.setCapture();
+                }
+                if (left <= 0) {
+                    left = 0
+                } else if (left >= (window.innerWidth || document.documentElement.clientWidth) - this.offsetWidth) {
+                    left = (window.innerWidth || document.documentElement.clientWidth) - this.offsetWidth
+                }
+                if (top <= 0) {
+                    top = 0
+                } else if (top >= (window.innerHeight || document.documentElement.clientHeight) - this.offsetHeight) {
+                    top = (window.innerHeight || document.documentElement.clientHeight) - this.offsetHeight
+                }
+                this.style.left = left + 'px';
+                this.style.top = top + 'px';
+            }
+            this.onmouseup = function() {
+                this.onmousemove = null;
+                if (typeof this.releaseCapture != 'undefined') { //解决IE下使用鼠标一直拉到最底端超出页面时页面仍然向下滚动的问题
+                    this.releaseCapture();
+                }
+            }
+        }
     }
     return this;
 }
