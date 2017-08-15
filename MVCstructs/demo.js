@@ -18,17 +18,19 @@ window.onload = function() {
     // console.log($().getClass("par", 'div').addClass('c'))
     // $().addRule(0, 'body', 'background:green', 0)
 
-    $().getId('head').hover(function() {
-        $().getId('aUl').show();
-        console.log($(this).css('color', 'green'))
-    }, function() {
-        $().getId('aUl').hide();
+    // $().getId('head').hover(function() {
+    //     $().getId('aUl').show();
+    //     console.log($(this).css('color', 'green'))
+    // }, function() {
+    //     $().getId('aUl').hide();
+    // })
+    // $().getId('testBox').center().resize(function() {
+    //     $().getId('testBox').center();
+    // })
+    // $().getId('container')
+    $().getId('testBox').lock().resize(function() {
+        $().getId('testBox').lock()
     })
-    $().getId('testBox').center().resize(function() {
-        $().getId('testBox').center();
-    })
-    $().getId('container')
-
 
 
 

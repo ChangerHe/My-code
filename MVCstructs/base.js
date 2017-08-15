@@ -250,7 +250,7 @@ Base.prototype.hide = function() {
     return this;
 }
 
-// 设置物体的居中
+// 设置物体的居中,此方法需要与下方的resize配合使用,否则无法实现元素的实时居中
 // 增补内容1: 实现了不需传入宽高值即可居中的方法,当然,前提是你已经设置了元素的position属性.
 Base.prototype.center = function() {
     var top = (document.documentElement.clientHeight - this.elements[0].clientHeight) / 2;
@@ -271,5 +271,23 @@ $().getId('testBox').center().resize(function() {
 */
 Base.prototype.resize = function(fn) {
     window.onresize = fn;
+    return this;
+}
+
+// 添加锁屏遮罩(不是特别建议使用,因为其实可以设置块级元素的position为fixed之后.设置上下左右位置都为0 就可以实现了)
+Base.prototype.lock = function() {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.width = (window.innerWidth || document.documentElement.clientWidth) + 'px';
+        this.elements[i].style.height = (window.innerHeight || document.documentElement.clientHeight) + 'px';
+        this.elements[i].style.display = 'block';
+    }
+    return this;
+}
+
+// 清除锁屏遮罩
+Base.prototype.unlock = function() {
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.display = 'none';
+    }
     return this;
 }

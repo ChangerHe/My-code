@@ -16,10 +16,13 @@
 }
 
 #testBox {
+    filter: alpha(opacity(30));
+    opacity: 0.3;
+    position: absolute;
     width: 100px;
     height: 100px;
+    z-index: 999;
     background: #000;
-    position: absolute;
 }
 
 
