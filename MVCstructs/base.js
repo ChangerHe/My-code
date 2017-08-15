@@ -172,9 +172,16 @@ Base.prototype.css = function(attr, value) {
 }
 
 // 为元素添加addClass功能,在需要的时候为元素动态添加class
+// 增补内容1: 当我们在addClass之后,如果再为内容增加相同的class,这个时候会发生再次添加生效的情况,这里使用正则表达式进行判定,确定之前的className中是否存在要添加的class
 Base.prototype.addClass = function(str) {
     for (var i = 0; i < this.elements.length; i++) {
-        this.elements[i].className += " " + str;
+        if (!this.elements[i].className.match(new RegExp('(^|\\s)' + str + '(\\s|$)')))
+            this.elements[i].className += " " + str;
     }
     return this;
+}
+
+// 为元素移除不需要的className
+Base.prototype.removeClass = function(str) {
+
 }

@@ -16,7 +16,7 @@ window.onload = function() {
     console.log($().getClass("par", '#box').addClass('a'))
         // console.log($().getClass("par", '.box').addClass('b'))
     console.log($().getClass("par", 'div').addClass('c'))
-    console.log($().getClass("par").addClass('d'))
+    console.log($().getId("box").addClass('d').addClass('c').addClass('b').addClass('b'))
 
 
 
