@@ -25,8 +25,8 @@
 //     $().getId('aUl').hide();
 // })
 // $().getId('testBox').center().resize(function() {
-//     $().getId('testBox').center();
-// })
+//         $().getId('testBox').center();
+//     })
 // $().getId('container')
 // $().getId('testBox').lock().resize(function() {
 //     $().getId('testBox').lock()
@@ -55,22 +55,25 @@
 // $().getId('head').drag();
 
 
-$().addEvent(window, 'load', function() {
-    alert(1)
-})
-$().addEvent(window, 'load', function() {
-    alert(2)
-})
-$().addEvent(window, 'load', function() {
-    alert(3)
-})
+
+// $().addEvent(window, 'load', function() {
+//     alert(2)
+// })
+// $().addEvent(window, 'load', function() {
+//     alert(3)
+// })
+
+
+// $().getId('box').css('color')
+// console.log($().getTagName('div'))
 
 
 
-
-
-
-
+// window.onload = function() {
+//     $().getId('testBox').center().resize(function() {
+//         $().getId('testBox').center();
+//     })
+// }
 
 
 
@@ -78,3 +81,7 @@ $().addEvent(window, 'load', function() {
 
 
 // }
+
+$().addEvent(window, 'load', function() {
+    $().getId('box').css('color', 'red').css('fontSize', '100px')
+})
