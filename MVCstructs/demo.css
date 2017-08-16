@@ -1,10 +1,10 @@
 @charset "utf-8";
 .a {
-    color: red;
+    color: rgb(255, 0, 0);
 }
 
 .b {
-    background: #ccc;
+    background: rgba(203, 29, 29, 0.47);
 }
 
 .c {
@@ -22,7 +22,7 @@
     width: 100px;
     height: 100px;
     z-index: 999;
-    background: #000;
+    background: #40BDA9;
     top: 300px;
     left: 500px;
 }
@@ -49,9 +49,9 @@
     height: 60px;
     float: right;
     margin-right: 200px;
-    background: #bbb;
     line-height: 60px;
     text-align: center;
+    background: rgba(53, 122, 193, 0.40);
 }
 
 #aUl {
