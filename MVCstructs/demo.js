@@ -55,13 +55,13 @@
 // $().getId('head').drag();
 
 
-$().addEvent(window, onload, function() {
+$().addEvent(window, 'load', function() {
     alert(1)
 })
-$().addEvent(window, onload, function() {
+$().addEvent(window, 'load', function() {
     alert(2)
 })
-$().addEvent(window, onload, function() {
+$().addEvent(window, 'load', function() {
     alert(3)
 })
 
