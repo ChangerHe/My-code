@@ -355,3 +355,22 @@ Base.prototype.drag = function() {
     }
     return this;
 }
+
+/**
+ * 解决事件绑定中,IE浏览器的问题(标准的事件监听是使用的addEventListener(),而IE中却使用的是attachEvent(),IE中存在内存泄露问题),因此,我们希望我们的函数能解决以下问题: 
+ *          1.支持同一元素的同一事件句柄能够绑定多个监听函数
+ *          2.如果在同一元素的同一时间句柄上注册同一函数,则第一次注册后的所有函数都将被忽略
+ *          3.将事件函数的this指向调用的元素
+ *          4.事件监听函数按指定的顺序执行(IE下是按照倒序执行)
+ *          5.在函数体内不用再使用event= event || window.event;来标准化event对象
+ */
+Base.prototype.addEvent = function(obj, type, fn) {
+    if (typeof addEventListener != 'undefined') {
+        obj.addEventListener(type, fn, false)
+
+    } else if (typeof attachEvent != 'undefined') {
+        obj.attachEvent('on' + type, function() {
+            fn.call(obj, window.event); //修复IE下默认的this指向window的问题
+        })
+    }
+}
