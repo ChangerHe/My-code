@@ -473,16 +473,23 @@ Base.prototype.find = function(str) {
  * @param: target 目标,当我想移动到500的位置停下的时候,设置target为500
  * @param: time 单位时间
  */
+// 现存BUG1: 当我们将目标设置好之后,但是我们的移动的步数不能被移动的距离值整除时,动画仍然会继续.
+// 现存BUG2: 
 Base.prototype.animate = function(attr, step, target, time) {
     for (var i = 0; i < this.elements.length; i++) {
         var element = this.elements[i]; //解决因为调用定时器而产生的闭包问题
+
         var timer = setInterval(function() {
             if (typeof element.currentStyle != 'undefined') { //兼容IE的方法
                 element.style[attr] = parseInt(element.currentStyle[attr]) + step + 'px';
             } else if (typeof window.getComputedStyle != 'undefined') { //w3c的推荐方法
                 element.style[attr] = parseInt(window.getComputedStyle(element, null)[attr]) + step + 'px';
             }
-            if (parseInt(element.style[attr]) == target) {
+            if (step > 0 && parseInt(element.style[attr]) >= target) {
+                element.style[attr] = target + 'px';
+                clearInterval(timer);
+            } else if (step < 0 && parseInt(element.style[attr]) <= target) {
+                element.style[attr] = target + 'px';
                 clearInterval(timer)
             }
         }, time)

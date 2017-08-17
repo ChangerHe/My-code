@@ -8,6 +8,13 @@
     background: #000;
 }
 
+#line {
+    width: 1px;
+    height: 400px;
+    background: #000;
+    margin-left: 200px;
+}
+
 .a {
     color: rgb(255, 0, 0);
 }
