@@ -131,7 +131,11 @@ $().addEvent(window, 'load', function() {
     //     }
     // }
 $().addEvent(window, 'load', function() {
-    $('#box').animate('left', 11, 200, 1000)
+    $('#btn').click(function() {
+        console.log(1)
+        $('#box').animate('top', 1, 200, 100)
+
+    })
 
 
 
