@@ -29,6 +29,29 @@ var $ = function(args) {
     return new Base(args);
 }
 
+// 浏览器的类型及能力检测区域,这里暂时将其作为一个闭包直接执行,以免污染全局环境
+;
+(function() {
+    var ua = navigator.userAgent.toLowerCase(); //我们先调取浏览器的版本信息
+    var version = ''; //sersion用于调取浏览器的版本信息
+    console.log(ua)
+        // 在浏览器类型检测中,可以注意到这个特性:
+        // 1.IE浏览器是有一个MSIE的标识,后面加上浮点数的版本号的,注意,MSIE后面有一个空格,也就是说我们进行正则表达式匹配的时候,一定要记得加上这个空格      msie 9.0
+        // 2.谷歌浏览器的特点是含有chrome字符串加斜线加上后面的浮点数版本号,有一点要注意的是,可以看到谷歌浏览器后面还会有一个Safari的标识     chrome/59.0.3071.115
+        // 3.火狐浏览器的特点是含有Firefox后面加斜线加上浮点数版本号      Firefox/54.0
+    console.log(/msie ([\d.]+)/.test(ua))
+    if (/msie ([\d.]+)/.test(ua)) {
+        s = ua.match(/msie ([\d.]+)/)[1]
+        console.log('您的浏览器是IE浏览器,版本号:' + s)
+    } else if (/chrome\/([\d.]+)/.test(ua)) {
+        s = ua.match(/chrome\/([\d.]+)/)[1]
+        console.log('您的浏览器是chrome浏览器,版本号' + s)
+    } else if (/firefox\/([\d.]+)/.test(ua)) {
+        s = ua.match(/firefox\/([\d.]+)/)[1];
+        console.log('您的浏览器是Firefox浏览器,版本号: ' + s)
+    }
+})()
+
 // 基础库总入口
 function Base(args) {
     // 我们现在创建一个节点来保存获取到的节点,并生成一个数组
