@@ -134,6 +134,11 @@ $().addEvent(window, 'load', function() {
     $('#btn').click(function() {
         console.log(1)
         $('#box').animate('top', 1, 200, 100)
+        if ($('#btn').css('top') == "200px") {
+
+            $('#box').animate('left', 2, 200, 100)
+        }
+
 
     })
 

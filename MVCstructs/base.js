@@ -76,12 +76,18 @@ function Base(args) {
 }
 
 //获取元素的id,并将自身返回,以便进行连缀
+/**
+ * @param: id 标签的id值,不需要加#
+ */
 Base.prototype.getId = function(id) {
     this.elements.push(document.getElementById(id))
     return this;
 }
 
 //获取元素的name,并将本身返回
+/**
+ * @param: name 标签的name值
+ */
 Base.prototype.getName = function(name) {
     var names = document.getElementsByName(name)
     for (var i = 0; i < names.length; i++) {
@@ -91,6 +97,9 @@ Base.prototype.getName = function(name) {
 }
 
 //获取元素tagname并将自身返回
+/**
+ * @param: tagName 标签的名称
+ */
 Base.prototype.getTagName = function(tagname) {
     var tags = document.getElementsByTagName(tagname)
     for (var i = 0; i < tags.length; i++) {
@@ -106,6 +115,10 @@ Base.prototype.getTagName = function(tagname) {
 // 现存BUG2:代码增加className会覆盖之前设置好的className
 // 现存BUG3: 当我们需要对className进行查找的时候,className如果被设置后,className就有两个或者多个,所以会导致后期匹配这个className的时候会失效
 // warning:第一个参数是一个纯粹的className,所以我在这么没有设置加点,但是第二个参数是要加上相应的标识的
+/**
+ * @param: className 类名称,不需要加点
+ * @param: anyName 任意名称,作为选取范围,以id名为选取范围时,格式为'#id',以class名为选取范围时.格式为'.className',以tagName为选取范围时,直接使用标签名即可
+ */
 Base.prototype.getClass = function(className, anyName) {
     var allTag = document.getElementsByTagName("*");
     if (arguments.length == 1) {
@@ -177,6 +190,9 @@ Base.prototype.getClass = function(className, anyName) {
 
 // 做到这里发现一个问题,当我们不需要设置class或者是tag中所有的属性,而是设置其中某一个的属性时,我们不能够像往常一样直接在后面加上数组索引,因为暂时技术有限,没有办法获得相应的兼容性写法,我们在这里设置一个新的getElements的API来调取我们需要的数组索引
 // 现存BUG1: 当我们前面使用的是class或者tagName等会选择到多个标签的选择器时,getElement现在仅能匹配到第一个选取元素的相应子元素
+/**
+ * @param: num 获取相应标签上的相应子元素,如,getElement(1)则表示选取第二个子元素
+ */
 Base.prototype.getElement = function(num) {
     var thisElement = this.elements[num];
     this.elements = [];
@@ -187,6 +203,9 @@ Base.prototype.getElement = function(num) {
 // 获取或设置元素的innerHTML值
 // 此时必须要加上循环才可以,因为elements是一个数组,当我们将数组设置innerHTML的时候,其实并不能生效的,这时候相当于是给数组设置了一个之前没有的innerHTML的属性,这个属性时并不能生效的,所以我们必须要将这个innerHTML的属性设置到其数组的元素上
 // 增补内容1:当inner没有传值的时候,判定为获取元素节点的innerHTML,这个时候需要做一下判定
+/**
+ * @param: inner 表示需要传入的内容,可以为一连串的标签,也可以是一些字符串,当不传值时,默认进行查找操作
+ */
 Base.prototype.html = function(inner) {
     for (var i = 0; i < this.elements.length; i++) {
         if (arguments.length == 0) {
@@ -198,6 +217,9 @@ Base.prototype.html = function(inner) {
 }
 
 // 设置元素的点击属性,并将传入值设置为一个函数
+/**
+ * @param: fn 表示一个函数,当点击后执行该函数
+ */
 Base.prototype.click = function(fn) {
     for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].onclick = fn;
@@ -210,6 +232,10 @@ Base.prototype.click = function(fn) {
 // 增补内容1:当我们对css传入一个值的时候,我们则返回这个标签的相应属性值
 // 增补内容2:当我们将css设置到外联css文件中的时候,我们是无法通过正常的方法得到相应的css属性值的,因此需要调用相应的方法,来获取外联样式中的属性值,这样的API需要兼容,分别是W3C的推荐标准:window.getComputedStyle和IE的方法.currentStyle
 // 增补内容3: 经测试,我们在IE浏览器的条件下调用此函数,发现IE是支持window.getComputedStyle这个函数的,也就是有返回值,因此这里我将兼容IE的写法放在了前面,先判断IE浏览器为佳
+/**
+ * @param: attr css属性的属性名称,当然,如果是带中间连字符的属性,请使用驼峰命名法
+ * @param: value attr属性的相应的值
+ */
 Base.prototype.css = function(attr, value) {
     for (var i = 0; i < this.elements.length; i++) {
         if (arguments.length == 1) {
@@ -227,6 +253,9 @@ Base.prototype.css = function(attr, value) {
 
 // 为元素添加addClass功能,在需要的时候为元素动态添加class
 // 增补内容1: 当我们在addClass之后,如果再为内容增加相同的class,这个时候会发生再次添加生效的情况,这里使用正则表达式进行判定,确定之前的className中是否存在要添加的class
+/**
+ * @param: str 表示需要增加的class名称
+ */
 Base.prototype.addClass = function(str) {
     for (var i = 0; i < this.elements.length; i++) {
         if (!this.elements[i].className.match(new RegExp('(^|\\s)' + str + '(\\s|$)')))
@@ -237,6 +266,9 @@ Base.prototype.addClass = function(str) {
 
 // 为元素移除不需要的className
 // 此处精妙之处在于,使用new 出来的regexp对象,替代了之前的简便写法,使我们的参数更方便的传入到了此正则表达式中
+/**
+ * @param: str 表示需要移除的class名称
+ */
 Base.prototype.removeClass = function(str) {
     for (var i = 0; i < this.elements.length; i++) {
         if (this.elements[i].className.match(new RegExp('(^|\\s)' + str + '(\\s|$)')))
@@ -247,6 +279,12 @@ Base.prototype.removeClass = function(str) {
 
 // 在非行内位置添加需要的css规则
 // 用法实例: $().addRule(0, 'body', 'background:green', 0)
+/**
+ * @param: num 第几个样式表
+ * @param: selectorText 选择器名称
+ * @param: cssText css的样式名称
+ * @param: position  要插入的位置
+ */
 Base.prototype.addRule = function(num, selectorText, cssText, position) {
     var sheet = document.styleSheets[num];
     if (typeof sheet.insertRule != 'undefined') {
@@ -258,6 +296,10 @@ Base.prototype.addRule = function(num, selectorText, cssText, position) {
 }
 
 // 移除非行内位置的css规则
+/**
+ * @param: num 要移除的css外联式样式表的位置,第一个则num为0
+ * @param: index 表示要移除的样式下标
+ */
 Base.prototype.removeRule = function(num, index) {
         var sheet = document.styleSheets[num];
         if (typeof sheet.deleteRule != 'undefined') {
@@ -277,6 +319,10 @@ $().getId('container').hover(function() {
     $().getId('aUl').hide();
 }) 
 */
+/**
+ * @param: over 传入一个函数,表示在鼠标移入时做什么
+ * @param: out 传入一个函数,表示在鼠标移除的时候做什么
+ */
 Base.prototype.hover = function(over, out) {
     for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].onmouseover = over;
@@ -321,6 +367,9 @@ $().getId('testBox').center().resize(function() {
 })
 */
 // 更新内容1: 尝试实现resize功能在小块在下方的时候,重新调整窗口大小会使小块重新居中的问题,但是未实现成功,待再次更新
+/**
+ * @param: fn 表示在浏览器改变窗口大小的时候要执行的函数
+ */
 Base.prototype.resize = function(fn) {
     window.onresize = fn;
     // for (var i = 0; i < this.elements.length; i++) {
@@ -428,6 +477,11 @@ $().addEvent(window, 'load', function() {
     alert(2)
 })
 */
+/**
+ * @param: obj 要添加事件的对象
+ * @param: type 要添加的事件类型
+ * @param: fn 该事件类型下要执行的相应函数
+ */
 Base.prototype.addEvent = function(obj, type, fn) {
     if (typeof addEventListener != 'undefined') {
         obj.addEventListener(type, fn, false)
@@ -439,6 +493,9 @@ Base.prototype.addEvent = function(obj, type, fn) {
 }
 
 // 查找节点下的子节点
+/**
+ * @param: str 查找节点下子节点的值,传入值前加'#'时表示查找ID,传入值前加'.'表示查找的是class,直接传入则表示查找tagName
+ */
 Base.prototype.find = function(str) {
     var childElements = []; //我们创建一个临时变量数组,将我们查找到的值作为数组传入此值中,后将此数组再赋值给我们的原始变量存储的数组
     for (var i = 0; i < this.elements.length; i++) {
@@ -467,15 +524,17 @@ Base.prototype.find = function(str) {
 
 // 设置动画效果,对动画进行封装
 // 此动画效果需要传参
+// 更新内容: 修复了当step不能被移动距离整除时会超出一些像素的bug
+// 现存BUG1: 当我们使用按钮触发该事件时,会发生多次点击该事件重复执行的情况
+// 更新内容2: 已修复bug1,但是非常罪恶的把timer放到全局变量了啊啊啊 啊
+// 现存BUG2: 无法处理缓冲问题,无法设置加速度
+// 现存BUG3: 无法进行连续设置
 /**
  * @param: attr 需要设置的属性,一般为left,top等等
  * @param: step 每个单位时间需要移动的步数
  * @param: target 目标,当我想移动到500的位置停下的时候,设置target为500
  * @param: time 单位时间
  */
-// 更新内容: 修复了当step不能被移动距离整除时会超出一些像素的bug
-// 现存BUG1: 当我们使用按钮触发该事件时,会发生多次点击该事件重复执行的情况
-// 更新内容2: 已修复bug1,但是非常罪恶的把timer放到全局变量了啊啊啊 啊
 Base.prototype.animate = function(attr, step, target, time) {
     clearInterval(window.timer)
     for (var i = 0; i < this.elements.length; i++) {
@@ -501,6 +560,10 @@ Base.prototype.animate = function(attr, step, target, time) {
 
 // 插件入口
 // 给使用者提供一个接口,方便进行相应功能的增加
+/**
+ * @param: name 插件的名称,方便后期进行调用
+ * @param: fn 该插件所绑定的相应方法
+ */
 Base.prototype.extend = function(name, fn) {
     Base.prototype[name] = fn;
 }
