@@ -83,5 +83,5 @@
 // }
 
 $().addEvent(window, 'load', function() {
-    $().getId('box').css('color', 'red').css('fontSize', '100px')
+    $().getTagName('span').getElement(2).css('color', 'red')
 })

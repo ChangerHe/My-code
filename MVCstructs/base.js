@@ -1,7 +1,7 @@
 /* 
  * @author: ChangerHe
  * @descripe: 以下为对学习工作中需要用到的基础API进行了简单的封装,以达到提升开发效率的目的
- * @version: 0.0.3
+ * @version: 0.0.4
  */
 
 /* 
@@ -138,7 +138,8 @@ Base.prototype.getClass = function(className, anyName) {
     return this;
 }
 
-// 做到这里发现一个问题,当我们不需要设置class或者是tag中所有的属性,而是设置其中某一个的属性时,我们不能够像往常一样直接在后面加上数组索引,因为暂时技术有限,没有办法获得相应我的兼容性写法,我们在这里设置一个新的getElements的API来调取我们需要的数组索引
+// 做到这里发现一个问题,当我们不需要设置class或者是tag中所有的属性,而是设置其中某一个的属性时,我们不能够像往常一样直接在后面加上数组索引,因为暂时技术有限,没有办法获得相应的兼容性写法,我们在这里设置一个新的getElements的API来调取我们需要的数组索引
+// 现存BUG1: 当我们前面使用的是class或者tagName等会选择到多个标签的选择器时,getElement现在仅能匹配到第一个选取元素的相应子元素
 Base.prototype.getElement = function(num) {
     var thisElement = this.elements[num];
     this.elements = [];
