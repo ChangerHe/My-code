@@ -209,13 +209,14 @@ Base.prototype.click = function(fn) {
 // 设置之前已经push到数组中的元素,并进行遍历,以设置其css样式,同时返回自身,传入一个参数的时候,为调取相应属性的css样式值
 // 增补内容1:当我们对css传入一个值的时候,我们则返回这个标签的相应属性值
 // 增补内容2:当我们将css设置到外联css文件中的时候,我们是无法通过正常的方法得到相应的css属性值的,因此需要调用相应的方法,来获取外联样式中的属性值,这样的API需要兼容,分别是W3C的推荐标准:window.getComputedStyle和IE的方法.currentStyle
+// 增补内容3: 经测试,我们在IE浏览器的条件下调用此函数,发现IE是支持window.getComputedStyle这个函数的,也就是有返回值,因此这里我将兼容IE的写法放在了前面,先判断IE浏览器为佳
 Base.prototype.css = function(attr, value) {
     for (var i = 0; i < this.elements.length; i++) {
         if (arguments.length == 1) {
-            if (typeof window.getComputedStyle != 'undefined') { //w3c的推荐方法
-                return window.getComputedStyle(this.elements[i], null)[attr];
-            } else if (typeof this.elements[i].currentStyle != 'undefined') { //兼容IE的方法
+            if (typeof this.elements[i].currentStyle != 'undefined') { //兼容IE的方法
                 return this.elements[i].currentStyle[attr]
+            } else if (typeof window.getComputedStyle != 'undefined') { //w3c的推荐方法
+                return window.getComputedStyle(this.elements[i], null)[attr];
             }
             return this.elements[i].style[attr];
         }
@@ -462,4 +463,35 @@ Base.prototype.find = function(str) {
     }
     this.elements = childElements;
     return this;
+}
+
+// 设置动画效果,对动画进行封装
+// 此动画效果需要传参
+/**
+ * @param: attr 需要设置的属性,一般为left,top等等
+ * @param: step 每个单位时间需要移动的步数
+ * @param: target 目标,当我想移动到500的位置停下的时候,设置target为500
+ * @param: time 单位时间
+ */
+Base.prototype.animate = function(attr, step, target, time) {
+    for (var i = 0; i < this.elements.length; i++) {
+        var element = this.elements[i]; //解决因为调用定时器而产生的闭包问题
+        var timer = setInterval(function() {
+            if (typeof element.currentStyle != 'undefined') { //兼容IE的方法
+                element.style[attr] = parseInt(element.currentStyle[attr]) + step + 'px';
+            } else if (typeof window.getComputedStyle != 'undefined') { //w3c的推荐方法
+                element.style[attr] = parseInt(window.getComputedStyle(element, null)[attr]) + step + 'px';
+            }
+            if (parseInt(element.style[attr]) == target) {
+                clearInterval(timer)
+            }
+        }, time)
+    }
+}
+
+
+// 插件入口
+// 给使用者提供一个接口,方便进行相应功能的增加
+Base.prototype.extend = function(name, fn) {
+    Base.prototype[name] = fn;
 }

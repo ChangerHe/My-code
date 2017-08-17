@@ -83,18 +83,55 @@
 // }
 
 $().addEvent(window, 'load', function() {
-    // $().getTagName('span').getElement(2).css('color', 'red')
-    // $().getId('box').click(function() {
-    //     // console.log($(this).css('color', 'orange'))
-    // })
-    // console.log($('#box').css('color', 'green').click(function() {
-    //     console.log($(this).html())
-    // }))
-    // $('.a').css('color', 'blue')
-    // $().getClass('a').css('fontSize', '120px')
-    // $('p').find('.a').css('backgroundColor', '#ccc')
-    // $('p').find('span').css('backgroundColor', '#ccc')
-    // console.log($().getId('box').html())
+        // $().getTagName('span').getElement(2).css('color', 'red')
+        // $().getId('box').click(function() {
+        //     // console.log($(this).css('color', 'orange'))
+        // })
+        // console.log($('#box').css('color', 'green').click(function() {
+        //     console.log($(this).html())
+        // }))
+        // $('.a').css('color', 'blue')
+        // $().getClass('a').css('fontSize', '120px')
+        // $('p').find('.a').css('backgroundColor', '#ccc')
+        // $('p').find('span').css('backgroundColor', '#ccc')
+        // console.log($().getId('box').html())
+
+        // var ua = navigator.userAgent.toLowerCase(); //我们先调取浏览器的版本信息
+        // var version = ''; //sersion用于调取浏览器的版本信息
+        // console.log(ua)
+        //     // 在浏览器类型检测中,可以注意到这个特性:
+        //     // 1.IE浏览器是有一个MSIE的标识,后面加上浮点数的版本号的,注意,MSIE后面有一个空格,也就是说我们进行正则表达式匹配的时候,一定要记得加上这个空格      msie 9.0
+        //     // 2.谷歌浏览器的特点是含有chrome字符串加斜线加上后面的浮点数版本号,有一点要注意的是,可以看到谷歌浏览器后面还会有一个Safari的标识     chrome/59.0.3071.115
+        //     // 3.火狐浏览器的特点是含有Firefox后面加斜线加上浮点数版本号      Firefox/54.0
+        // console.log(/msie ([\d.]+)/.test(ua))
+        // if (/msie ([\d.]+)/.test(ua)) {
+        //     s = ua.match(/msie ([\d.]+)/)[1]
+        //     console.log('您的浏览器是IE浏览器,版本号:' + s)
+        // } else if (/chrome\/([\d.]+)/.test(ua)) {
+        //     s = ua.match(/chrome\/([\d.]+)/)[1]
+        //     console.log('您的浏览器是chrome浏览器,版本号' + s)
+        // } else if (/firefox\/([\d.]+)/.test(ua)) {
+        //     s = ua.match(/firefox\/([\d.]+)/)[1];
+        //     console.log('您的浏览器是Firefox浏览器,版本号: ' + s)
+        // }
+
+
+
+    })
+    //进行文档的优先加载
+    // 传统的DOM加载方式,当文档中有图片的时候,会等图片完全加载完毕之后,才能够加载我们写的脚本文件
+    // 在IE678下进行模拟DOMContentLoaded
+    // document.write('<script id="ie_loaded" defer = "defer" src="javascript:void(0)"></script>')
+    // var ie_loaded = document.getElementById('ie_loaded')
+    // ie_loaded.onreadystatechange = function() {
+    //     alert(this.readyState)
+    //     if (this.readyState == 'complete') {
+    //         var box = document.getElementById('box')
+    //         console.log(box.innerHTML)
+    //     }
+    // }
+$().addEvent(window, 'load', function() {
+    $('#box').animate('left', 1, 300, 50)
 
 
 
