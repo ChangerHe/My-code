@@ -83,5 +83,16 @@
 // }
 
 $().addEvent(window, 'load', function() {
-    $().getTagName('span').getElement(2).css('color', 'red')
+    // $().getTagName('span').getElement(2).css('color', 'red')
+    // $().getId('box').click(function() {
+    //     // console.log($(this).css('color', 'orange'))
+    // })
+    console.log($('#box').css('color', 'green').click(function() {
+        console.log($(this).html())
+    }))
+    $('.a').css('color', 'blue')
+    $().getClass('a').css('fontSize', '120px')
+    $('p').find('.a').css('backgroundColor', '#ccc')
+    $('p').find('span').css('backgroundColor', '#ccc')
+    console.log($().getId('box').html())
 })

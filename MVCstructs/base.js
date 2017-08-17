@@ -11,7 +11,7 @@
  */
 
 /**
- 一定注意的地方：因为收到一些反馈说这个库完全无法使用，这里补充说明一下，一定记得使用onload在html文档流加载结束之后再加载我们的类库，否则会报错，方法可以
+ 一定注意的地方：因为收到一些反馈说这个库完全无法使用，这里补充说明一下，一定记得使用onload在html文档流加载结束之后再加载我们的类库，或者在文档流的</body>标签前写脚本,否则会报错，方法如下
  方法1：
  window.onload = function(){
      //此处放内容
@@ -25,16 +25,30 @@ $().addEvent(window, 'load', function() {
 //前台类库
 // 经过测试，发现因为后面所有的属性和方法都是通过一个new出来的对象设置的，而对象的数组elements是没有减少的，只有在后方增加，所以这个时候当我们为另外一个属性标签设置属性的时候，会影响到之前设置的标签属性，所以我们先直接将new出来的属性对象赋值给$符号,每次需要进行new一个新对象的时候,我们就直接调用$符号了
 // 为什么$要这样设置,因为我们每次都要新返回一个对象,如果想像jQuery的方法少一个()的话,可能需要写很多的代码才能实现,我们现在将$看做一个函数,每次需要的时候就自己创建一个并且执行它,就可以新new出一个对象了
-var $ = function(_this) {
-    return new Base(_this);
+var $ = function(args) {
+    return new Base(args);
 }
 
 // 基础库总入口
-function Base(_this) {
+function Base(args) {
     // 我们现在创建一个节点来保存获取到的节点,并生成一个数组
     this.elements = [];
-    if (_this != undefined) { //注：这里_this是一个对象,undefined也是一个对象,这个时候,应该使用不带引号的undefined
-        this.elements[0] = _this;
+    // 这个位置还稍稍有些懵逼,不懂
+    if (typeof args == 'string') {
+        switch (args.charAt(0)) {
+            case '#':
+                this.getId(args.substring(1));
+                break;
+            case '.':
+                this.getClass(args.substring(1));
+                break;
+            default:
+                this.getTagName(args);
+        }
+    } else if (typeof args == 'object') {
+        if (args != undefined) { //注：这里args是一个对象,undefined也是一个对象,这个时候,应该使用不带引号的undefined
+            this.elements[0] = args;
+        }
     }
 }
 
@@ -335,7 +349,7 @@ Base.prototype.unlock = function() {
 // 拖拽功能
 // 更新内容1: 实现块状元素无法拖动至屏幕外面的功能
 // 现存较多BUG,如,可拖动至页面底部,后无法移除mousemove产生的效果,鼠标点击不动之后,如果鼠标走到浏览器外面去了,回来之后就算松开鼠标,方块也会跟着跑等问题,后期解决,现在不建议直接使用
-// 注意: 如需实现拖拽,请将块级元素设置为position:absolute;
+// 注意: 如需实现拖拽,请将块级元素设置为position:absolute或fixed;
 Base.prototype.drag = function() {
     for (var i = 0; i < this.elements.length; i++) {
         this.elements[i].onmousedown = function(e) {
@@ -398,4 +412,31 @@ Base.prototype.addEvent = function(obj, type, fn) {
             fn.call(obj, window.event); //修复IE下默认的this指向window的问题
         })
     }
+}
+
+// 查找节点下的子节点
+Base.prototype.find = function(str) {
+    var childElements = []; //我们创建一个临时变量数组,将我们查找到的值作为数组传入此值中,后将此数组再赋值给我们的原始变量存储的数组
+    for (var i = 0; i < this.elements.length; i++) {
+        switch (str.charAt(0)) {
+            case '#': // 当查找的字符串前缀带#,则判定为ID选择器
+                childElements.push(document.getElementById(str.substring(1)))
+                break;
+            case ".": // 当查找的字符串前缀带. ,则判定为类选择器
+                var all = this.elements[i].getElementsByTagName('*') // 查找所有的元素
+                for (var j = 0; j < all.length; j++) {
+                    if (all[j].className == str.substring(1)) { //做一个循环,判定所有数组中的className是否为传值的值
+                        childElements.push(all[j]) // 如果是需要的className, 则传值入childElements
+                    }
+                }
+                break;
+            default:
+                var tags = this.elements[i].getElementsByTagName(str) //当传进来的就是一个单纯的字符串的时候,默认为进行tagName搜索,直接使用tagName进行查找即可
+                for (var j = 0; j < tags.length; j++) { //将符合的元素,逐一传入childElements中
+                    childElements.push(tags[j])
+                }
+        }
+    }
+    this.elements = childElements;
+    return this;
 }
