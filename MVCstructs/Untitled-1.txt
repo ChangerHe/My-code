@@ -1,0 +1,17 @@
+/* 
+ * API速查表:(做完再更)
+ * $('#id名):            查找id(也可使用$().getId('id名')但不推荐)
+ * $('.className名'):    查找className(也可使用$().getClass('className名')但不推荐)
+ * $().getClass('className名','查找范围')  查找某范围下的className,范围的定义方式为id则使用'#id'以此类推
+ * $('tagName名'):       查找tagName(也可使用$().getTagName('tagName名')但不推荐)
+ * $().getName('namg名') 查找name值,因为用得少,就没有进行进一步封装
+ * 
+ * .getElement(num)      获取相应标签上的相应子元素,如,getElement(1)则表示选取第二个子元素
+ * .html(inner)          注入或查找元素内部值,inner 表示需要传入的内容,可以为一连串的标签,也可以是一些字符串,当不传值时,默认进行查找操作
+ * .click(fn)            为元素绑定点击事件fn 表示一个函数,当点击后执行该函数
+ * .css(attr, value)     为元素添加css属性attr表示css属性的属性名称,当然,如果是带中间连字符的属性,请使用驼峰命名法,value表示attr属性的相应的值
+ * .addClass(str)        为元素增加className,其中str 表示需要增加的class名称
+ * .removeClass(str)     为元素移除className,str 表示需要移除的class名称
+ * .addRule(num, selectorText, cssText, position)   在外联样式表中添加相应的css属性,num表示第几个样式表,selectorText表示选择器名称,cssText表示css的样式名称,position表示要插入的位置   用法实例,: $().addRule(0, 'body', 'background:green', 0)
+ 
+ */
