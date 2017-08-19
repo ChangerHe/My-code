@@ -516,13 +516,7 @@ Base.prototype.addEvent = function(obj, type, fn) {
         })
     }
 }
-Base.prorotype.addEvent.preDef = function(e) {
-    if (e.preventDefault) {
-        e.preventDefalut()
-    } else {
-        e.returnValue = false;
-    }
-}
+
 
 // 查找节点下的子节点
 /**

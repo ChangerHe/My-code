@@ -4,7 +4,7 @@
             "name": "Launch Chrome and new instance of Chrome",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:8080",
+            "url": "${workspaceRoot}",
             "sourceMaps": true,
             "webRoot": "D:/wamp/bin/apache/apache2.4.23"
         },
