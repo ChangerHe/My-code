@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1.JSON在写的时候最好使用双引号包含,避免出现不必要的问题. -->
+    <script>
+        //JSON对象; 
+        var jsonStr = '{"name": "changer", "age": 18}'
+            //最常用的JSON结构,键必须都为字符串双引号
+        var a = JSON.parse(jsonStr);
+        console.log(a);
+        console.log(a.name);
+        var b = JSON.stringify(a, ["name"]) //JSON可以将需要的值进行序列化
+        var c = JSON.stringify(jsonStr, function(key, value) {
+            if (key == name) {
+                return 'MR:' + value;
+            } else {
+                return value
+            }
+        })
+        console.log(b)
+        console.log(c) //"MR:{\"name\": \"changer\", \"age\": 18}"
+        var d = JSON.stringify(a, null, 4) //不需要筛选,则使用null
+        console.log(d)
+    </script>
+</body>
+
+</html>

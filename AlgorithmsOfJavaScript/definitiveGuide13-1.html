@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #timestamp {
+            width: 100px;
+            height: 100px;
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="timestamp"></div>
+    <script>
+        // 利用闭包模仿块级作用域
+        // 包含自我执行的匿名函数,就可以创建私有作用域
+        (function() {
+            (function() {
+                for (var i = 0; i < 5; i++) {
+
+                }
+            })()
+            console.log(i) //ReferenceError: i is not defined
+        })()
+
+        //通过构造函数方法传参
+
+
+
+
+        // function returnArr() {
+        //     var arr = [];
+        //     for (var i = 0; i < 5; i++) {
+        //         arr[i] = function(a) {
+        //             return function() {
+        //                 return a;
+        //             }
+        //         }(i)
+        //     }
+        //     return arr;
+        // }
+        // var a = returnArr();
+        // // console.log(a);
+        // // 通过循环调用数组的方法,从而达到输出数组中的方法值的目的
+        // for (var i = 0; i < 5; i++) {
+        //     console.log(a[i]())
+        // }
+        /* 闭包问题的产生原因,因为在循环体中,当我们像平常一样调用函数中的函数的时候,其实这个时候循环体早就执行完毕了,所以这个时候输出的值是一个固定的值,在本题中输出的是5,因为循环一直到4时跳转,在循环到四之后最后还有一个4++的操作,最终输出的是5 
+        解决闭包问题的方案:
+        1.将函数体转换为自执行函数,这个时候就可以在循环的同时将函数一起执行了,所以i的值可以正确地传入,但是因为自执行函数是一个封闭的作用域,所以在这个时候应该将i的值作为参数传递到这个封闭作用域中,最后可以得到想要的输出结果.
+        另外有一个问题需要注意的是,当我们需要将自执行函数赋值给一个变量的时候,这个时候自执行函数的外面的括号就可以不用加了.
+        2.将函数中再嵌套一个函数,然后再执行以下函数中的函数,这样也可以解决闭包问题,但是为什么我在里面又嵌套了一个匿名函数,却没有再次产生闭包的问题呢?这是因为当我们传参给自执行函数时,其参数时直接驻留在自执行函数的内存中的.
+        关于闭包的时候的this指向问题
+        1.产生闭包的时候,闭包里的this其实是指向window的.
+        */
+        // var box = {
+        //     getThis: function() {
+        //         return function() {
+        //             return this;
+        //         }
+        //     }
+        // }
+        // console.log(box.getThis().call(box)) //window
+        /*2.那么当我在使用闭包的时候,想让这个this再指回我们的调用对象怎么办呢?这个时候我们的call方法就派上用场了.
+        3.很多时候,call和apply的用法是类似的,只是传参不同而已,大部分情况下使用call也意味着可以使用apply.
+        4.当我们不想用call或者apply方法怎么办呢?ES5中新增了一种方法就是bind(),可以将函数的this硬绑定到一个对象上.
+        5.觉得上面的方法复杂,不想用?别急还有一种暴力方法解决这个问题,就是直接在函数体中动刀.
+         */
+        // console.log(box.getThis().call(box)) //box
+        // var a = box.getThis();
+        // console.log(a.bind(box)())
+        // var box = {
+        //     getThis: function() {
+        //         var that = this;
+        //         return function() {
+        //             return that;
+        //         }
+        //     }
+        // }
+        // console.log(box.getThis()()) //box
+        // // 闭包很好的解决了全局作用域被污染的问题
+        // function add() {
+        //     var a = 100;
+        //     return function() {
+        //         return a++;
+        //     }
+        // }
+        // // 通过将函数存在一个变量中,就可以直接执行函数中的函数了
+        // // 闭包会常驻内存,无法被GC回收,所以能少用就少用
+        // var a = add();
+        // console.log(a());
+        // console.log(a());
+        // console.log(a());
+    </script>
+</body>
+
+</html>

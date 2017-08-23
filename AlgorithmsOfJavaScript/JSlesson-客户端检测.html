@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a"></div>
+    <script>
+        // speak is weak show me the code
+        // 浏览器的客户端检测,可以直接使用别人写好的clientjs
+
+
+        // 能力检测
+        // 查看浏览器是否有某个方面的能力或特性
+        var width = window.innerWidth;
+        if (typeof width != 'number') { //检测IE浏览器是否处于怪异模式下
+            if (document.compatMode == 'CSS1Compat') {
+                width = document.documentElement.clientWidth;
+            } else {
+                width = document.body.clientWidth
+            }
+        }
+
+        // 怪癖检测(bug)
+        // toString()方法与原型的方法重名,则不显示
+        var box = { //现在的IE浏览器已经不存在此问题,现在IE7-9全部支持
+            toString: function() {}
+        }
+        for (var o in box) {
+            console.log(o)
+        }
+
+        // 用户代理检测
+        // 标识浏览器版本的各种信息的
+        console.log(navigator.userAgent);
+        var client = function() {
+            var engine = {
+                ie: false,
+                gecko: false,
+                khtml: false,
+                opera: false,
+                ver: 0
+            }
+            return { //同时返回引擎浏览器和系统名称
+                engine: engine
+            }
+        }();
+        var ua = navigator.userAgent;
+        //window对象有一个独有的opera属性,只有被opera支持
+        if (window.opera) { //表示确定为opera引擎
+            engine.opera = true;
+            engine.ver = window.opera.version();
+        } else if (/AppleWebkit\/(\S+)/.test(ua)) { //表示确定为chrome
+            engine.webkit = true;
+            engine.ver = RegExp['$1']
+        } else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) { //表示确定为gecko
+            engine.gecko = true;
+            engine.ver = RegExp['$1']
+        } else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua))
+    </script>
+</body>
+
+</html>

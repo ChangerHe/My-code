@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Person() {
+			this.humanList = [];
+			this.inputPerson = inputPerson;
+			this.getSameGender = getSameGender;
+		}
+
+		function inputPerson(name, gender) {
+			if (typeof name == "string" && (gender == "male" || gender == "female")) {
+				var newHuman = [name, gender];
+				this.humanList.push(newHuman);
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function getSameGender(sex) {
+			if (sex == 'male'  || sex == 'female') {
+				var sameArr = [];
+				for(var i = 0; i < this.humanList.length; i++) {
+					if (this.humanList[i][1] == sex) {
+						sameArr.push(this.humanList[i])
+					}
+				}
+				return sameArr;
+			} else {
+				return false;
+			}
+			
+		}
+
+		var person1 = new Person();
+		console.log(person1.inputPerson('changer1',"male"))
+		console.log(person1.inputPerson('changer2',"female"))
+		console.log(person1.inputPerson('changer3',"male"))
+		console.log(person1.inputPerson('changer4',"female"))
+		console.log(person1.inputPerson('changer5',"male"))
+		console.log(person1.humanList);
+		console.log(person1.getSameGender('female'));
+		
+	</script>
+</body>
+</html>

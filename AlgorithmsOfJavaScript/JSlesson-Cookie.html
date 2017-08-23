@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //cookie也叫httpCookie,
+        console.log(document.cookie);
+
+        //向本地磁盘写入cookie,问题是,chrome不支持这个本地cookie写入了,只能写入online-cokie
+        var date = new Date();
+        date.setDate((date.getDate() + 7));
+        console.log(date)
+        var path = '/C:/Users/Administrator/Desktop/AlgorithmsOfJavaScript/demo';
+        document.cookie = 'user=' + encodeURIComponent('ChangerHe') + ';path=' + path //编码写入
+        console.log(decodeURIComponent(document.cookie)) //解码读取
+            //expires失效时间,如果没有定义,则默认浏览器关闭就会自动清理cookie
+
+        //完整的形式
+        //document.cookie = 'user=值;[expires=失效时间;path=路径访问;domain=域名访问;secure=安全的http]
+
+        // 路径访问
+        //路径限制,可以限制访问的目录
+
+        //domain,设置域名访问
+        //如果定义了域名,则该域名下的任何子域名都可以访问,但是这个域名以外其他域名无法访问
+
+        //secure指定只能使用https访问
+        //这个时候,cookie的信息显示为仅限加密链接
+
+        //自己封装一个cookie的函数
+        function setCookie(name, value, expires, path, domain, secure) {
+            var cookieName = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+            if (expires instanceof Date) {
+                cookieName += ';expires=' + expires;
+            }
+            if (path) {
+                cookieName += ';path=' + path;
+            }
+            if (domain) {
+                cookieName += ';domain=' + domain;
+            }
+            if (secure) {
+                cookieName += ';secure';
+            }
+            document.cookie = cookieName;
+        }
+
+
+        function getCookie(name) {
+            var cookieName = encodeURIComponent(name) + '='
+            var cookieStart = document.cookie.indexOf(cookieName)
+            if (cookieStart > -1) {
+                var cookieEnd = document.cookie.indexOf(';', cookieStart)
+            }
+        }
+        getCookie('user')
+
+        function setCookieDate(day) {
+            var date = null;
+            if (typeof day == 'number' && day > 0) {
+                date = new Date();
+                date.setDate(date.getDate() + day);
+            } else {
+                throw new Error('message is not right.')
+            }
+            return date;
+        }
+        setCookie('user', 'changer', setCookieDate(7))
+
+        //cookie的局限性:每个特定的域名下最多生成20个cookie,且不同的浏览器会有所区别.
+        // IE6或更低版本,最多支持20个cookie,IE7及之后的版本最多50个cookie.(IE7最初也是只有20个的,但是之后升级补丁后增加了30个,也就是每个特定域名最多一共可以存储50个cookie)
+        // Firefox最多支持50个cookie.opera最多支持30个cookie.Safari和Chrome没有限制.
+        // 为了实现最大化向下兼容,单个域名的cookie的数量最好不要超出20个
+    </script>
+</body>
+
+</html>

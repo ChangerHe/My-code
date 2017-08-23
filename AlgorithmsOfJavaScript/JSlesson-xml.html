@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //XPath  what is this shit?
+        // var xmlStr = "<root><user id='
+        // 5 '>Lee</user><user id='
+        // 6 '>Koko</user></root>";
+        // var xmlDom = getXMLDOM(xmlStr)
+        // console.log(xmlDom)
+        //selectSingleNode()  获取单一节点
+        //selectNodes()       获取节点集合
+
+
+        // console.log(window.dialogArguments)
+        // console.log(navigator.geolocation)
+        // console.log(navigator.javaEnabled)
+        // console.log(navigator.cookieEnabled)
+        // console.dir(location)   
+        // document.domain = 'http://changerhe.github.io/'
+        // console.log(document.domain)
+        // console.log(window.location)
+        // console.log(document.location)
+        // var a = "hello world";
+        // console.log(a.indexOf('wora'))
+        //模拟loadXML方法,可以简易创建xml字符串
+        // var xmlParser = new DOMParser(); //创建对象
+        // console.log(xmlParser)
+        // var xmlStr = '<root><user>Changer</user></root>'
+        // var xmlDom = xmlParser.parseFromString(xmlStr, 'text/xml')
+        // console.log(xmlDom)
+        // var serializer = new XMLSerializer();
+        // var xml = serializer.serializeToString(xmlDom);
+        // console.log(xml)
+        // console.log(serializer)
+
+
+        // var a = 'aaa';
+        // var b = String('aaa');
+        // var c = new String('aaa');
+        // console.log(typeof a)
+        // console.log(typeof b)
+        // console.log(typeof c)
+        // console.log(a instanceof String)
+        // console.log(b instanceof String)
+        // console.log(c instanceof String)
+        // console.log(a instanceof Object)
+        // console.log(b instanceof Object)
+        // console.log(c instanceof Object)
+
+
+        //XML的Dom2级,经测试,IE9完美支持,如果要进行向下兼容,则需要考虑其他办法.不过相似的技术jQuery已经有所实现了,这个时候直接上JQ不就好了吗哈哈哈哈哈哈,所以还是想先把这个学会吧
+        //dom2级对象不支持loadXML方法,不能够直接简易地创建xml文档,但是dom2支持load()方法.但是使用时Firefox提示不推荐使用这个方法,因此xmlhttprequest方法应该是最优解
+        //null用来表示此XML符合什么规范,在这里创建xmldom不需要使用这个参数,所以留空即可.
+        // var xmlDOM = document.implementation.createDocument('', 'root', null)
+        //XML DOM已经创建,且已经创建根标签
+        // console.log(xmlDOM);
+        // console.log(xmlDOM.documentElement.tagName);
+        // console.log(xmlDOM.getElementsByTagName('root'))
+        // xmlDOM.load('JSlesson-xml.xml');
+        // console.log(xmlDOM.xml) //dom2是没有办法序列化该字符串的
+        // xmlDOM.async = false;
+        // console.log(xmlDOM.getElementsByTagName('root')[0].firstChild.nodeValue)
+
+        //xml是一个小型的结构化数据库,用于保存小型的数据
+
+        //IE中的XML,IE是第一个支持XML的,但是是通过ActiveX实现的,微软当年为了方便处理Xml,开发了一个MSXML库,这个库仅IE能使用
+
+        /* 
+            1.创建XML对象,
+            var xml = new ActiveXObject(MSXML2DOMDocument)
+            MSXML2DOMDocument   仅针对IE5.5之前版本
+            MSXML2DOMDocument3.0 兼容性较好的版本
+            MSXML2DOMDocument6.0 最新版本,推荐版本
+         */
+        // var xmlDom = new ActiveXObject('MSXML2DOMDocument6')
+        // console.log(xmlDom)
+
+        //载入XML文件,两种方式:1.加载XML字符串loadXML();2.加载XML外部文件load()
+        //xml文件是直接通过Dom节点操作的,所以之前的知识都可以用上
+
+        // var xmlDom = createXMLDOM();
+        // xmlDom.loadXML('<root>\n<user>Changer</user>\n</root>');
+        // console.log(xmlDom.xml)
+
+        //在服务器端默认使用的是异步加载,  没有显示内容的两个原因,在服务器端load()还没有加载完毕就去打印它,所以会造成打印不出来的问题.
+        //这个时候则应该使用同步加载的方式进行调用
+
+        // xmlDom.async = false;
+
+        // 在PHP文件中使用:
+        /* 
+            <? php
+                sleep(5);  //设定五秒钟后执行该文件.
+            ?>
+         */
+    </script>
+</body>
+
+</html>

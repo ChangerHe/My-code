@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+	<iframe src="b.html" frameborder="0" width="100%" height="200px" name="iframeB" id="iframe" resizable ></iframe>
+	<script>
+		var name = decodeURIComponent(window.location.search.substring(1));
+		console.log(name)
+	</script>
+	<script>
+	document.domain = 'localhost'
+	console.log(document.domain)
+		var iframe = document.getElementById('iframe')
+		// console.log(iframe)
+		var win = iframe.contentWindow
+		console.log(win)
+		var doc = win.document
+		var name = win.name
+		console.dir(doc.body)
+		console.log(name)
+	</script>
+</body>
+</html>

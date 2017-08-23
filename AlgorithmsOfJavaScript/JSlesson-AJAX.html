@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        addEventListener(window, 'click', function() {
+            alert("<?php echo Date('Y-m-d H:i:s') ?>")
+        })
+    </script>
+    <script>
+        // var xdr = new XDomainRequest();
+        // console.log(xdr)
+        //XHR   IE7+及其他浏览器都支持XHR   
+        var xhr = new XMLHttpRequest();
+        console.log(xhr)
+        xhr.open('get', './JSlesson-AJAX.php?a=' + Math.random(), false); //表示准备发送请求,参数三个,第一个参数表示是使用get还是post方法,中间是文件名,要加引号,后面表示同步还是异步,false表示异步.
+        //另外有一个小技巧,就是在请求文件后加上?rand='+Math.random(),就可以解决IE下因为缓存不刷新的问题
+        xhr.send(null) //表示发送请求,如果不需要数据提交,则填写null
+        console.log(xhr.responseText) //从服务器端获取相应的数据
+            //因为IE默认会使用缓存中的数据,所以使用AJAX的时候,一定要注意清除浏览器的缓存数据
+            //有一个问题,为什么使用AJAX多次刷新之后HTTP请求会变成304?
+        console.log(xhr.status) //返回的是http状态码
+        console.log(xhr.statusText) //返回http请求报文
+
+        //使用异步的时候,会有一个onreadystatechange事件,,当为4的时候表示成功
+
+        //onreadystatechange是一个服务器的返回值,返回的是一个数字,数字为4的时候,表示成功加载,这个时候才能够进行相应的操作.所以一般在写ajax函数的时候,会有一个readyState是否等于4的判定
+        xhr.onreadystatechange = function() {}
+            //在web程序上,进行表单提交可选get和post两种方式,但是这两种请求在ajax中差不多,一般使用get.
+        console.log(xhr.getAllResponseHeaders());
+        xhr.setRequestHeader('myheader', '1')
+        console.log(xhr.getAllResponseHeaders());
+
+        //ajax的返回字符串中文乱码问题:将所有的字符类型全部改为utf-8
+    </script>
+</body>
+
+</html>

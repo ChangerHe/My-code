@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    1.SQL是一种结构化查询语言,是我们有能力访问到数据库,SQL是一种ANSI的标准计算机语言. 
+    2.SQL面向数据库进行查询.可以在数据库中进行增删改查操作. 3.要创建发布数据库中数据的网站,需要具备以下条件: 
+        ·RDBMS数据库程序 比如我现在想学习的MySQL 
+        ·服务器端的脚本语言(PHP或者ASP) 
+        ·SQL 
+        ·HTML和CSS
+     -->
+
+
+    <!-- 
+         RDBMS是一种关系型数据库管理系统，是SQL的基础，同样也是现代数据库系统的基础
+         RDBMS 中的数据存储在被称为表（tables）的数据库对象中。
+         表是相关的数据项的集合，它由列和行组成。
+      -->
+
+    <!-- 
+          SQL语句
+            在数据库上执行的大部分工作都是由SQL语句执行的
+            下面的语句从表中选取LastName列的数据，从Persons表中
+                SELECT LastName FROM Persons
+            注意： SQL对大小写是不敏感的
+
+       -->
+
+    <!-- 
+           SQL可以分为两个部分： DML和DDL
+            数据操作语言： （DML）
+                SELECT 从数据库表中获取数据
+                UPDATE 更新数据库表中的数据
+                DELECT 从数据库表中删除数据
+                INSERT INTO 向数据库表中插入数据
+            数据定义语言： （DDL）
+                CREATE DATABASE 创建新数据库
+                ALTER DATABASE 修改数据库
+                CREATE TABLE 创建新表
+                ALTER TABLE 变更数据库表
+                DROP TABLE 删除表
+                CREATE INDEX 创建索引
+                DROP INDEX 删除索引
+        -->
+
+    <!-- 
+            SQL的select语句
+                select语句用于在表中选取数据
+                结果被存储在结果表中
+            
+                语法：
+                    SELECT 列名称 FROM 表名称
+                    SELECT * FROM 表名称
+                
+                EX: 获取名为LastName和FirstName的列内容，从名为Persons的数据库表
+                    SELECT LastName，FirstName FROM Persons
+                EX: 从Persons表中选取所有列，就可以使用*来替代列的名称
+                    SELECT * FROM Persons
+                
+         -->
+
+    <!-- 
+             SQL的select distinct语句
+             在表中，可能会存在重复至，使用distinct可返回不同的值。
+
+             语法： 
+                SELECT DISTINCT 列名称 FROM 表名称
+            
+                EX:从company列中选取所有的值，且该值不重复
+                    SELECT DISTINCT Company FROM Orders
+                
+          -->
+
+    <!-- 
+        SQL的where子句
+        如果需要有条件地从表中选择数据，那么可将where子句添加到select语句
+
+        语法： 
+            SELECT 列名称 REOM 表名称 WHERE 列 运算符 值
+                =  等于
+                <> 不等于(在部分版本的SQL中可使用!=)
+                > 大于
+                < 小于
+                >= 大于等于
+                <= 小于等于
+                BETWEEN 在某个范围内
+                LIKE 搜索某种模式
+            
+            EX: 当只希望选取居住在城市beijing中的人,那么这个时候就需要使用where子句了.
+                SELECT * FROM Persons WHERE City='Beijing'
+        
+        注:SQL是使用单引号来环绕文本值的,当数据是数值时,不要用引号.
+     -->
+
+
+    <!-- 
+         SQL的and和or运算符
+         and和or运算符用来基于一个以上的条件对记录进行过滤
+         如果第一个条件和第二个雕件都成立,则and显示一条记录
+         如果第一个条件和第二个条件其中一个成立,则or运算符显示一条记录
+
+
+         EX:使用AND显示所有姓名为Carter且名为Thomas的人
+            SELECT * FROM Persons WHERE FirstName='Thomas' AND LastName='Carter'
+
+        EX: 使用or显示所有姓为Carter或名为Thomas的人
+            SELECT * FROM Persons WHERE FirstName='Thomas' OR LastName='Carter'
+      -->
+
+    <!-- 
+          SQL的order by子句
+          ORDER BY用于对结果进行排序(默认为升序排列,如果需要降序排列,需要使用DESC关键字)
+
+          EX:以字母顺序显示公司名称：
+            SELECT Company, OrderNumber FROM Orders ORDER BY Company
+
+          EX:以字母显示公司名称,且以数字顺序显示顺序号
+            SELECT Company, OrderNumbers FROM Orders ORDER BY Company, OrderNumber
+
+          EX:以逆序显示公司名称
+            SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC
+       -->
+
+    <!-- 
+           SQL的insert into语句
+           insert into用于向表格中插入新的行
+
+           语法: INSERT INTO 表名称 VALUES (值1, 值2,...)
+
+                INSERT INTO 表名称 (列1, 列2,...) VALUES (值1, 值2,...)
+           
+           EX: 
+                INSERT INTO Persons VALUES ('Gates', 'Bill', 'Xuanwumen 10', 'Beijing')
+
+                INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
+        -->
+
+    <!-- 
+            SQL的update语句
+            update用于修改表中的数据
+
+            语法: UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+
+            EX: 更新某一行中的一个列:为 lastname 是 "Wilson" 的人添加 firstname：
+                UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson' 
+
+         -->
+
+    <!-- 
+             SQL的delete语句
+             delete语句用于删除表中的行
+
+             语法:DELETE FROM 表名称 WHERE 列名称 = 值
+
+                 DELETE * FROM table_name(删除所有表的相应名称的行)
+             
+             EX:删除表中Person是Wilson的人
+                DELETE FROM Person WHERE LastName='Wilson'
+          -->
+</body>
+
+</html>

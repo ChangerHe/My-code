@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	console.log((new Array).pop);
+	var group = [
+		[[1,[1,2,3],3],2,3],
+		[1,[1,2,3],3],
+		[1,2,[1,2,3]],
+		[1,[1,[1,2,3],3],3]
+	]
+	function getArr(arr) {
+		var bigArr = [];
+		for (var i = 0; i < arr.length; i++) {
+			for (var j = 0; j < arr[i].length; j++) {
+				bigArr = bigArr.concat(arr[i][j]);
+			}
+		}
+		return bigArr;
+	}
+	var newArr = group.join(',').split(',');
+	var numArr = newArr.map(function(x) {
+		return +x;
+	})
+	var fliterTest = numArr.filter(function(index) {
+		return index % 2 == 0;
+	});
+	console.log(numArr);
+	console.log(fliterTest);
+	console.log(getArr(group));
+
+
+		//使用栈方法
+		function Stack() {
+			this.dataStore = [];
+			this.top = 0;
+			this.push = push;
+			this.pop = pop;
+			this.peek = peek;
+			this.length = length;
+			this.clear = clear;
+		}
+
+		function push(a) {
+			this.dataStore[this.top++] = a;
+		}
+
+		function pop() {
+			// this.dataStore.length--;
+			// this.top--;
+			// return this.dataStore[this.dataStore.length -1];
+			return this.dataStore.splice(--this.top, 1)
+		}
+
+		function peek() {
+			return this.dataStore[this.dataStore.length-1];
+		}
+
+		function length() {
+			return this.top;
+		}
+
+		function clear() {
+			this.top = 0;
+			this.dataStore = [];
+		}
+
+
+		/*
+			实现使用栈方法将数字转化为二到九进制的数字
+		*/
+		function nulBase(num, base) {
+			var a = new Stack();
+			do {
+				a.push(num % base);
+				num = Math.floor(num / base);
+			} while (num > 0);
+			var b = "";
+			while (a.length() > 0) {
+				b += a.pop();
+			}
+			return b;
+		}
+
+		console.log(nulBase(7, 2));
+
+
+		/*
+			判断字符串是否为回文字符串
+		*/
+		function isPalindrome(str) {
+			if (typeof str == 'string') {
+				str = str.split(' ').join('');
+			}
+			var n = 0;
+			for (var i = 0; i < Math.floor(str.length/2); i++) {
+				if (str[i] == str[str.length-1-i]) {
+					++n;
+				}
+			}
+			return n == i ? true : false;
+		}
+		console.log(isPalindrome("asdfghjhgfdsa"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

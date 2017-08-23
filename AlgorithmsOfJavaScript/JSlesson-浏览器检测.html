@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a"></div>
+    <script>
+        // navigate对象
+        console.log(window.navigator)
+        console.log(navigator.appName) //得到的结果是不精确的,没有办法得到具体的浏览器名称
+        console.log(navigator.userAgent) //基本能得到用户的浏览器信息
+        console.log(navigator.platform) //操作系统平台信息  32位还是64位
+            // 有一个BrowserDetect的插件,可以很方便地得到浏览器的各种信息
+            // console.log(BrowserDetect.browser) //浏览器信息
+            // console.log(BrowserDetect.version) //浏览器版本
+            // console.log(BrowserDetect.OS) //所在的操作系统
+
+        // 插件检测
+        console.log('-------------------------------')
+        for (var i = 0; i < navigator.plugins.length; i++) {
+            console.log(navigator.plugins[i].name) //插件名称
+            console.log(navigator.plugins[i].filename) //插件文件名称
+            console.log(navigator.plugins[i].description) //插件描述
+
+        }
+
+        // 检测IE浏览器的控件
+        function hasIEPlugin() {
+            try {
+                new ActiveXObject(name); //这里的name必须是控件的唯一标识符ID
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // MIME类型,在IE下不适用
+        console.log(navigator.mimeTypes) //检测插件
+    </script>
+</body>
+
+</html>

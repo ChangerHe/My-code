@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //try-catch特点:可以调试错误信息,避免控制台报错
+        try {
+            window.abg()
+        } catch (error) {
+            console.dir(error)
+            console.log(error.name);
+            console.log(error.message);
+            // return false
+        }
+        console.log(1)
+
+        /* 错误类型
+            范围错误: RangeError
+            语法错误: SyntaxError
+            类型错误: TypeError
+            编码错误: EvalError //极少碰到
+            URI错误:  URIError  //极少碰到
+        */
+    </script>
+</body>
+
+</html>

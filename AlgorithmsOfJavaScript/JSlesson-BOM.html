@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a"></div>
+    <script>
+        // 浏览器的屏幕检测
+        var topX = typeof window.screenLeft == 'number' ? window.screenTop : window.screenX;
+        var topY = typeof window.screenTop == 'number' ? window.screenTop : window.screenY;
+        console.log(topX, topY)
+            // 求出窗口的视口大小,这种方法IE浏览器是不支持的
+        console.log(innerHeight, innerWidth)
+            // 在之前的chrome中,inner的值和outer的值是相同的,新版本的chrome修复了这个问题
+        console.log(window.outerWidth, window.outerHeight)
+        console.log(window.innerWidth, window.innerHeight)
+            //跨浏览器获取可视范围的页面窗口
+        console.log(document.documentElement.clientWidth, document.documentElement.clientHeight);
+        // 浏览器的能力检测
+        if (typeof width != 'number') {
+
+        }
+
+
+        // setTimeout传递两个参数,一个是字符串或者函数,第二是延时的时间,第一个参数是可以解析字符串的
+        setTimeout('console.log(9)', 2000);
+        // clearTimeout取消当前的超时调用，传递一个参数，想要取消的定时器名称,这个时候是不可以使用this来代表它的定时器名称的
+
+        // var num = 0;
+        // var a = document.getElementById('a');
+        // var timer = setInterval(function() {
+        //     num++;
+        //     a.innerHTML += num;
+        //     console.log(num)
+        //     if (num == 5) {
+        //         console.log('Time out!')
+        //         clearInterval(timer)
+        //     }
+
+        // }, 1000)
+
+        // 开发过程中一般是不会使用间歇调用的定时器的,一般使用超时调用,来模拟间歇调用的定时器.其中使用到了函数的递归方法
+
+        var num = 0;
+
+        function box() {
+            num++;
+            document.getElementById('a').innerHTML = num;
+            if (num == 5) {
+                console.log('time out')
+            } else {
+                setTimeout(box, 1000)
+            }
+        }
+        setTimeout(box, 1000)
+
+        // 获取当前的浏览器的url
+        console.log(window.location)
+        console.log(document.location)
+
+        // 指向想要跳转的页面
+        location.href = "";
+        location.assign = "";
+        location.reolace = ""; //不产生任何历史记录的跳转
+
+        // 浏览器重加载,强制加载
+        location.reload();
+        location.reload(true);
+
+        // 浏览页面的后退和前进
+        history.length //浏览器的历史记录总量
+        history.back() //向前跳转
+        history.forward() //向后跳转
+        history.go(num) //向任意页面跳转,传递一个数字,正数向前跳转,负数向后跳转
+    </script>
+</body>
+
+</html>

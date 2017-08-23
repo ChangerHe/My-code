@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<!-- <script src="demo.js"></script> -->
+</head>
+<body>
+	<script>
+		// jQuery的匿名函数自执行
+		function (window, undefined){
+			// 内容
+			// 对外提供接口,则需要对外暴露一个接口
+			window.$ = $;
+			// (8826) window.jQuery = window.$ = jQuery;
+			// (96)  jQuery.fn = jQuery.prototype 给jQuery对象添加一些方法和属性
+			// (285, 347) extend是jq的继承方法 $().()
+			// (349, 817) 扩展一些工具方法 $.trim()
+		}(window)
+		console.log($)
+	</script>
+</body>
+</html>

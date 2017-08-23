@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Set() {
+            this.values = {};
+            this.n = 0;
+            this.add.apply(this.arguments)
+        }
+        Set.prototype = {
+            constructor: Set,
+            add: function() {
+                for (var i = 0; i < arguments.length; i++) {
+                    var val = arguments[i];
+                    var str = Set._v2s(val);
+                    if (!this.values.hasOwnProperty(str)) {
+                        this.values[str] = val;
+                        this.n++;
+                    }
+                }
+                return this;
+            },
+        }
+
+        Set._v2s = function(val) {
+            switch (val) {
+                case undefined:
+                    return 'u';
+                case null:
+                    return "n";
+                case false:
+                    return "f";
+                default:
+                    switch (typeof val) {
+                        case 'number':
+                            return "#" + val;
+                        case 'string':
+                            return '"' + val;
+                        default:
+                            return '@' + objectId(val);
+                    }
+            }
+        }
+        var a = new Set('1', '2', '3', '4', '5');
+        console.log(a.add())
+            // // 多次调用该函数，传入一个迭代数、
+            // var n = 3;
+            // console.dir(n)
+            // Number.prototype.times = function(f) {
+            //     console.log(1)
+            //     var n = Number(this);
+            //     console.log(n)
+            //     for (var i = 0; i < n; i++) {
+            //         console.log(2)
+            //         f.call(null, i)
+            //     }
+            // }
+
+        // n.times(function(n) {
+        //     console.log(n + "hello")
+        // })
+
+
+
+        // function Complex(real, imaginary) {
+        //     if (isNaN(real) || isNaN(imaginary)) {
+        //         throw new TypeError;
+        //     }
+        //     this.r = real;
+        //     this.i = imaginary;
+        // }
+
+        // Complex.prototype = {
+        //     constructor: Complex,
+        //     // 当前复数对象加上另外一个复数对象，返回新的复数对象
+        //     add: function(that) {
+        //         return new Complex(this.r + that.r, this.i + that.i);
+        //     },
+        //     // 当前复数对象乘以另外一个复数对象，并返回一个新的计算乘积之后的复数对象
+        //     mul: function(that) {
+        //         return new Complex(this.r * that.r - this.i * that.i, this.r * that.i + this.i * that.r);
+        //     },
+        //     // 计算复数的模，复数的模定义为原点到复平面的距离
+        //     mag: function() {
+        //         return this.r * this.r + this.i * this.i;
+        //     },
+        //     // 复数的求负运算
+        //     neg: function() {
+        //         return new Complex(-this.r, -this.i);
+        //     },
+        //     // 将复数对象转换为一个字符串
+        //     toString: function() {
+        //         return "{" + this.r + "," + this.i + "}";
+        //     },
+        //     // 检测当前复数对象是否和另外一个复数对象相等
+        //     equals: function(that) {
+        //         return that != null && that.constructor === complex && this.r === that.r && this.i === that.i;
+        //     }
+
+        // }
+
+        // // 预定义类
+        // Complex.ZERO = new Complex(0, 0);
+        // Complex.ONE = new Complex(1, 0);
+        // Complex.I = new Complex(0, 1);
+
+        // console.log(Complex.ZERO)
+        // var c = new Complex(2, 3);
+        // var d = new Complex(c.r, c.i)
+        // console.log(c.add(d))
+        // console.log(c.toString())
+
+
+
+        // // 关于constructor属性
+        // var F = function() {};
+        // var p = F.prototype;
+        // var c = p.constructor;
+        // console.log(F === F.prototype.constructor)
+        // o = new F();
+        // console.log((new F()).constructor === F);
+        // b = Object.create(F);
+        // console.log(b.constructor);
+        // console.log(b.constructor === F)
+
+
+
+        // // 创建一个范围的对象，工厂模式 构造函数模式
+        // function Range(from, to) {
+        //     this.from = from;
+        //     this.to = to;
+        // }
+
+        // Range.prototype = {
+        //     includes: function(x) {
+        //         return this.from <= x && this.to >= x;
+        //     },
+        //     foreach: function(f) {
+        //         for (var x = Math.ceil(this.from); x <= this.to; x++) {
+        //             f(x);
+        //         }
+        //     },
+        //     toString: function() {
+        //         return "(" + this.from + "..." + this.to + ")";
+        //     }
+        // }
+
+        // var r = new Range(1, 3);
+        // console.log(r.includes(0));
+        // console.log(r.foreach(console.log));
+        // console.log(r.toString())
+        // console.log(r instanceof Range)
+        // console.log(Range.prototype.constructor)
+    </script>
+</body>
+
+</html>
