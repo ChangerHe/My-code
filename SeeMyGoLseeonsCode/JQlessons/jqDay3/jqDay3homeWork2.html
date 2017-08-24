@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type:none;
+        }
+
+        #box {
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        ul {
+            border-top: 2px solid #0A246A;
+            height: 30px;
+            padding-left: 1px;
+        }
+
+        li {
+            width: 98px;
+            height: 30px;
+            line-height: 30px;
+            float: left;
+            background: #ccc;
+            text-align: center;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            margin-left: -1px;
+        }
+
+        #contents {
+            width: 300px;
+
+        }
+        .content {
+            display: none;
+        }
+        .active {
+            background: #fff;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <ul>
+        <li class="active">女人</li>
+        <li>情感</li>
+        <li>亲子</li>
+    </ul>
+    <div id="contents">
+        <div class="content" style="display: block;">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aspernatur aut blanditiis consectetur distinctio eaque eligendi fuga illum impedit inventore ipsam magnam mollitia qui quia sed unde vero vitae, voluptas.
+        </div>
+        <div class="content">
+            Lorem ipsum dot blanditiis consectetur distinctlor sit amet, consectetur adipisicing elit. Accusamus aspernatur auio eaque eligendi fuga illum impedit inventore ipsam magnam mollitia qui quia sed unde vero vitae, voluptas.
+        </div>
+        <div class="content">
+             aut blanditiis consectetur distinctio eaque eligendi fuga illum impedit Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aspernaturinventore ipsam magnam mollitia qui quia sed unde vero vitae, voluptas.
+        </div>
+    </div>
+</div>
+
+    <script>
+        $('li').hover(function(){
+            for(let i = 0; i < $('li').length; i++) {
+                $('li').eq(i).removeClass('active')
+                $('li').eq(i).attr('index',i)
+                $('.content').css('display','none')
+            }
+            $(this).addClass('active')
+            $('.content').eq($(this).attr('index')).css('display','block')
+        })
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

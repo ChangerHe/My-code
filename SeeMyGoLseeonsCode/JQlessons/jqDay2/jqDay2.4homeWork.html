@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 12px;
+        }
+
+        #work1 {
+            height: 100px;
+        }
+
+        #work1 input:first-child {
+            display: block;
+            float: left;
+            width: 300px;
+            height: 40px;
+            outline: none;
+            border: 1px solid orangered;
+            padding-left: 20px;
+            color: #aaa;
+        }
+
+        #work1 input:last-child {
+            display: block;
+            float: left;
+            width: 80px;
+            height: 44px;
+            background: orangered;
+            border: 1px solid orangered;
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+        }
+
+        #items{
+            min-width: 600px;
+            height: 380px;
+            overflow: auto;
+        }
+
+        #work2 .item {
+            height: 120px;
+        }
+
+        #work2 .img {
+            float: left;
+            width: 102px;
+            height: 102px;
+            background: #900;
+        }
+
+        #work2 .text {
+            float: left;
+            width: 400px;
+            height: 100px;
+            border: 1px solid orangered;
+        }
+
+        #shopCar {
+            margin-top: 50px;
+            width: 502px;
+            border: 1px solid orangered;
+        }
+        
+        .checkbox {
+            float: left;
+        }
+
+        #shopCar .img{
+            float: left;
+            width: 42px;
+            height: 42px;
+            background: #900;
+
+        }
+
+        #shopCar .item {
+            height: 42px;
+        }
+
+        #shopCar .text {
+            float: left;
+            width: 400px;
+            height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 40px;
+            border: 1px solid orangered;
+        }
+
+        #shopCar button {
+            display: block;
+            float: left;
+            width: 60px;
+            height: 40px;
+            border: none;
+            color: #fff;
+            background: orangered;
+        }
+
+        #work3 {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="work1">
+    <input type="text" value="一只狗子">
+    <input type="button" value="搜索">
+</div>
+
+<div id="work2">
+    <div id="items">
+        <div class="item">
+            <div class="img">我是图片1</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片2</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+        <div class="item">
+            <div class="img">我是图片3</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magnam minima nemo omnis ut. Ab ad consequuntur, corporis, dolor error ipsam natus numquam quae qui quo suscipit tempora tenetur voluptatibus.</div>
+            <div class="checkbox"><input type="checkbox"></div>
+        </div>
+    </div>
+
+    <div><button id="btn">添加到购物车</button></div>
+    <div id="shopCar">
+
+    </div>
+    <div id="work3">
+        111
+    </div>
+</div>
+    <script>
+//        题1:搜索框提示效果
+        $('#work1 input[type=text]').focus(function(){
+            $(this).attr('value', '')
+        })
+        $('#work1 input[type=text]').blur(function(){
+            if( $(this).attr('value') == '') {
+                $(this).attr('value', '一只狗子')
+            }
+
+        })
+
+        // 利用节点复制实现添加到购物车的效果
+        var dataIndex = 0;
+        $(':checkbox').change(function(){
+            console.log($(this).prop('checked'))
+            if($(this).prop('checked')) {
+                console.log($(this).parent().parent())
+                $(this).parent().parent().attr('dataIndex',dataIndex++)
+            }
+        })
+
+        $('#btn').click(function() {
+            if($(':checkbox:checked')) {
+                console.log($(':checkbox:checked'))
+                var removeObj = $(':checkbox:checked').parent().parent().remove()
+                console.log(removeObj)
+//                removeObj.append('<button>buy It!</button>')
+                $('#shopCar').append(removeObj)
+                $('#shopCar input[type=checkbox]').hide()
+            }
+        })
+
+
+        // work3
+        var rootNode = $('<table cellpadding="0" cellspacing="0" width="60%" border="1"></table>');
+        var fatherNode = $('<tr><td>姓名</td><td>性别</td><td>年龄</td></tr>')
+        fatherNode.appendTo(rootNode)
+        $('body').append(rootNode);
+        var node = $('<tr><td>张三</td><td>男</td><td>18</td></tr>')
+        rootNode.clone().append(node)
+        rootNode.clone().append(node)
+rootNode.append(node)
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

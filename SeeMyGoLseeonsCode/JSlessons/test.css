@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#div1 {
+	background: #900;
+	width: 200px;
+	height: 200px;
+	border: 10px solid #000;
+	border-right: 20px solid #099;
+	border-left: 20px solid #099;
+	margin: 30px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: scroll;
+}

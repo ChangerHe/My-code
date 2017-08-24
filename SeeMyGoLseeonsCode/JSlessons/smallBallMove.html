@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#ball {
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 200px;
+			left: 200px;
+			background: #900;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn">老板点我</button>
+	<div id="ball"></div>
+	<script>
+		/** 
+		 *  动画的定义顺序
+		 *  1.定义动画的发生距离   distance
+		 *  2.定义动画的发生时间   animateTime
+		 *  3.定义动画的速度
+		 */
+		 /*
+			需求: 为小球定义动画,在三秒内从靠左200px处移动到靠左的900px处
+		 */
+		// var btn = document.getElementById('btn')
+		// var ball = document.getElementById('ball')
+		// var start = 200; 
+		// var end = 900;
+		// var distance = end - start;
+		// var animateTime = 3000;
+		// var speed = distance/animateTime*50  // 50为暂定的perTime
+
+		// 对计算非行内样式结果的函数封装
+
+		// 在IE下     tag.currentStyle[attr]
+		// 非IE下     window.getComputedStyle[attr]
+		// function getCptSty(tag, attr){
+		// 	if(Object.prototype.currentStyle) {
+		// 		return tag.currentStyle[attr]
+		// 	} else {
+		// 		return window.getComputedStyle(tag)[attr]
+		// 	}
+		// }
+		// var ball = document.getElementById('ball')
+		// var btn = document.getElementById('btn')
+		// console.log(getCptSty(ball,'width'))
+		// btn.onclick = function (){
+		// 	// console.log(window.getComputedStyle(ball).left)
+
+		// 	var timer = setInterval(function(){
+		// 		var left = getCptSty(ball,'left')
+		// 		console.log(ball.style.left)
+		// 		if(parseInt(left) >= 900) {
+		// 		console.log(1)
+		// 			ball.style.left = 900;
+		// 			clearInterval(timer)
+		// 		} 
+		// 		ball.style.left = parseInt(left) + 10 + 'px'
+		// 	},50)
+		// }
+
+		btn.onclick = function() {
+			animate(ball, 0, 10, 1000, 'left')
+		}
+
+		// 动画生成的必要要素:  作用物体,开始(就在当前位置开始),结束位置,步长,动画的总时间,动画的方向/宽高
+		function animate(tag, endPos, step, time, attr) {
+			var startPos, curPos, curPosNum, timer, averageTime, allStep;
+
+			// 计算出开始位置
+			if(typeof window.getComputedStyle == 'function') {
+				startPos = window.getComputedStyle(tag)[attr];
+			} else if (typeof Object.prototype.currentStyle == 'function') {
+				startPos = tag.currentStyle[attr]
+			}
+
+			// 要移动的总的步数
+			allStep = (parseInt(endPos) - parseInt(startPos))/step;
+
+			// 每步需要的时间
+			averageTime = time / Math.abs(allStep);
+
+			// 初始化其style
+			tag.style[attr] = startPos;
+
+			// 开启定时器
+			timer = setInterval(function(){
+				console.log(tag.style[attr])
+
+				// 计算出当前的位置
+				if(typeof window.getComputedStyle == 'function') {
+					curPos = window.getComputedStyle(tag)[attr];
+				} else if (typeof Object.prototype.currentStyle == 'function') {
+					curPos = tag.currentStyle[attr]
+				}
+
+				// 当前位置的数值表示
+				curPosNum = parseInt(curPos);
+
+				// 当开始位置大于等于结束位置时,现在位置等于结束位置,并清零
+				if (parseInt(startPos) <= parseInt(endPos)) {
+
+					// 当前位置大于等于结束位置,则当前位置等于结束位置,并清零
+					if(curPosNum >= parseInt(endPos)){
+						tag.style[attr] = parseInt(endPos)+ 'px';
+						clearInterval(timer)
+						return;
+					}
+				} else {
+					// 当开始位置小于结束位置,则步长为负,传入正负步长均可,内部将会自动转换为负
+					step = -Math.abs(step)
+
+					// 如果当前位置小于结束位置,则当前位置等于结束位置,并清除定时器
+					if(curPosNum <= parseInt(endPos)){
+						tag.style[attr] = parseInt(endPos)+ 'px';
+						clearInterval(timer)
+						return;
+					}
+				}
+				// 现在位置加上步长
+				tag.style[attr] = curPosNum + step + 'px';
+				console.log(tag.style[attr])
+			},averageTime)
+		}
+		
+		
+	</script>
+</body>
+</html>

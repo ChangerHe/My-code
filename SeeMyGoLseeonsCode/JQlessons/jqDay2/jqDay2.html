@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<div>
+    <p><span>hello</span>how are you?</p>
+</div>
+    <script>
+        /*
+         * jquery 可以提供基于DOM树的增删改查工作
+         *       常用的查找方法:  find()  查找该标签下的子标签
+         *                      closest()  根据当前元素查找祖先元素
+         *                      first()/last()/equal()
+         *
+         *
+         * */
+
+        // attention: 查找的标签记得加上引号,代表传入字符串
+        console.log($('p').find('span'));
+        // 查找当前标签最接近的祖先元素
+        console.log($('span').closest('div'))
+
+        /*
+        * 使用jQuery对元素的对象进行添加
+        *
+        *       创建标签的方法:  直接在$('这里面加上相应的标签')   例如  $("<div>111</div>")就相当于创建了这个节点了
+        *       添加到文档流中append()   和    appendTo()    两者的添加方法刚刚好相反,一个是添加到里面,一个是往里面添加
+        *       插入到需要插入的文档之前,就可以使用 prepend()  prependTo
+        * */
+
+        // 需要注意的一点是，当我们使用连续添加的时候，并没有添加到后面添加到的ul中，而是还是添加到了div中，因为jQuery中存在连缀写法，每次执行之后都会返回原始的调用的元素本身
+
+        $('div:first').append($('<ul>')).append($('<li>11111</li>'));
+        $('div:first ul').append($('<li>22222</li>'));
+
+        $('<li>44444</li>').appendTo($('div:first ul'))
+        // 可以看到，相应想插入的字符串，插到了文档流的前面
+        $('div:first ul').prepend($('<li>33333</li>'))
+        $('<li>55555</li>').prependTo($('div:first ul'))
+
+        /*
+        * 我们现在要在相应的标签后面增加相应的标签,这个时候就需要使用到   after()  和   insertAfter()  方法了
+        * insertAfter() 这个方法在初次使用的时候可能会觉得有点奇怪,我在insertAfter后面加了一个完整的标签,为什么没插入不说,前面的标签都没了?
+        * 其实是这样的,我们是将前面的标签,添加到后面的标签里面,所以会出现这样的情况,就类似于append 和appendTo两者的区别
+        * 所以因为这样的特质,我们可以操作DOM树中之前的元素,对文档的结构进行改变
+        * 因为之前的文档中的结构,进行重新的插入等操作之后,之前的标签就不见了
+        * */
+
+        $('ul:first').after($('<div>div111111</div>'))
+        $('<div>div222222</div>').insertAfter($('ul:first'))
+        $('ul:first').insertAfter($('div div'))
+
+        /*
+        * 删除节点操作
+        *       当需要对DOM树中的不需要的元素进行删除时,可以直接调用  remove()  方法
+        *       需要注意的是,这个操作可以删除掉自己自身的,而原生的js需要找到父元素,再进行删除
+        * */
+
+        // 该操作删除掉了div的子节点li
+        $('div > li').remove();
+
+        /*
+        * 清空节点操作
+        *       对节点进行清空,但是并不移除该节点  empty()
+        *       清空之后,该节点还存在于文档流中
+        * */
+        console.log($('div div:first').empty())
+
+        /*
+        * 移除节点操作   detach()
+        *       detach()  和  remove()  的区别,我们使用remove方法,该标签上相应的时间会删除,但是使用detach将元素插入到文档流中,相应的事件不会删除掉
+        *       同时要注意的一点是,remove和detach移除节点,相应的,移除操作会返回删除的节点本身,所以在移除之后,还可以对移除的节点进行插入操作
+        * */
+        $('div ul:first li:first').click(function(){
+            alert(1)
+        })
+        var $a = $('div ul:first li:first').detach()
+        $($a).appendTo($('div ul:first'))
+
+        /*
+        * 复制节点   clone   复制的函数中可带参数,参数为布尔值,为true时表示会同时复制该标签的相应的事件和属性
+        * */
+        $('div ul:first li:first').click(function(){
+            alert(2)
+        })
+        $('div ul:first').append($('div ul:first li:first').clone())
+        $('div ul:first').append($('div ul:first li:first').clone(true))
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

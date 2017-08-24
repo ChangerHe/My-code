@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+			width: 800px;
+			height: 300px;
+			background: #000;
+			cursor: crosshair;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+<div id="box"></div>
+<input type="button" id="btn1" value="addEvent">
+<input type="button" id="btn2" value="removeEvent">
+	<!-- <input type="button" id="btn" value="0">
+	<button id="btn2" onclick="add(event)">0</button> -->
+	<script>
+	var box = document.getElementById('box')
+	var btn1 = document.getElementById('btn1')
+	var btn2 = document.getElementById('btn2')
+	box.onmousemove = function(e){
+		this.innerHTML = e.clientX+"  "+e.clientY
+	}
+
+	// var add=function add(){
+	// 		console.log(this)
+	// 	}
+	var add;
+	btn1.addEventListener('click',function(){
+		box.addEventListener('click',function add(){
+			console.log(this)
+		})
+	})
+	btn2.addEventListener('click',function(){
+		box.removeEventListener('click',add)
+	})
+
+
+	// 非IE浏览器,当事件发生时,浏览器将事件对象传递给事件处理函数
+	// IE浏览器,当时间发生时,浏览器将事件对象放在window.event对象上
+	// 所以,我们一般不会使用其他的变量作为参数的记录,一般我们使用e作为对象
+		// var btn = document.getElementById('btn')
+		// btn.onclick = function(e){
+		// 	// console.log(window.event) // 在IE7下,显示为Object IE8显示为[object Event]
+		// 	// console.dir(event)
+		// 	// console.dir(x)  // 使用变量来打印,在IE8下,是显示为undefined的
+		// 	e = e || window.event;
+		// 	console.log(typeof this.value)
+		// 	var a = parseInt(this.value);
+		// 	a++
+		// 	this.value = a;
+
+		// }
+		// var btn2 = document.getElementById('btn2')
+		// console.log(btn2.onclick)
+		// var add = function(e){
+		// 	console.log(e)
+		// 	e = e || window.event
+		// 	var target = e.target;
+		// 	this.innerText++
+		// 	console.log(this.innerText)
+		// 	console.log(e)
+		// 	console.log(target)
+		// }
+		// // btn2.onclick = add
+
+		// 但是在这种情况下,我们无法为相同的事件处理函数添加相同的事件处理程序
+	</script>
+</body>
+</html>

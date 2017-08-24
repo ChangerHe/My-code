@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#msg {
+			color: #900;
+			font-weight: bold;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="checkBox" placeholder="please input your id"><span id="msg">您的ID错误</span><br>
+	<script>
+		var checkBox = document.getElementById('checkBox')
+		var msg = document.getElementById('msg')
+		checkBox.onchange = function(){
+			// var reg = /^\w{4,8}$/
+			console.log(checkBox.value.length)
+			if (checkBox.value.length<=4||checkBox.value.length>=8) {
+				msg.style.display = 'inline-block';
+			} else {
+				msg.style.display = 'none';
+			}
+		}
+	</script>
+	<button id="btn" onclick="alert(3)">111111</button>
+	<input type="text" id="txt" style="color:#bbb" value="please input some text">
+	<input type="text" id="txt1" style="color:#bbb" placeholder="please input some text">
+	<form action="get">
+		<input type="text" >
+		<input type="text" >
+		<input type="text" >
+		<input type="text" ><br>
+		<input type="button" value="submit" id="submit">
+		<input type="button" value="reset" id="reset">
+	</form>
+	<script>
+		// 创建一个表格
+		function createTable(rows, cols){
+			var table = document.createElement('table')
+			for (var i = 0; i < rows; i++) {
+				var tr = document.createElement('tr')
+				for (var j = 0; j < cols; j++) {
+					var td = document.createElement('td')
+					tr.appendChild(td);
+				}
+				table.appendChild(tr);
+			}
+			document.body.appendChild(table);
+		}
+		createTable(2,3);
+
+
+
+
+
+
+		// var submit = document.getElementById('submit')
+		// var reset = document.getElementById('reset')
+		// submit.onclick = function(){
+
+		// }
+		// function addEvent(obj, type, fn){
+		// 	if(typeof addEventListener != 'undefined'){
+		// 		return obj.addEventListener(type, fn, false);
+		// 	}else if(typeof attachEvent !='undefined'){
+		// 		console.log(1)
+		// 		obj.attachEvent('on'+type,fn);
+		// 	}
+		// }
+		// var btn = document.getElementById('btn')
+		// btn.onclick = function(){
+		// 	alert(1)
+		// }
+		// // btn.addEventListener('click',function(){
+		// // 	alert(2)
+		// // })
+		// var txt = document.getElementById('txt')
+		// // txt.onfocus = function(){
+		// // 	if (txt.value == 'please input some text') {
+		// // 		txt.value = '';
+		// // 	}
+		// // }
+		// // txt.onblur = function(){
+		// // 	if (txt.value == '') {
+		// // 		txt.value = 'please input some text'
+		// // 	}
+		// // }
+		// addEvent(txt,'focus',function(){
+		// 	this.select();
+		// })
+		// addEvent(txt,'keydown',function(){
+
+		// 	if(txt.value == 'please input some text'){
+		// 		txt.value = '';
+		// 	}
+		// })
+		// addEvent(txt,'blur',function(){
+		// 	// console.debug("lll");
+		// 	if (txt.value == '') {
+		// 		txt.value = 'please input some text'
+		// 	}
+		// })
+		
+	</script>
+</body>
+</html>

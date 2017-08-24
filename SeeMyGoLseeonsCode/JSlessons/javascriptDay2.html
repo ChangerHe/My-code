@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // homeWork
+        /**
+         * @author: ChangerHe
+         * @descripe: 定义一个变量表示分数,并给其赋值,在页面中根据分数高低不同输出文字.
+         */
+        var getScore = prompt();
+        var score = parseInt(getScore);
+        // if else 方法的实现
+        if (score > 90 && score <= 100) {
+            console.log('优秀')
+        } else if (score > 80 && score <= 90) {
+            console.log('良好')
+        } else if (score > 70 && score <= 80) {
+            console.log('中等')
+        } else if (score > 60 && score <= 70) {
+            console.log('及格')
+        } else if (typeof score != 'number') {
+            console.log('别瞎输')
+        } else if (typeof score == 'number') {
+            console.log('不在分数范围内')
+        } else {
+            console.log('不及格')
+        }
+
+        // 使用switch方法的实现
+        var scoreNum = Math.floor(score / 10);
+        switch (scoreNum) {
+            case 10:
+                console.log('优秀');
+                break;
+            case 9:
+                console.log('优秀');
+                break;
+            case 8:
+                console.log('良好');
+                break;
+            case 7:
+                console.log('中等');
+                break;
+            case 6:
+                console.log('及格');
+                break;
+            default:
+                console.log('不及格');
+        }
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 根据一个人的存款多少来决定使用什么交通工具
+         */
+        var money = 10;
+        if (money >= 100000) {
+            console.log('坐小汽车上班');
+        } else if (money < 100000 && money >= 5000) {
+            console.log('买摩托车上班');
+        } else if (money < 5000 && money >= 300) {
+            console.log('买自行车上班');
+        } else if (money < 300 && money >= 20) {
+            console.log('坐公交车上班');
+        } else {
+            console.log('吃土')
+        }
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 输出1-100之间能被3整除的数
+         */
+        var arr1 = [];
+        for (var i = 1; i <= 100; i++) {
+            if (!(i % 3)) {
+                arr1.push(i);
+            }
+        }
+        console.log(arr1)
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 计算1-1000之间能被3整除的偶数的个数
+         */
+        var arr2 = [];
+        for (var i = 1; i <= 1000; i++) {
+            if (!((i % 3) || (i % 2))) {
+                arr2.push(i);
+            }
+        }
+        console.log(arr2)
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 输出九九乘法表
+         */
+        for (var i = 9; i >= 1; i--) {
+            for (var j = 1; j <= i; j++) {
+                document.write(i + " * " + j + " = " + (i * j) + " ; ");
+
+            }
+            document.write('<br>')
+        }
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 输出从2000年（含）到3000年（含）间的所有闰年
+         */
+        var arr3 = [];
+        for (var i = 2000; i <= 3000; i++) {
+            if ((i % 400 == 0) || (i % 4 == 0) && (i % 100 != 0)) {
+                arr3.push(i)
+            }
+        }
+        console.log(arr3)
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 写一个程序输出1到100这些数字。但是遇到数字为3的倍数的时候，输出“三”替代数字，为5的倍数用“五”代替，既是3的倍数又是5的倍数则输出“三五”
+         */
+        document.write('<br>')
+        for (var i = 1; i <= 100; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                document.write(" 三五 ");
+                continue;
+            } else if (i % 5 == 0) {
+                document.write(" 五 ");
+                continue;
+            } else if (i % 3 == 0) {
+                document.write(" 三 ");
+                continue;
+            }
+            document.write(" " + i + " ")
+        }
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 打印图形1
+         */
+        for (var i = 0; i < 4; i++) {
+            console.log("*******")
+        }
+
+        /**
+         * @author: ChangerHe
+         * @descripe: 打印图形2
+         */
+        for (var i = 5; i >= 1; i--) {
+            var str = "";
+            for (var j = 0; j < i; j++) {
+                str = str.concat("*")
+                    // Object.prototype.push.call(str,"*")
+            }
+            console.log(str)
+        }
+    </script>
+
+</body>
+
+</html>

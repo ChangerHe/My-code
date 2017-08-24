@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="base.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#container {
+			position: relative;
+			width: 600px;
+			height: 300px;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+
+		img {
+			display: block;
+			float: left;
+			width: 600px;
+			height: 300px;
+			vertical-align: middle;
+		}
+
+		#box {
+			width: 3000px;
+			position: absolute;
+		}
+
+		.arrow {
+			display: block;
+			position: absolute;
+			width: 50px;
+			height: 100px;
+			background: rgba(0,0,0,.3);
+			font-size: 60px;
+			line-height: 90px;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.arrow:hover {
+			background: rgba(0,0,0,.7);
+		}
+
+		#left {
+			top: 100px;
+			left: 0px;
+		}
+
+		#right {
+			top: 100px;
+			left: 550px;
+		}
+
+		#dots {
+			position: absolute;
+			bottom: 0;
+			left: 255px
+		}
+
+		.dot {
+			display: block;
+			float: left; 
+			width: 18px;
+			height: 18px;
+			margin: 10px 6px;
+			border-radius: 50%;
+			background: rgba(0,0,0,.5);
+			cursor: pointer;
+		}
+
+		.dot:hover {
+			background: orange;
+		}
+
+		#active {
+			background: orange;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div id="box" style="left: -600px">
+		<img src="imgs/project03.png" alt="">
+		<img src="imgs/project01.png" alt="">
+		<img src="imgs/project02.png" alt="">
+		<!-- <img src="imgs/project01.png" alt=""> -->
+		<img src="imgs/project03.png" alt="">
+	</div>
+	<span class="arrow" id="left">&lt;</span>
+	<span class="arrow" id="right">&gt;</span>
+	<div id="dots">
+		<span id="active" class="dot"></span>
+		<span class="dot"></span>
+		<span class="dot"></span>
+	</div>
+</div>
+<script>
+	var container = document.getElementById('container')
+	var box = document.getElementById('box')
+	var left = document.getElementById('left')
+	var right = document.getElementById('right')
+	var dots = document.getElementById('dots')
+	var dot = dots.getElementsByTagName('span')
+
+	/*
+		需求:
+			1.制作点击两侧图标的滚动效果
+			2.点击下方原点,也会产生滚动效果,
+			3.不动,也能产生滚动效果
+	*/
+	// 左边的点击换图效果
+	left.onclick = function (){
+		var leftPos = getCSS(box, 'left');
+		var parseLeft = parseInt(leftPos)
+			var n = 0;
+		var timer = setInterval(function(){
+			if(n>=11){clearInterval(timer)}
+			n++
+			box.style.left = parseLeft - n*50 + 'px';
+			console.log(2)
+		},20)
+		setTimeout(function(){
+			console.log(box.style.left)
+			if(parseInt(box.style.left) <= -1800){
+				console.log(1)
+				box.style.left = '0px'
+			}
+			// box.style.left = parseLeft - 605 + 'px';
+
+
+			for (var i = 0; i < dot.length; i++) {
+				dot[i].id = '';
+			}
+			if(box.style.left == '-600px' /*|| box.style.left == '-1210px'*/){
+				dot[0].id = 'active'
+			} else if (box.style.left == '-1200px'){
+				dot[1].id = 'active'
+			} else {
+				dot[2].id = 'active'
+			}
+		},241)
+	}
+
+	right.onclick = function (){
+		var rightPos = getCSS(box, 'left');
+		var parseRight = parseInt(rightPos)
+		var n = 0;
+		var timer = setInterval(function(){
+			if(n>=11){clearInterval(timer)}
+			n++
+			// box.style.left = parseLeft - n*50 + 'px';
+			box.style.left = parseRight + n*50 + 'px';
+			console.log(2)
+		},20)
+		// box.style.left = parseRight + 600 + 'px';
+		setTimeout(function(){
+			if(parseInt(box.style.left) >= 0){
+				console.log(1)
+				box.style.left = '-1800px'
+			}
+		for (var i = 0; i < dot.length; i++) {
+			dot[i].id = '';
+		}
+		// if(parseRight >= 0){
+		// 	box.style.left = '-1200px'
+		// }
+
+		if(box.style.left == '-600px' /*|| box.style.left == '-1210px'*/){
+				dot[0].id = 'active'
+			} else if (box.style.left == '-1800px'){
+				dot[1].id = 'active'
+			} else {
+				dot[2].id = 'active'
+			}
+			},241)
+		}
+
+		for (var i = 0; i < dot.length; i++) {
+			dot[i].setAttribute('index',i)
+			dot[i].onclick = function(){
+		for (var i = 0; i < dot.length; i++) {
+			dot[i].id = '';
+		}
+		this.id = 'active';
+		var index = this.getAttribute('index')
+		// console.log(box.style.left)
+		var n = 0;
+		var timer = setInterval(function(){
+			if(n>=11){clearInterval(timer)}
+			n++
+			// box.style.left = parseRight + n*50 + 'px';
+			box.style.left = index * (-n*50) - 600 + 'px';
+			console.log(2)
+		},20)
+			// box.style.left = index * (-600) + 'px';
+		}
+	}
+
+	// 对浏览器样式计算结果的封装
+	function getCSS(tag, attr){
+		if(typeof window.getComputedStyle == "function") {
+			return window.getComputedStyle(tag)[attr]
+		} else {
+			return tag.currentStyle[attr];
+		}
+	}
+
+	// 对动画效果的封装
+	// 	var n = 0;
+	// var animate = setInterval(function(){
+	// 	if(n>=600){
+	// 		clearInterval(animate)
+	// 	}
+	// 	n++
+	// 	// console.log(n)
+	// },20)
+	// 	var timer
+	// var animate = (function () {
+	// 	// if(getCSS(box, 'left') )
+	// 	// this.style.left = 
+	// 	return timer = setInterval(function(){
+	// 		// console.log(n)
+	// 		if(n<605){
+	// 			n++
+	// 		} 
+	// 		return n
+	// 	},20)
+	// })()
+	// console.log(animate)
+	// console.log($left)
+
+	// $left.click(function(){
+	// 	if($box.css('left') == "-1210px"){
+	// 		$box.css('left',"0px")  
+	// 	}
+	// 	$box.css('left',parseInt($box.css('left'))-605+'px')
+	// })
+
+	// $right.click(function(){
+	// 	if($box.css('left') == "0px"){
+	// 		$box.css('left',"-1210px")  
+	// 	}
+	// 	$box.css('left',parseInt($box.css('left'))+605+'px')
+	// })
+
+	// console.log($dot[0])
+	// for (var i = 0; i < $dot.length; i++) {
+	// 	$dot[i].setAttribute('index',i)
+	// 	$dot[i].onclick = function(){
+	// 		console.log(this)
+	// 		$box.css('left', this.index*-605+ 'px')
+	// 	}
+	// }
+
+</script>
+</body>
+</html>

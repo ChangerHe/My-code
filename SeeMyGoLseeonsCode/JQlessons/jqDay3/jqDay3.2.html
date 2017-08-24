@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>百度搜索竞价排名</title>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+            line-height: 25px;
+        }
+        .title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .ImgAlign {
+            vertical-align: middle;
+        }
+        .TextWidth {
+            width: 140px;
+            padding-left: 20px;
+            display: block;
+            float: left;
+        }
+        .Height {
+            height: 45px;
+            line-height: 45px;
+        }
+        .Strong {
+            font-weight: bold;
+        }
+        .Line {
+            height: 55px;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: #E1E1E1;
+        }
+        .AnNiu {
+            margin-left: 170px;
+        }
+    </style>
+    <script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        //文档加载完毕再执行
+        $(function () {
+            //设置值
+            $("#userName").val("我是设置的值")
+
+            //注册提交表单的事件
+            $("#baiduForm").on("submit",function () {
+                //1 取输入框的值
+
+                //2  取单选框的值
+                console.log($('input[type=radio]').val())
+
+                //3 取下拉列表的值,其实表单的取值,取得的就是相应的name值
+                console.log($('select').val())
+                console.log($('option:selected').val())
+
+                //4 多行文本域
+                console.log($("#companyAbout").val());
+
+                //5 取多选框的值
+                console.log($(':checkbox:checked'))
+
+                //通过遍历把选中的值输出
+                //javascript中的方法
+                /*
+                 for (var i = 0; i < hobbys.length; i++) {
+                 console.log(hobbys[i].value);
+                 }
+                 */
+
+                //jquery中的方法,使用each遍历
+                $('input[name=hobby]:checked').each(function(index, item){
+                    console.log($(this).val())
+                })
+
+
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+<form id="baiduForm" name="form1" method="post" action="05baiduData.html">
+    <table width="730" border="0" align="center" cellpadding="3" cellspacing="0">
+        <tr></tr>
+        <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td><img src="" width="137" height="69" alt="百度" /></td>
+                    <td align="right" valign="bottom">返回百度首页</td>
+                </tr>
+            </table></td>
+        </tr>
+        <tr>
+            <td bgcolor="#E4EFF8" class="title">百度搜索竞价排名服务流程</td>
+        </tr>
+        <tr>
+            <td><p> <img src="" width="17" height="17" class="ImgAlign" /> 注册帐号  2 挑选产品关键字并提交  3 交纳费用  4 开通服务</p>
+                <p>请您填写用户注册信息，请务必填写真实信息，以便为您提供服务。 <br />
+                </p></td>
+        </tr>
+        <tr>
+            <td>
+                <table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#DBDBDB">
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth">用户名</span>
+                            <input type="text" name="yhm" id="userName" />
+                            （*字母开头，5-16位的字符）</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">密码</span>
+                            <input type="password" name="mima" id="mima" />
+                            （* 至少六位） </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth">校验密码</span>
+                            <input type="password" name="Repeatmima" id="Repeatmima" /></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">Email地址</span>
+
+                            <input type="text" name="email" id="email" />
+                            （* 正确邮件格式） </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth">联系人姓名</span>
+
+                            <input type="text" name="name" id="name" /></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">联系人性别</span>
+                            <input type="radio" name="sex" id="radio1" value="男" checked="checked" />
+                            男
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="sex" id="radio2" value="女" />
+                            女（*）</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth">爱好</span>
+                            <input name="hobby" type="checkbox" value="打篮球" /> 打篮球
+                            <input name="hobby" type="checkbox" value="踢足球" /> 踢足球
+                            <input name="hobby" type="checkbox" value="听音乐" /> 听音乐
+                            <input name="hobby" type="checkbox" value="打游戏" /> 打游戏
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth">公司（或网站）名称</span>
+                            <input name="CompanyName" type="text" id="CompanyName" size="30" />
+                            （*）</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">网站 URL 地址</span>
+
+                            <input name="URL" type="text" id="URL" size="40" />
+                            （*）</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth Height">通信地址</span>
+                            <select name="Province" id="Province">
+                                <option value="-1">您所在的省份</option>
+                                <option value="sc">四川省</option>
+                                <option value="yn">云南省</option>
+                                <option value="cq">重庆市</option>
+                                <option value="gd">广东省</option>
+                            </select>
+                            <select name="city" id="city">
+                                <option>您所在的城市</option>
+                                <option>成都市</option>
+                            </select>
+                            <br />
+                            <input name="Address" type="text" id="Address" size="25" /></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">邮政编码</span>
+
+                            <input type="text" name="PostCode" id="PostCode" /></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth">联系电话</span>
+
+                            <input type="text" name="Telephone" id="Telephone" />
+                            （* 必须与网站上出现的联系电话一致）</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">手机号码</span>
+
+                            <input type="text" name="Mobile" id="Mobile" />
+                            （* 必须与网站上出现的手机号码一致）</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#F0F0F0"><span class="TextWidth">公司简介</span>
+
+                            <textarea id="companyAbout" cols="60" rows="6" value=""></textarea></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#FFFFFF"><span class="TextWidth Strong">接受用户协议</span>
+                            <input type="checkbox" name="IsAgree" id="IsAgree" />
+                            <strong>我已阅读声明并接受 百度用户服务合同</strong></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="Line"><input type="submit" name="Submit" id="Submit" value="提交" class="AnNiu" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

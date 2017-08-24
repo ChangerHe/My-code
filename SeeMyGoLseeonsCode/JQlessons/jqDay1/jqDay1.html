@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">11111</div>
+    <ul id="oUl">
+        <li id="firstLi" class="aLi">1</li>
+        <li class="aLi">2</li>
+        <li class="aLi">3</li>
+        <li class="aLi">4</li>
+        <li class="aLi">5</li>
+        <li class="aLi">6</li>
+        <li class="aLi">7</li>
+        <li id="lastLi" class="aLi">8</li>
+    </ul>
+    <script>
+        // $ 在jQuery中的作用是等同于 jQuery的
+        $('#box').css({'width': '100px', 'height': '100px', 'background': '#ccc'});
+
+        /*
+        * $的不同的使用场景
+        *   1.作为选择器来进行使用\
+        *   2.作为一个对象来调用其他的方法,例如$.ajax   $.get()   $.post()   等等
+        *   3.页面加载之后执行,直接在$中传入函数即可    $(function(){}   这种情况下是等效于window.onload的
+        *   4.传入DOM对象,将DOM对象作为直接的操作使用
+        * */
+
+        $('#box').click(function(){
+            console.log(this)
+            console.log($('#box'));
+            $('#box').animate({'width':'300px','height':'400px','opacity': 0},2000)
+        })
+
+        // window.onload() 方法在页面中只能执行一次, 但是jQuery中的加载方法可以执行多次    $(document).ready(function(){})
+//        window.onload = function(){
+//            console.log(1)
+//        }
+
+//        if(typeof window.onload == 'function'){
+//            var a = window.onload
+//        }
+//
+//        window.onload = function () {
+//            a();
+//            console.log(2)
+//        }
+
+        // 使用jQuery的ready功能
+//        $(document).ready(function(){
+//            console.log(3)
+//        })
+//        $(document).ready(function(){
+//            console.log(4)
+//        })
+        // 在这个时候,很奇怪的事情是,当我们使用这样的方法时,使用jQuery的ready方法是在window.onload 之前执行的这一点要注意一下
+
+        // 一般情况下,我们会使用简写的方式
+//        $(function(){
+//            console.log(5)
+//        })
+//        $(function(){
+//            console.log(6)
+//        })
+
+
+        /*
+        * JQ的选择器
+        *   1.选择器的类型: 基本选择器  层次选择器  过滤选择器  表单选择器
+        *   2.
+        * */
+
+
+        // 找到所有的li
+        // 需要注意的一点是,当我们使用jQuery对css属性进行设置的时候,是可以不使用驼峰命名法的,里面的底层实现原理待分析
+        // 还有一点要注意的是,当我们使用css进行属性设置,如果没有设置相应值的单位时,jQuery则会默认我们使用的是px为单位,并为我们自动加上
+        // 还有一点特别注意,我们的属性值调取,当调取的是一个类里面的元素值的时候,默认的是给查询第一个的值
+//        $('.aLi').css({'color':'red'})
+//        $('.aLi').css({'background-color': 'blue'});
+//        $('.aLi').css({'fontSize': 24})
+//        $('#firstLi').css({'font-size': 18})
+//        $('#lastLi').css({'font-size': 40})
+//        console.log($('.aLi').css('fontSize'))
+//
+//        console.log($('#oUl li:first-child').html())
+//        console.log($('#oUl li:lt(3)').css('width'))
+//        $('#oUl li:even').css('background', 'red')
+
+        $('#box:animated').css('fontSize','40px')
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+        }
+        .addClass {
+            background: #900;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>取消綁定</button>
+    <script>
+        // mouseenter 穿过完整的区域之后才会触发
+        // mouseleave 当离开完整的区域之后会触发
+
+        // 需注意的一点是,我们使用window,则需要匹配load时间,如果是document,则需要匹配ready事件
+        // window指文档的整体全部加载完毕后,才执行,document指文档的dom结构加载完毕之后就执行
+//        $(window).load(function(){
+//            alert(1)
+//        })
+//        $(document).ready(function () {
+//            alert(2)
+//        });
+
+        /**
+         * 事件处理:   bind()  on()  其实两者的作用是一样的,但是传递的参数不一样,同时,on()是在jQuery的1.7版本之后才支持的
+         */
+//        $('.box').bind('mouseover',function(){
+//            $(this).css('background','#aaa')
+////            console.log(1)
+//        }).bind('mouseout',function(){
+//            $(this).css('background','#ccc')
+//        })
+
+        // 使用bind可以一次绑定多个事件,但是多个事件只能使用一个事件处理函数进行执行
+//        $('.box').bind('mouseover mouseout',function(){
+//            $(this).toggleClass('addClass')
+//        })
+
+        // 使用json格式进行绑定
+        $('.box').bind({mouseover:function(){
+            $(this).css('background','#aaa')
+        }, mouseout: function(){
+            $(this).css('background','#ccc')
+        }})
+        $('button').click(function(){
+            $('.box').off()
+        })
+
+        // 要注意的是,在bind上不能使用hover一次性写两个函数
+//        $('.box').bind('hover',function(){
+//            $(this).css('background','#aaa')
+//        },function(){
+//            $(this).css('background','#ccc')
+//        })
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

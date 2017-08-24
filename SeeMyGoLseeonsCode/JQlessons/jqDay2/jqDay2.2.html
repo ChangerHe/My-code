@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p><span>hello</span>how are you?</p>
+        <input type="text">
+    </div>
+    <select name="fruits" id="fruits" multiple="multiple">
+        <option value="apple">apple</option>
+        <option value="pee">pee</option>
+        <option value="struabrry">struabrry</option>
+        <option value="orange">orange</option>
+    </select>
+    <div id="hobby">
+        CS:<input type="checkbox" value="cs">
+        LOL:<input type="checkbox" value="lol">
+        PROTO:<input type="checkbox" value="prototype">
+    </div>
+    <div id="getPos">
+        <p>I'm the 1 child</p>
+        <p>I'm the 2 child</p>
+        <p>I'm the 3 child</p>
+        <p>I'm the 4 child</p>
+        <p>I'm the 5 child</p>
+    </div>
+    <div id="domOpr" style="width: 200px;height: 200px;background: #090;position: relative; top:20px;left: 20px;">
+        <div class="box" style="width: 100px;height: 100px;background: #900;position: absolute; top: 20px;left:20px;"></div>
+    </div>
+    <script>
+        /*
+        * 设置HTML文档的文本及值
+        *       jQuery内置了操作标签内部的文本的方法   html()  不传值，表示查询，传值，表示设置
+        *       text()  不传值，表示查询标签内的文本内容，传值，则表示设置其中的文本内容
+        *       val()   不传值，表示取出表单元素中的值，传值，则表示设置表单元素的值.  val() 的魅力在于为单选复选框，设置值时，这些表单元素会自动选中
+        *
+        * */
+        $('p > span:first').text('changed !')
+        console.log($('p > span:first').text())
+
+        $('body > div > input:first').val('this is me')
+
+        $('#fruits').val(['pee'])   // 注意一下这个问题，我们使用select的时候，要将属性设置在select上，并不能设置在option上
+
+        $('#hobby input').val(['cs','lol'])
+
+        /*
+        * 遍历节点操作
+        *       children() 匹配父元素的子元素集合
+        *       next()     获取元素的下一个兄弟节点
+        *       prev()     获取元素的上一个兄弟节点
+        *       siblings() 获取所有的兄弟节点
+        * */
+        console.log($('#getPos').children())
+        console.log($('#getPos p:nth-child(3)').prev().html())
+        console.log($('#getPos p:nth-child(3)').next().html())
+        console.log($('#getPos p:nth-child(3)').siblings().html())  // 因为取多个的值时，取得的是第一个的值，所以结果为I'm the 1 child
+
+        /*
+        * DOM操作
+        *       .css() 传入一个值的时候,视为查询,表示查询该属性的状态,传入两个值的时候,视为设置
+        *           可以为多个标签一次性设置多个css属性,传入相应的json字符串即可
+        *       .offset() 不传值,表示当前元素相对窗口的偏移量
+        *           不传值,表查询,传值,表设置,要注意的一点是,只能通过json格式,对相应的值进行设置
+        *       .position() 输出当前的元素相对于设置了position为relative或者absolute的祖先元素的相对偏移量
+        *       .scrollTop() .scrollLeft()  获得元素的滚动条距顶端或左端的位置,
+        * */
+        console.log($('#domOpr .box').offset())
+        $('#domOpr .box').offset({'left':'100','top': 200})
+        console.log($('#domOpr .box').position())
+        console.log($('#domOpr').scrollTop(100))
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1. 方法中的this代表谁?
+        //this必须出现在方法中.      该方法被哪个对象调用. this就代表哪个对象.
+
+        function fn() {
+            console.debug(this.name); //pig调用该函数执行时,this代表pig,   girl调用该函数执行时,this代表girl
+        }
+
+        var pig = {
+            name: "八戒",
+            showName: fn
+        };
+
+        var girl = {
+            name: "小丽",
+            showName: fn
+        };
+
+
+        pig.showName();
+        girl.showName();
+
+        /*
+           2. 什么this代表着调用它的对象
+            this指向对象的好处在于， 在函数内部可以更加方便操作对象自身的内部属性和方法。
+            */
+        /*
+        1. 什么是使用对象
+            使用对象中封装的属性和方法
+
+        2.  语法:
+                对象的变量.属性名字;   //使用属性的值
+                对象的变量.方法名字(); //使用方法
+        */
+        var car = {
+            brand: "法拉利",
+            color: "红色",
+            door: 2,
+            run: function() {
+                console.debug("百米冲刺");
+            },
+            stop: function() {
+                console.debug("熄火了!");
+            }
+        };
+
+        console.debug(car.brand);
+        console.debug(car.color);
+        car.run();
+
+        var names = ["张三"];
+        console.dir(names.length);
+        /*
+    console.dir(对象);  //查看对象中的属性和方法
+    console.debug(内容);  //根据用户的需求输出你需要的内容.
+
+  对象的分类
+  1.javaScript（内置对象）内建对象
+      由JavaScript语言规范定义的一系列对象，这些对象提供了完成各种任务的属性和方法，
+      比如Math对象,String对象,Date对象等
+       1.1 直接存在的对象
+            Math对象本来就是一个对象.
+
+       1.2 需要创建才能够使用
+            var 对象的名字 = new  类型();
+ */
+        console.dir(Math);
+        var date = new Date(); //Date日期类型
+        console.dir(date);
+
+        var str = new String("具体的字符串");
+        console.dir(str);
+
+
+        var str = "xxx"; //Javascript中将具体的字符串或者数字都看了一个具体的对象
+        console.dir(str);
+
+        /*
+          2.自定义对象：由程序员创建描述特定事物的对象；
+             2.1 对象类型创建
+                var 对象变量 = new  类型();
+        */
+        var car = new Object(); //新创建一个空对象
+        car.brand = "法拉利";
+        car.color = "红色";
+        car.door = 2; //门数量
+
+        car.run = function() {
+            console.debug("百米冲刺")
+        }
+
+        car.stop = function() {
+            console.debug("熄火了!")
+        }
+
+        console.debug(car);
+
+        /*
+         2.2 通过{}创建对象
+        */
+        var car = {
+            brand: "法拉利",
+            color: "红色",
+            door: 2,
+            run: function() {
+                console.debug("百米冲刺");
+            },
+            stop: function() {
+                console.debug("熄火了!");
+            }
+        };
+        console.debug(car);
+        /*
+  1. 得到二维数组中每个具体的值
+ */
+        var group = [
+            [80, 92, 92],
+            [61, 65, 71],
+            [59, 63, 70],
+            [85, 87, 90],
+            [76, 77, 85]
+        ];
+
+        //使用for..in遍历
+        //>>1.先遍历出每个小数组
+        for (var index in group) { //index是大数组的索引
+            var min_array = group[index]; //取出每个小数组
+            //>>2.再遍历出每个小数组中的具体元素
+            for (var i in min_array) { //i是每个小数组的索引
+                var value = min_array[i];
+                console.debug(value); //打印出每个小数组中的值
+            }
+        }
+
+
+
+        //使用普通的for循环遍历
+        for (var i = 0, length = group.length; i < length; ++i) { //i是大数组的索引
+            var min_array = group[i]; //取出每个小数组
+            for (var j = 0, len = min_array.length; j < len; ++j) { //j是小数组的索引
+                var value = min_array[j]; //取出小数组对应的值
+                console.debug(value);
+            }
+        }
+    </script>
+</body>
+
+</html>

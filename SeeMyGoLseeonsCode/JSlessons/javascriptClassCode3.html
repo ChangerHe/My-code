@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+console.log(typeof ('123'-0));
+console.log(typeof ('' + 123));
+/*
+  工作中，如何判定是用for还是while？
+    如果循环次数已知，就选择for
+    如果循环次数未知，则选择while
+*/
+var num = 0;
+do{
+  num++;
+  var score = prompt('please input your score')
+  console.log('第' + num + '次考试成绩为：' + score);
+} while (score < 60)
+
+/*
+  工作中如何选择while和do while？
+    当循环要执行的代码至少一次时，应使用do-while
+*/
+
+function  printJuXing(row,col){
+    for(var j=0;j<row;++j){
+        for(var i=1;i<=col;++i){
+            document.write("*");
+        }
+        document.write("<br/>");
+    }
+}
+
+printJuXing(5,10);
+
+/*
+  工作中如何定义形参?
+    一定要站在功能内部考虑问题,要完成这个功能时,是否有位置的数据参数,如果有,则使用形式参数写出来
+  返回值在什么时候使用?
+    必须在功能的使用者的角度考虑问题,使用该功能之后是否关心该功能的运算结果.如果关心则在函数中通过return关键字将结果返回到函数被调用的位置.
+*/
+
+/*
+  函数定义三部曲:
+    1.确定函数的名字: 根据需求完成功能的语义.
+    2.确定形参:       站在功能的角度考虑问题,如果有未知的参数参加运算,则使用形参在函数名字后面的括号中占位.
+    3.确定返回值 :    站在功能的使用者的角度考虑问题,使用该功能后是否期望该功能完成的结果,如果希望该功能有执行结果,则将结果放在return关键字后面,该结果被返回到函数调用的位置.
+*/
+
+
+
+</script>
+</body>
+</html>

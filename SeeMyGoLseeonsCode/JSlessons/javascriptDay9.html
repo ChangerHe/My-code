@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="test.css">
+	<style>
+		#rightMenu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 150px;
+			height: 300px;
+			background: #900;
+		}
+	</style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2" style="width: 100px;height: 200px;"></div>
+<script>
+(function(){
+	var a = b = 3;
+
+})()
+console.log(b)
+// console.log(a)
+var div1 = document.getElementById('div1')
+function getCSS(target,styleName){
+	console.log(Boolean(window.getComputedStyle))
+	if(window.getComputedStyle) {
+		// console.log(window.getComputedStyle(target, null))
+		return window.getComputedStyle(target, null)[styleName]
+		
+	} else {
+		console.log(target.currentStyle)
+		return target.currentStyle[styleName];
+	}
+}
+console.log(getCSS(div1,'width'))
+
+var sheet = document.styleSheets[0];
+// var rule = (sheet.cssRules || sheet.rules)[0]
+console.log(sheet)
+// console.log(rule.style.width)
+
+console.log(div1.clientWidth)
+console.log(div1.clientHeight)
+console.log(div1.scrollWidth)
+console.log(div1.scrollHeight)
+console.log(div1.offsetWidth)
+console.log(div1.offsetHeight)
+console.log("------------------------------------------")
+console.log(div1.clientTop)
+console.log(div1.clientLeft)
+console.log(div1.offsetTop)
+console.log(div1.offsetLeft)
+
+// 通过cssRule来判定css计算之后的属性,主要是为了兼容IE,IE中有些属性没有设置,会默认为auto,还存在的一个问题是,我们只能得到物体的实际大小,当存在padding等时,是无法检测到的
+
+
+</script>
+<!-- <div id="rightMenu" style='top:0;left:0;'></div>
+	<input type="button" id="btn" value="hideIt!"><br>
+	<div id="box" style='display: inline-block;'>
+	<input type="button" value="boxbox">
+	<input type="button" value="boxbox">
+	<input type="button" value="boxbox">
+	<input type="button" value="boxbox"> -->
+		
+	<!-- </div> -->
+
+	<script>
+		// var btn = document.getElementById('btn')
+		// var box = document.getElementById('box')
+		// var show;
+		// var hide;
+		// document.addEventListener('mousewheel',function(e){
+		// 	var e = e || window.event;
+		// 	console.log(e.wheelDelta)
+		// 	e.wheelDelta = -1000;
+		// })
+
+
+		// var win = window
+		// win.addEventListener('beforeunload',function(e){
+		// 	console.log(e)
+		// 	var e = e || window.event
+		// 	e.preventDefault();
+		// })
+		// btn.attachEvent('onclick',function(){
+		// 	console.log(box.style.display)
+		// 	if (box.style.display == 'none') {
+		// 		box.style.display = 'inline-block'
+		// 	// removeEventListener('click',hide);
+		// 	// btn.addEventListener('click',function show(){
+		// 	// box.style.display = 'inline-block';
+		// // })
+		// } else if (box.style.display == 'inline-block') {
+		// 	box.style.display = 'none'
+		// 	// 		removeEventListener('click',show);
+		// 	// 		btn.addEventListener('click',function hide(){
+		// 	// 	box.style.display = 'none';
+		// 	// })
+		// 	}
+		// })
+		
+		// var rightMenu = document.getElementById('rightMenu')
+
+		// document.attachEvent('oncontextmenu', function(e){
+		// 	// preventDefault()
+		// 	var e = e || window.event;
+		// 	var btnNum = e.button
+		// 	console.log(btnNum)
+		// 	if(btnNum == 2) {
+
+		// 		rightMenu.style.top = e.clientY + 'px';
+		// 		rightMenu.style.left = e.clientX+'px';
+		// 		// e.preventDefault();
+		// 		e.returnValue = false;
+		// 	}
+
+			
+		// })
+	</script>
+</body>
+</html>

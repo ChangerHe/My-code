@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        .testClass {
+            background: #900;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <ul>
+        <li>a01a01</li>
+        <li>a02a02</li>
+        <li>a03a03</li>
+        <li>a04a04</li>
+        <li>a05a05</li>
+    </ul>
+</div>
+<div id="div1">
+    <p>要被包裹的P标签A</p>
+    <p>要被包裹的P标签B</p>
+    <p>要被包裹的P标签C</p>
+</div>
+<div id="div2">
+    <p>要被包裹的P标签A</p>
+    <p>要被包裹的P标签B</p>
+    <p>要被包裹的P标签C</p>
+</div>
+<div id="div3">
+    <p>要被包裹的P标签A</p>
+    <p>要被包裹的P标签B</p>
+    <p>要被包裹的P标签C</p>
+</div>
+<input type="text"><br>
+全选 <input type="checkbox"><br>
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+
+    <script>
+        /*
+        * 标签的替换
+        *       使用replaceWith()  或者   replaceAll()  方法,对标签进行相应的替换,两者的传参刚好相反
+        * */
+    $('li:first').replaceWith($('<li>b010102</li>'))
+    $('<li>b033333</li>').replaceAll($('li:first'))
+
+        /*
+        * 包裹节点
+        *       可以使用  wrap()  和  wrapAll()  和  wrapInner()  方法
+        *
+        * */
+
+        $('#div1 > p').wrap($('<div>'))   // z这种情况下,每个匹配的标签都会被包裹
+        $('#div2 > p').wrapAll($('<div>'))   // z这种情况下,匹配到的P标签会被全部包裹
+        $('#div3 > p').wrapInner($('<span>'))  // 这种情况下,div会被包裹在p标签里面
+
+        /*
+        * jquery 对属性的操作
+        *       jQuery操作自定义属性  使用attr()  和  removeAttr() 方法
+        *       jQuery操作本身自带数字属性  使用prop()  和  removeProp() 方法
+        * 总结： 如果自带的值是布尔类型，则必须使用prop来进行操作属性，但是其他的类型，就直接使用attr就可以了
+        *       一般的prop的使用类型   input标签的checked属性   表单元素的属性  enabled  disabled  下拉框的属性  selected
+        * 另外，属性的添加，可以使用json键值对的方式，进行添加，可以一次性为相应的元素设置多个属性
+        * */
+
+//        alert($('input[type=text]:first').attr('type'))
+        $('input[type=text]:first').attr('type','button')  // 这种情况下 可以配置
+
+//        alert($('input[type=text]:first').prop('type'))
+        $('input[type=text]:first').attr('type','text') // 设置是不成功的
+
+        // 为标签设置全选或这不选中的状态
+        $('input[type=checkbox]:first').change(
+            function(){
+                if(this.checked){
+                // 或者使用 $(this).prop('checked') 来进行布尔值的判断，但是更加繁琐
+                    $('input[type=checkbox]:not(:first)').prop('checked',true)
+                } else {
+                    $('input[type=checkbox]:not(:first)').prop('checked',false)
+                }
+            }
+        )
+
+        // 一次为同一标签添加不同的属性
+        $("div:first").attr({'title':'Changer','index':1})
+
+        /*
+        * 操作标签的class属性
+        *       为标签添加class名称  addClass()   为标签移除class   removeClass()
+        *       为标签切换class   toggleClass()   确认标签是否有该class   hasClass()
+        * 和原生态的className的区别，原生态的className在有多个class的时候，移除或添加单个class是很无力的，但是jQuery很好的解决了这个问题
+        * */
+
+        $('div:first').hover(function(){
+            $(this).toggleClass('testClass')
+        })
+
+        $('div:first').hover(function(){
+            console.log($(this).hasClass('testClass'))
+        })
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

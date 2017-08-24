@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = [2, 1, 3, 5, 1, 4, 1, 5];
+        var b = [2, 1, 11, 65, 2, 1, 5];
+
+        function bubbleSort(arr) {
+            for (var i = 0; i < arr.length - 2; i++) {
+                for (var j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        arr[j] = arr[j] + arr[j + 1] / 2;
+                        arr[j + 1] = arr[j] - arr[j + 1] / 2;
+                        arr[j] = arr[j] * 2 - arr[j + 1] * 2;
+                    }
+                }
+            }
+        }
+        bubbleSort(a);
+        console.log(a)
+
+        function insertSort(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[i] > arr[j]) {
+                        arr[i] += arr[j] / 2;
+                        arr[j] = arr[i] - arr[j] / 2;
+                        arr[i] = arr[i] * 2 - arr[j] * 2;
+                    }
+                }
+            }
+        }
+        insertSort(b);
+        console.log(b)
+
+        //斐波那契数列
+        function febnachi(n) {
+            if (n == 0) {
+                return 0
+            } else if (n == 1) {
+                return 1
+            } else {
+                return febnachi(n - 1) + febnachi(n - 2)
+            }
+        }
+        console.log(febnachi(4))
+
+        //检查上传文件是否合法
+        console.log([1] == 1)
+
+        function checkFile() {
+            var allow_exts = ['jpg', 'png', 'gif', 'bmp'];
+            var input = document.getElementById("img")
+            var path = input.value;
+            var ext = path.match(/\.\w{3}$/);
+            var tag = false; //不允许
+            for (var i in allow_exts) {
+                var allow_ext = allow_exts[i]; //取出每个后缀名
+                if (allow_ext == ext) {
+                    tag = true; //允许
+                    break; //对比上直接跳出循环
+                }
+            }
+
+            if (tag) {
+                alert("允许");
+            } else {
+                alert("不允许");
+            }
+
+        }
+
+        //数组对象
+        var num = 34.54; //可以看出，其实tofixde是使用的四舍五入的方法进行舍入的
+        console.log(num.toFixed(0)) //35
+        console.log(num.toFixed(1)) //34.5
+        console.log(num.toFixed(2)) //34.54
+
+        //Math.max()   求最大值
+        //Math.min()   求最小值
+        //Math.abs()   求绝对值
+        //Math.ceil()  向上取整
+        //Math.floor() 向下取整
+        //Math.round() 四舍五入
+        //Math.random()取随机数,0-1之间的小数点后十七位的小数
+        console.log(Math.random())
+
+        // 日期对象
+        a = new Date();
+        console.log(a.getFullYear())
+        console.log(a.getMonth()) //结果为真实值减一
+        console.log(a.getDay()) //返回星期几,星期天是0
+        console.log(a.getDate()) //获取的是真实的日期
+        console.log(a.getHours())
+        console.log(a.getMinutes())
+        console.log(a.getSeconds())
+
+
+        //获取二维数组的平均值
+        var arr = [
+            [12, 43, 23, 123],
+            [54, 54, 23, 64, 23, 64, 23, 64],
+            [86, 67, 34, 23]
+        ];
+        var aArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            aArr = aArr.concat(arr[i]);
+        }
+        console.log(aArr)
+        console.log(Math.max.apply(null, aArr));
+
+        // 作业部分
+        function Car(color, price, door) {
+            this.color = color;
+            this.price = price;
+            this.door = door;
+        }
+        Car.prototype.showColor = function() {
+            return this.color;
+        }
+        Car.prototype.showPrice = function() {
+            return this.price;
+        }
+        var car1 = new Car();
+        car1.color = 'yellow';
+        car1.door = 4;
+        car1.price = '999';
+        console.log(car1.showColor())
+        console.log(car1.showPrice())
+
+        var b = '2340sadfj2affa2';
+        var RegExp = /a/;
+        console.log(RegExp.test(b))
+
+        // var innerText = document.getElementById('innerText');
+        // innerText.value = innerText.value.split('不要脸')
+
+        var s1 = prompt('please input some string');
+        console.log(s1)
+        console.log(s1.split('').reverse().join(''));
+
+        var a = new Date(2017, 3, 30, 18, 03, 46);
+
+        function getWeek(num) {
+            switch (num) {
+                case 0:
+                    return '星期天';
+                    break;
+                case 1:
+                    return '星期一';
+                    break;
+                case 2:
+                    return '星期二';
+                    break;
+                case 3:
+                    return '星期三';
+                    break;
+                case 4:
+                    return '星期四';
+                    break;
+                case 5:
+                    return '星期五';
+                    break;
+                case 6:
+                    return '星期六';
+                    break;
+            }
+        }
+        document.write(a.getFullYear() + "-" + a.getMonth() + '-' + a.getDate() + "&nbsp;" + a.getHours() + ":" + a.getMinutes() + ":" + a.getSeconds() + "&nbsp;" + getWeek(a.getDay()))
+
+
+        //计算一个人活了多少天
+        /*
+			得到出生日期,得到现在的日期
+        */
+        function getLiveDay(birthday){
+        	console.log(birthday.match(/(\d{4})[.\/-](\d{2}|\d{1})[.\/-](\d{2}|\d{1})/))
+        	var birthArr = birthday.match(/(\d{4})[.\/-](\d{2}|\d{1})[.\/-](\d{2}|\d{1})/)
+        	var n = birthArr[1]
+        	var m = birthArr[2]
+        	var o = birthArr[3]
+        	var date = new Date().getTime();
+        	var birthDay = new Date(n,m,o).getTime();
+        	var getDay = (date-birthDay)/1000/60/60/24
+        	return Math.floor(getDay)
+        }
+        console.log(getLiveDay("1994.8.28"))
+
+        //计算一个人死的时间
+        function getDieDay(birthday,liveYear){
+        	var liveDay = getLiveDay(birthday);
+        	var lastDay = liveYear*365;
+        	return lastDay - liveDay;
+        }
+        console.log(getDieDay('1994.8.28',60))
+    </script>
+</body>
+
+</html>

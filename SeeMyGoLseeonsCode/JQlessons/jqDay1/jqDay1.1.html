@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<div style="width: 100px; height: 0;"></div>
+<h1>title1 <span>22222</span></h1>
+<h1>cc</h1>
+<h1 class="cc">title1</h1>
+<h2>title2 cc</h2>
+<form action="http://www.baidu.com" id="form">
+    姓名<input type="text" disabled><br>
+    年龄<input type="text" value="some test"><br>
+    身高<input type="text"><br>
+    腿长<input type="text"><br>
+    <input type="button" value="香蕉" checked><br>
+    <input type="button" value="橘子"><br>
+    <input type="button" value="傻瓜"><br>
+    <input type="radio" name="gender">男<br>
+    <input type="radio" name="gender" checked>女<br>
+    <input type="checkbox" name="乒乓球">乒乓球 <br>
+    <input type="checkbox" name="乒球乓">乒球乓 <br>
+    <input type="checkbox" id="" name="球乒乓">球乒乓 <br>
+    <input type="checkbox" name="乒球乓">球乓乒 <br>
+</form>
+    <script>
+        //一定注意!  当外面使用双引号的时候,内部只能使用单引号,否则会出错
+    console.log($("h1:contains('valuea')"))
+        // 经测试,has的括号内不需要加引号,且只能匹配到其子元素
+    console.log($("h1:has(span)"))
+        // 匹配所有的隐藏标签,任何不在页面上占体积的标签,都会被查找出来
+    console.log($(':hidden'))
+
+        console.log($('input[type=text]'))
+        console.log($('input[type^=c]'))
+        console.log($('input[type$=box]'))
+        console.log($('input[id][type^=che]'))
+
+
+//        $('#form input:disabled').css('background','red')
+//console.log($('#form input:first'))
+//        $('#form input:last-of-type').css('background','red')
+//        $('#form input:last').css('fontSize','24px')
+//        console.log($('#form input:last-child'))
+
+//        $('#form input:even').css('background','red')
+//        $('#form input:odd').css('background','gray')
+//        $('#form input:eq(2)').placeholder = '1111111'
+//        console.log($('#form input:eq(2)'))
+//        console.log($('*:header').html())
+//        console.log($('*:header:eq(1)').html())
+
+        // 现在需要注意的一个问题是当我们在选择器的冒号间增加空格的时候,会惊奇地发现完全匹配不到了
+        // 其实原因是这样的,当我们不为冒号前加东西的时候,我们没有加,则jQuery则默认我们是使用的 * 来做匹配,也就是全部选中之后再进行匹配
+//        console.log($('h1 :first'))
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 1.获取当前的事件源对象
+		function fn(e){
+			var e = e || window.event
+			var target = e.target || e.srcElement
+		}
+
+		// 2.获取时间发生的位置
+		function fn(e){
+			var e = e || window.event
+			e.clientX;
+			e.clientY;
+		}
+
+		// 3.阻止事件冒泡
+		// IE:  e.cancelBubble = true
+		// 非IE: e.stopPropagation()
+
+		// 4.阻止浏览器的默认行为
+		// IE: returnValue = false;
+		// 非IE: e.preventDefault();
+
+		// 5.正则表达式
+			/*
+			元字符:   \w 表示字母数字下划线
+					  \d 表示数字
+					  \s 表示空字符
+
+			exec方法:匹配字符串中与正则表达式要求相匹配的字符,是以正则表达式来匹配字符串,不同于match方法,是用字符串来匹配正则表达式. exec方法有一点要注意的是,如果不全局匹配,则得到的值都是匹配到的第一个字符串组成的长度为1的伪数组,当使用全局匹配的时候,每次依然返回一个字符串组成的数组,但是每匹配一次,字符串的index下标就调到匹配到的位置了,因此我们可能会出现匹配几次出现不同结果的情况
+
+			还有一个问题就是,当我使用相同的正则表达式匹配不同的字符的时候,其index是不归零的,当indexd到达下面字符串最大下标的时候,就会神奇的匹配不到了
+			*/
+			var str1 = '121sdiajdihas223hisbaisu235oahid'
+			var str2 = '(121)sdia(jdi)has(223)hisbaisu235oahid'
+			var str3 = '121aadsad2352412315212312'
+			var str4 = '121aadsad2352412315212312'
+			var reg = /\d{3}/g
+			console.log(reg.exec(str1))
+			console.log(reg.exec(str2))
+			// exec.index = 0;
+			console.log(reg.exec(str3))
+			console.log(reg.exec(str4))
+			console.log(str1.match(reg))
+			console.log(str2.match(reg))
+			console.log(str3.match(reg))
+
+			// 贪婪模式和非贪婪模式
+			var str5 = '12235235235124124'
+			var reg2 = /(\d+?)/g
+			console.log(str5.match(reg2))
+			console.log(reg2.exec(str5))
+			console.log(reg2.exec(str5))
+			var reg3 = /\d+/g
+			console.log(str5.match(reg3))
+			console.log(reg3.exec(str5))
+			console.log(reg3.exec(str5))
+
+			var str6 = "abc123a123d123def";
+		    var reg4 = /(123)/g;
+		    var result1 = str6.match(reg4);
+		    var result2 = reg4.exec(str6);
+		    console.log(result1);
+		    console.log(result2);
+
+	</script>
+</body>
+</html>

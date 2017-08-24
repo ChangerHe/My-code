@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .head {
+            width: 200px;
+            /*height: 40px;*/
+            text-align: center;
+            background: rgba(0,0,0,.1);
+        }
+
+        .head ul {
+            width: 200px;
+            /*height: 40px;*/
+            text-align: center;
+            background: rgba(0,0,0,.1);
+            display: none;
+        }
+
+        .head:first-child ul{
+            display: block;
+        }
+        
+        .head p {
+            float: left;
+            line-height: 30px;
+            width: 170px;
+        }
+
+        .head span {
+            display: block;
+            float: right;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+<div id="work1">
+    <ul>
+        <li class="head">
+            <span>+</span><p>This is a head 1</p>
+            <ul>
+                <li>This is a content 1</li>
+                <li>This is a content 2</li>
+                <li>This is a content 3</li>
+                <li>This is a content 4</li>
+                <li>This is a content 5</li>
+                <li>This is a content 6</li>
+                <li>This is a content 7</li>
+                <li>This is a content 8</li>
+            </ul>
+        </li>
+        <li class="head"><span>+</span><p>This is a head 2</p>
+
+            <ul>
+                <li>This is a content 1</li>
+                <li>This is a content 2</li>
+                <li>This is a content 3</li>
+                <li>This is a content 4</li>
+                <li>This is a content 5</li>
+                <li>This is a content 6</li>
+                <li>This is a content 7</li>
+                <li>This is a content 8</li>
+            </ul>
+        </li>
+        <li class="head"><span>+</span><p>This is a head 3 </p>
+
+            <ul>
+                <li>This is a content 1</li>
+                <li>This is a content 2</li>
+                <li>This is a content 3</li>
+                <li>This is a content 4</li>
+                <li>This is a content 5</li>
+                <li>This is a content 6</li>
+                <li>This is a content 7</li>
+                <li>This is a content 8</li>
+            </ul></li>
+        <li class="head"><span>+</span><p>This is a head 4</p>
+
+            <ul>
+                <li>This is a content 1</li>
+                <li>This is a content 2</li>
+                <li>This is a content 3</li>
+                <li>This is a content 4</li>
+                <li>This is a content 5</li>
+                <li>This is a content 6</li>
+                <li>This is a content 7</li>
+                <li>This is a content 8</li>
+            </ul></li>
+        <li class="head"><span>+</span><p>This is a head 5</p>
+
+            <ul>
+                <li>This is a content 1</li>
+                <li>This is a content 2</li>
+                <li>This is a content 3</li>
+                <li>This is a content 4</li>
+                <li>This is a content 5</li>
+                <li>This is a content 6</li>
+                <li>This is a content 7</li>
+                <li>This is a content 8</li>
+            </ul></li>
+    </ul>
+</div>
+    <script>
+        $('.head p').on('click', function a() {
+            $that = $(this).next()
+            console.log($that)
+            $('.head ul').each(function(){
+                if($(this)[0] != $that[0]){
+                    $(this).slideUp(300)
+                    $(this).prev().prev().html('+')
+                }
+            })
+            $(this).next().slideToggle(300)
+            if($(this).prev().html() == '-') {
+                $(this).prev().html('+')
+            } else {
+                $(this).prev().html('-')
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

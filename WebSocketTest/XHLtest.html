@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getText(url, callback) {
+        var request = new XMLHttpRequest();
+        request.open('GET', url)
+        request.onreadystatechange = function() {
+            if(request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-type')
+                callback(JSON.parse(request.responseText))
+            }
+        }
+        request.send(null)
+    }
+
+</script>
+</body>
+</html>

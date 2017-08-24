@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<a id="del" href="javascript:;">删除</a>
+<div id="box"></div>
+00:00:0<span id ="time">5</span>
+<br>
+<input type="text" disabled="">
+<button>111</button>
+<button>111</button>
+<button>111</button>
+<input type="radio" name="gender" checked="">man
+<input type="radio" name="gender">woman <br>
+<select name="选项" id="select">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3" selected="">3</option>
+<option value="4">4</option>
+	
+</select>
+<script>
+	// 1.DOM指浏览器对象模型,使用DOM可以实现对浏览器中元素进行各项操作.
+	// 2.
+	// var del = document.getElementById('del');
+	// del.onclick = function(){
+	// 	console.log(confirm('确定要删除该数据吗?'));
+	// 	if(confirm('确定要删除该数据吗?')){
+	// 		this.innerHTML = "";
+	// 	} else{
+	// 		return;
+	// 	}
+	// }
+
+	//3
+	var box = document.getElementById('box');
+	(function time(){
+		setTimeout(function(){
+			var date = new Date();
+			if(true){
+				box.innerHTML = date.toLocaleString() +" "+ date.getDay();
+				time();
+			}
+		},1000)
+	})()
+
+
+	//4
+	var time = +document.getElementById('time').innerHTML;
+		function timer(num){
+			setTimeout(function(){
+				if (num ==0) {
+					// location.href = "http://www.taobao.com"
+					return;
+				} else {
+					num--;
+					document.getElementById('time').innerHTML = num
+					timer(num);
+				}
+			},1000)
+		}
+		timer(time)
+		console.log(timer(time))
+
+		//5
+
+		//6
+		var aDiv = document.getElementsByTagName('div');
+		for (var i = 0; i < aDiv.length; i++) {
+			aDiv[i].style.backgroundColor = "yellow";
+		}
+
+		//8
+		var aBtn = document.querySelectorAll('button')
+		console.log(aBtn.length,aBtn);
+		for (var i = 0; i < aBtn.length; i++) {
+			aBtn[i].disabled = "true"
+		}
+
+		//9
+
+</script>
+</body>
+</html>

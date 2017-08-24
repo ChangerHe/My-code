@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="btn" >
+	<form action="http://www.baidu.com" id="myForm" method="post">
+        用户名:<input type="text" name="username" id="username"><br/>
+        密&emsp;码:<input type="password" name="password"><br/>
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+    </form>
+	<div name="imdiv"></div>
+	<script>
+	console.log(document.getElementsByName('imdiv'))
+		// 按键练习
+		// 需要注意的地方,当我们使用按键触发该事件的时候,有一些按键是没有办法触发onkeypress事件的
+		function $(){
+			return document.getElementById('btn')
+		}
+		$('btn').focus()
+		// console.error($('btn'));
+		$('btn').onkeydown = function(){
+			console.log('Keybord is pressed down')
+		}
+		$('btn').onkeyup = function(){
+			console.log('Keybord is pressed up')
+		}
+		$('btn').onkeypress = function(){
+			console.log('Keybord is pressed')
+		}
+
+		// onload表示在加载完毕之后才发生,典型用法: window.onload
+
+
+		/** 处理网页事件的编程顺序:
+		  * 1.实现默认的效果
+		  * 2.在指定的元素中添加相应的事件
+		  * 3.在事件处理函数中实现动态效果
+		 */
+		//实现简单的表单验证功能
+		// 这里有一个小技巧,就是如何将自己删除,那么就是直接找到它的parentNode,然后removeChild就好了
+		var username = $('username')
+		username.onkeyup = function() {
+			//得到表单元素中的值
+			var value = this.value;
+			//判断内容的长度
+			if(value.length<6 || value.length>12) {
+				//如果长度不合法,就弹出提示信息
+				var span = document.createElement('span')
+				span.innerHTML = '用户名必须在6-12个字符串'
+				span.style.color = 'red'
+				if(username.nextSibling.nodeName !='SPAN')
+				{
+					this.parentNode.insertBefore(span, this.nextSibling)
+				} else if (username.nextSibling.nodeName == 'SPAN') {
+					var span = username.nextSibling;
+					span.parentNode.removeChild(span)
+				}
+			}
+		}
+
+		// 动态生成节点,装逼和面试用的,这里就不写了
+
+		/** 页面高度等这些问题
+		  * 1.document.documentElement.clientHeight:拿到的是整个窗口可见区域的距离
+		  * 2.document.body.clientHeight:拿到的是包含不可见的内容的高度.去除margin占的边距
+		  * 3.document.body.scrollHeight:整个网页的高度
+		 */
+		// 这三者中,其实前两种是比较稳定的,也就是document.documentElement.clientHeight和document.body.clientHeight两者在IE及其低版本浏览器中均有效,并且三个浏览器都能返回相同的值,最后一个scrollHeight,谷歌浏览器认为是整个页面的距离,而火狐和IE则认为是文档流的距离,存在着一点小差距,因此在工作中尽量避免使用
+
+		// 关于浏览器的宽高问题,还是要回去重新查一下资料
+		console.log(document.documentElement.clientHeight);
+		console.log(document.body.clientHeight) 
+		console.log(document.body.scrollHeight)
+
+		// 关于节点的兄弟节点,父子节点等
+		console.log(box.firstChild) //找到第一个儿子
+		console.log(box.lastChild) //找到最后一个儿子
+		console.log(box.parentNode)  //找到父节点
+		console.log(box.firstChild.nextSibling) //找到第二个儿子
+		console.log(box.laseChild.previousSilbling) //找到倒数第二个儿子
+	</script>
+</body>
+</html>

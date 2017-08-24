@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin:0;
+		padding: 0;
+	}
+		#box {
+			background: rgba(0,0,0,.3);
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<ul id="aUl">
+		<li>1111</li>
+		<li>2222</li>
+		<li>3333</li>
+		<li>4444</li>
+		<li>5555</li>	
+	</ul>
+	<select name="" id="select">
+		<option value="">22222</option>
+		<option value="">22222</option>
+		<option value="">22222</option>
+		<option value="">22222</option>
+		<option value="">22222</option>
+	</select>
+	<table style="text-align: center;" border="1" cellspacing="0">
+		<thead>
+			<tr style="font-weight: bold">
+				<td>姓名</td>
+				<td>性别</td>
+				<td>年龄</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>张三<img src="" alt="图片无法显示"></td>
+				<td><input type="radio" name="gender">n男<input type="radio" name="gender">女</td>
+				<td>
+					<input type="checkbox" name="sports">乒乓球
+					<input type="checkbox" name="sports">羽毛球
+					<input type="checkbox" name="sports">足球
+					<input type="checkbox" name="sports">象棋
+				</td>
+			</tr>
+			<tr>
+				<td>张三<img src="" alt=""></td>
+				<td><input type="radio" name="gender">n男<input type="radio" name="gender">女</td>
+				<td>
+					<input type="checkbox" name="sports">乒乓球
+					<input type="checkbox" name="sports">羽毛球
+					<input type="checkbox" name="sports">足球
+					<input type="checkbox" name="sports">象棋
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+	// 测试,innerText是否在包含多种子节点的节点上可用
+	var aUl = document.getElementById('aUl')
+	console.log(aUl.innerText)  //innerText在包含多种节点的节点上,只会输出元素及子元素的文本节点
+
+	// 测试:使元素中的子元素倒序排序
+	// var aUl = document.getElementById('aUl')
+	// aUl.parentNode.removeChild(aUl)
+	// function reverse(n){
+	// 	var f = document.createDocumentFragment();
+	// 	var a = n.childNodes.length
+	// 	for (var i = 0; i < a; i++) {
+	// 		// console.log(n.childNodes[i])
+	// 		// console.log(!!n.childNodes[i])
+	// 		f.appendChild(n.lastChild)
+	// 	}
+	// 	// while(n.lastChild){
+	// 	// 	console.log(1)
+	// 	// 	f.appendChild(n.lastChild)
+	// 	// }
+	// 	console.log(f)
+	// }
+	// reverse(aUl)
+
+	// window.onbeforeonload = function(){
+	// 	alert('111')
+	// }
+	//1
+	// var aTag = document.createElement('a');
+	// aTag.href = "http://www.itsource.com"
+	// var aText = document.createTextNode('1111111')
+	// aTag.appendChild(aText)
+	// document.body.appendChild(aTag)
+
+	//2
+	// console.log(document.body.childNodes.length);
+	// for (var i in document.body.childNodes) {
+	// 	console.log(document.body.childNodes[i]);
+	// 	document.body.removeChild(document.body.childNodes[i])  //此处存在问题,仅能删除自己添加的元素节点,原有节点无法删除
+	// }
+
+	//3
+	// var aUl = document.getElementById('aUl');
+	
+	// for (var i = 0; i < aUl.childNodes.length; i++) {
+	// 	console.log(aUl.childNodes[i]);
+	// 	aUl.removeChild(aUl.childNodes[i]);
+	// }
+
+	//4
+// 	var select = document.getElementById('select')
+// console.log(select.childNodes.length);
+// 	var opt = document.createElement('option');
+// 	opt.appendChild(document.createTextNode('1111111'));
+// 	opt.setAttribute('selected',true);
+// 	opt.setAttribute('id','opt');
+// 	var optDom = document.getElementById('opt') 
+// 	console.log(opt)
+// 	select.appendChild(opt)
+// 	console.log(select)
+// 	select.onclick = function(){
+// 		this.removeChild(opt)
+// 	}
+
+
+// 	//5
+// 	var clientHeight = window.innerHeight || document.documentElement.clientHeight;
+// 	var clientWidth = window.innerWidth || document.documentElement.clientWidth;
+	// var box = document.getElementById('box')
+	// console.log(clientHeight); 
+	// console.log(allHeight)
+	// console.log(clientWidth);
+	// console.log(allWidth)
+	// var allHeight = document.documentElement.clientHeight;
+	// var allWidth = document.documentElement.clientWidth;
+	// window.onresize = function(){
+	// 	box.style.width = allWidth + 'px';
+	// 	box.style.height = allHeight +'px';
+	// }
+
+
+
+	// var box = document.createElement('div');
+	// box.setAttribute('id','box');
+	// box.setAttribute('style','background:rgba(0,0,0,.3);');
+	// box.setAttribute('style','position:absolute;');
+	// document.body.appendChild(box);
+	// var oBox = document.getElementById('box')
+	// oBox.style.width = clientWidth + 'px';
+	// oBox.style.height = clientHeight + 'px';
+
+
+	// // 6.使用DOM实时插入文档树
+	// var formTree = document.createElement('table');
+	// formTree.innerHTML = '	<thead>			<tr style="font-weight: bold">				<td>姓名</td>				<td>性别</td>				<td>年龄</td>			</tr>		</thead>		<tbody>			<tr>				<td>张三<img src="" alt=""></td>				<td><input type="radio" name="gender">男<input type="radio" name="gender">女</td>				<td>					<input type="checkbox" name="sports">乒乓球					<input type="checkbox" name="sports">羽毛球					<input type="checkbox" name="sports">足球					<input type="checkbox" name="sports">象棋				</td>			</tr>			<tr>				<td>张三<img src="" alt=""></td>				<td><input type="radio" name="gender">男<input type="radio" name="gender">女</td>				<td>					<input type="checkbox" name="sports">乒乓球					<input type="checkbox" name="sports">羽毛球					<input type="checkbox" name="sports">足球					<input type="checkbox" name="sports">象棋				</td>			</tr>		</tbody>'
+	// console.dir(formTree)
+	// formTree.setAttribute('style','textAlign: center')
+	// formTree.setAttribute('border','1')
+	// formTree.setAttribute('cellspacing','0')
+	// document.body.appendChild(formTree)
+
+	/*
+	var form = document.createElement('form')
+
+	*/
+
+
+
+
+
+	// var a = "<p>1111</p><a>22222</a>"
+
+	// document.body.innerHTML = a;
+
+	
+
+		// console.log('clientHeight: '+box.clientHeight);
+		// console.log('clientWidth: '+box.clientWidth);
+		// console.log('offsetHeight: '+box.offsetHeight);
+		// console.log('offsetWidth: '+box.offsetWidth);
+		// console.log('offsetTop: '+box.offsetTop);
+		// console.log('offsetLeft: '+box.offsetLeft);
+		// console.log('scrollHeight: '+box.scrollHeight);
+		// console.log('scrollWidth: '+box.scrollWidth);
+		// console.log('scrollTop: '+box.scrollTop);
+		// console.log('scrollLeft: '+box.scrollLeft);
+		// console.log(document.body.clientHeight);
+		// console.log(document.body.clientWidth);
+		// console.log(document.body.offsetHeight);
+		// console.log(document.body.offsetWidth);
+		// console.log(document.documentElement.scrollTop);
+		// console.log(document.body.scrollLeft);
+
+	</script>
+</body>
+</html>

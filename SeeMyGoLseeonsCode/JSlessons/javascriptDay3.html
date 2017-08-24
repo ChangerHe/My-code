@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="test.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // homeWork
+        /**
+         * @author: ChangerHe
+         * @descripe: 封装函数输出n行的三角形
+         */
+         function arrow(n) {
+            for (var i = 1; i <= n; i++) {
+                for(var j = 0; j < 2*i-1; j++) {
+                    document.write("*");
+                }
+                document.write("<br>")
+            }
+         }
+
+         /**
+         * @author: ChangerHe
+         * @descripe: 封装函数,实现返回三个数的和
+         */
+         //解1:
+         function add1() {
+            var total = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                total += arguments[i]
+            }
+            console.log(total);
+         }
+         add1(1,2,2,5,12,14)
+
+         //解2:
+         function add2() {
+            var total = 0;
+            total = Array.prototype.reduce.call(arguments,function(a, b) {
+                return a + b;
+            })
+            console.log(total);
+         }
+
+         add2(1,2,3,4,54,5);
+
+         /**
+         * @author: ChangerHe
+         * @descripe: 封装函数,实现返回三个数的最大值
+         */
+         function getMax() {
+            console.log(Math.max.apply(null,arguments)); 
+         }
+         getMax(1,2,3,4,5,6,2,2,1)
+    </script>
+
+</body>
+
+</html>
