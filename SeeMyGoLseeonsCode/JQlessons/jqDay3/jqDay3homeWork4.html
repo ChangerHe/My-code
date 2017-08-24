@@ -78,6 +78,45 @@
                 $(this).mousedown(null)
             })
         })
+        $('#btn').mousedown(function(e){
+            $('#share').off()
+            var edgeX = e.clientX - $('#btn')[0].offsetLeft
+            var edgeY = e.clientY - $('#btn')[0].offsetTop
+            console.log(e.clientX,e.clientY)
+            console.log($('#btn')[0].offsetLeft,$('#btn')[0].offsetTop)
+            $(document).mousemove(function(e){
+                var e = e || window.event;
+                var x = e.clientX - edgeX;
+                var y = e.clientY - edgeY;
+
+                console.log(x+'px', y+'px')
+                $('#share').css('top',y+'px')
+                $('#share').css('left',x+'px')
+            })
+            $(document).mouseup(function(){
+                $(this).mousemove(null)
+                $(this).mousedown(null)
+            })
+        })$('#btn').mousedown(function(e){
+            $('#share').off()
+            var edgeX = e.clientX - $('#btn')[0].offsetLeft
+            var edgeY = e.clientY - $('#btn')[0].offsetTop
+            console.log(e.clientX,e.clientY)
+            console.log($('#btn')[0].offsetLeft,$('#btn')[0].offsetTop)
+            $(document).mousemove(function(e){
+                var e = e || window.event;
+                var x = e.clientX - edgeX;
+                var y = e.clientY - edgeY;
+
+                console.log(x+'px', y+'px')
+                $('#share').css('top',y+'px')
+                $('#share').css('left',x+'px')
+            })
+            $(document).mouseup(function(){
+                $(this).mousemove(null)
+                $(this).mousedown(null)
+            })
+        })
 
     </script>
 
