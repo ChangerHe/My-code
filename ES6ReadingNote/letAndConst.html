@@ -1,89 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <title>Document</title>
 </head>
+
 <body>
-	<script>
-		{
-			let a = 10;
-			var b = 1;
-		}
-		console.log(b)
-		// console.log(a)  会报错,说明let其实是有块级作用域的,当我们使用循环语句的时候,let来声明变量是一个不错的选择
+    <script>
+        {
+            let a = 10;
+            var b = 1;
+        }
+        console.log(b)
+            // console.log(a)  会报错,说明let其实是有块级作用域的,当我们使用循环语句的时候,let来声明变量是一个不错的选择
 
-		var a = [];
-		for (let i = 0; i < 10; i++) {
-			a[i] = function(){
-				console.log(i)
-			}
-		}
-		a[6]()  // 当我们使用let来进行声明的时候,才能得到想要的值 也就是6
-		// 原因是因为,变量i是let声明的,当前的i只在本轮循环有效,所以相当于每一次循环的i都是一个新的变量
-
-		// let 不和var一样,存在变量的提升,所以我们在没有声明之前调用let声明的变量,会报错
-
-		// console.log(b)
-		// 还有一点要注意的是,我们在第一行使用var声明了b,在这里再声明,就会报错,我自己都没想都这个错误!
-		// let b = 2;
-
-		/**
-		 * 暂时性死区: 只要块级作用域内存在let命令,那么它所声明的变量就绑定了这个区域,不会受外部的影响	
-		 */
-		// es6明确规定,只要区块中存在let和const命令,则这个区块对这些命令声明的变量从一开始就形成封闭作用域.只要在声明之前就使用这些变量,就会报错
-		// var c = 3;
-		// if(true) {
-		// 	tmp = 'abc'  //报错,tmp没有定义
-		// 	let tmp
-		// }
-
-		// 不仅如此,坑爹的是有些死区,你不仔细看真的很难发现
-		function bar(x = y, y = 2) {
-			return [x, y]
-		}
-		// bar()  //报错, y is not defined
-
-		// 我们吧上面的代码稍微改一下就不会报错了
-		function bac(y = 2, x = y) {
-			return [x, y]
-		}
-		console.log(bac())  // [2,2]
-
-		function f1() {
-		    let n = 5;
-		    if(true) {
-		        let n = 10;
+        var a = [];
+        for (let i = 0; i < 10; i++) {
+            a[i] = function() {
+                console.log(i)
             }
-            console.log(n)  // 5
-		}
-		f1()
+        }
+        a[6]() // 当我们使用let来进行声明的时候,才能得到想要的值 也就是6
+            // 原因是因为,变量i是let声明的,当前的i只在本轮循环有效,所以相当于每一次循环的i都是一个新的变量
+
+        // let 不和var一样,存在变量的提升,所以我们在没有声明之前调用let声明的变量,会报错
+
+        // console.log(b)
+        // 还有一点要注意的是,我们在第一行使用var声明了b,在这里再声明,就会报错,我自己都没想都这个错误!
+        // let b = 2;
+
+        /**
+         * 暂时性死区: 只要块级作用域内存在let命令,那么它所声明的变量就绑定了这个区域,不会受外部的影响	
+         */
+        // es6明确规定,只要区块中存在let和const命令,则这个区块对这些命令声明的变量从一开始就形成封闭作用域.只要在声明之前就使用这些变量,就会报错
+        // var c = 3;
+        // if(true) {
+        // 	tmp = 'abc'  //报错,tmp没有定义
+        // 	let tmp
+        // }
+
+        // 不仅如此,坑爹的是有些死区,你不仔细看真的很难发现
+        function bar(x = y, y = 2) {
+            return [x, y]
+        }
+        // bar()  //报错, y is not defined
+
+        // 我们吧上面的代码稍微改一下就不会报错了
+        function bac(y = 2, x = y) {
+            return [x, y]
+        }
+        console.log(bac()) // [2,2]
+
+        function f1() {
+            let n = 5;
+            if (true) {
+                let n = 10;
+            }
+            console.log(n) // 5
+        }
+        f1()
 
         {
             {
                 {
-                    let a = 1;
-                    {
-//                        console.log(a)
+                    let a = 1; {
+                        //                        console.log(a)
                         let a = 2;
                     }
                 }
             }
         }
 
-        var f = function () {
-		    console.log('outside')
-        }
-        function aaa(){
-            if(false) {
-                function f() {
-                    console.log('inside')
-                }
+        // 关于函数的相关问题,好像错了啊
+        // var f = function () {
+        //     console.log('outside')
+        // }
+        // function aaa(){
+        //     if(false) {
+        //         function f() {
+        //             console.log('inside')
+        //         }
 
+        //     }
+        //     f()
+        // }
+        // aaa()
+
+        let f;
+
+        {
+            let a = 'secret'
+            f = function() {
+                return a;
             }
-            f()
         }
-        aaa()
-	</script>
+        console.log(f());
+    </script>
 </body>
+
 </html>
