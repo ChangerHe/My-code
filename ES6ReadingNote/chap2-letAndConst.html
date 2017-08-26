@@ -88,14 +88,39 @@
         // aaa()
 
         let f;
-
-        {
+        console.log(f); {
             let a = 'secret'
+            console.log(f)
             f = function() {
                 return a;
             }
+            console.log(f)
         }
         console.log(f());
+
+        // 使用const来声明变量,那么一旦声明,变量的值就不允许改变
+        // const PI = 3.14;
+        // PI = 3;
+
+        // 当我们声明变量的同时不为其赋值,也会报错
+        // const foo;
+
+        // 对于复合类型的变量,因为变量不直接指向数据,而是指向数据所存储的相应内存空间,所以这个时候当我们对相应的内存空间中的值进行更改,只要内存空间不变,则都可以对值进行更改
+        const foo = {};
+        foo.prop = 1;
+        console.log(foo.prop)
+
+        // 那么这个时候,如果我们更改相应的foo指向的内存空间,则就会报错
+        // foo = {}  // 报错
+
+        // 如果在声明引用类型变量后,我们不想让里面的值改变怎么办呢?
+        // 这个时候可以使用Object.freeze()方法,冻结这个对象,包括其内存空间的值
+        const foo1 = Object.freeze({});
+        foo1.prop = 1;
+        console.log(foo1.prop)
+
+        let b = 1;
+//        console.log(window.b)  // 报错 b 已经被定义
     </script>
 </body>
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES6允许我们按照一定模式,从数组和对象中提取值,对变量进行赋值,这被称为解构
+        let [a,b,c] = [1,2,3]
+        console.log(a,b,c)
+
+        let [foo, [[bar], baz]] = [1,[[2],3]]
+        console.log(foo, bar, baz)
+
+        // 当我们对变量解构赋值的时候,不想赋值的地方可以使用空数组的键值代替.当需要使用一个变量匹配后面的所有未匹配数组的时候,使用三个点号代替
+        let [head, ...tail] = [1,2,3,4,5,6]
+        console.log(head, tail)
+
+        let [x, y, ...z] = ['a'];
+        console.log(x,y,z)  // a undefined []
+
+        // 解构不成功,表示右边的值不足以匹配左边的值,不完全解构,表示右边的值超出要赋予的左边的值
+        // 当出现如下情况的时候,f是只能匹配第一个数组元素的
+        let [e,[f],g] = [1,[2,3],4]
+        console.log(e,f,g)
+
+        // 当等号的右边不是数组,或者严格的说,不是可以遍历的结构的时候,是会报错的
+//        let [goo] = 1;
+
+        // 对于解构赋值,我们可以使用Set结构,也可以使用数组的解构赋值
+        let [h,i,j] = new Set(['a','b','c'])
+        console.log(h,i,j)
+
+        // 解构赋值也允许使用默认值,所以,当我们为其不传值,或者传值为undefined的时候,是会使用默认值的
+        {
+            let [foo = true] = []
+            console.log(foo)
+        }
+        {
+            let [foo = true] = [undefined]
+            console.log(foo)
+        }
+
+        //  因为其内部的判定机制,如果所属的值不严格等于undefined,那么其值为null的时候,是可以进行赋值的
+        {
+            let [foo = true] = [null]
+            console.log(foo)
+        }
+    </script>
+</body>
+
+</html>

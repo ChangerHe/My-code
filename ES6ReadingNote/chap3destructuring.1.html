@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<script>
+    // 关于对象的解构赋值
+    {
+        var {foo, bar} = {foo: 'aaa', bar: 'bbb'}
+        console.log(foo)
+        console.log(bar)
+    }
+
+    // 对象不同于数组,数组是按次序排列的,但是对象的属性时没有次序的,只能通过查找对象的键值来找到相应的值
+    {
+        var {bar,foo } = {foo: 'aaa', bar: 'bbb'}
+        console.log(foo)
+        console.log(bar)
+    }
+
+    // 所以,当我们对相应的对象进行赋值的时候,会间接影响到一些其他的变量
+    {
+        let obj = {first: 'hello', last: 'world'};
+        let {first: i, last: j} = obj
+        console.log(i, j)
+    }
+//    console.log(i , j) // 外部依然是无法访问该值的
+    // 所以上面其实已经很好理解了,对象的解构赋值,其实就是对前面的对象的变量的赋值
+
+    // 那么还有一个问题就是,进行解构赋值的时候,我们必须将声明和赋值写在一起,不写在一起的话就会报错
+    {
+        let foo;
+        // 此处需要注意,当我们不加圆括号而是直接使用花括号的话,javascript引擎会把{foo}人为是一个语法块,从而不会正常进行语句的解构
+        // 那么解决办法就是将整条语句使用圆括号括起来,从而让引擎正确理解这条语句
+        ({foo} = {foo: 1})
+        console.log(foo)
+    }
+
+    // 使用解构赋值的一个小技巧: 当我们频繁使用某一个函数或是语句的时候,我们可以使用解构赋值,获得相应的更简便的书写方法\
+    {
+        let {logl, sin, cos} = Math;
+        console.log(cos(60))
+        let {log, dir, debug} = console
+        log(log)
+    }
+
+    // 字符串的解构赋值,此时字符串被转换成了一个类似数组的对象
+    {
+        const str = 'abcd'
+        const [a, b, c, d] = str;
+        const {length: len} = str
+        console.log(a,b,c,d)
+        console.log(len)
+    }
+
+    // 数组和布尔值的解构赋值
+    // 当等号右边是数值或布尔值的时候,会转换为对象,因此也拥有了此类的对象相应的方法和属性
+    // 需要注意的是,每个内部类型对象的构造函数中都是拥有toString的方法的
+    {
+        const {toString: s} = 123;
+        console.log(s === Number.prototype.toString)
+        console.log(s === Object.prototype.toString)
+    }
+
+//    var a = new Number(1)
+//    console.log(a)
+//    var b = new Boolean(true)
+//    console.log(b)
+
+    // 函数参数的解构赋值
+    // 函数的参数也是可以参与到解构赋值中的
+    {
+        function add([x, y]) {
+            return x + y;
+        }
+        console.log(add([1,2]))
+    }
+
+    {
+        console.log([[1,2],[3,4]].map(([a,b])=>a+b))
+
+    }
+
+    // 变量结构赋值的应用
+    {
+        function example() {
+            return [1,2,3]
+        }
+        var [a,b,c] = example()
+        console.log(a,b,c)
+    }
+
+    // 对函数参数的定义
+    {
+        function f([x,y,z]){}
+        f([1,2,3])
+        function j({x,y,z}){}
+        j({x: 1,y: 2, z: 3})
+    }
+
+    // 因为解构赋值的特性,因此其对提取json数据有奇效
+    {
+        var jsonData = {
+            id: 42,
+            status: 'OK',
+            data: [123,432]
+        }
+        let {id, status, data} = jsonData
+        console.log(id, status, data)
+    }
+
+    // 遍历Map结构
+    {
+        var map = new Map();
+        map.set('first', 'hello');
+        map.set('second', 'world')
+        for(let [key, value] of map) {
+            console.log(key + ' is ' + value)
+        }
+    }
+</script>
+<body>
+</body>
+
+</html>
