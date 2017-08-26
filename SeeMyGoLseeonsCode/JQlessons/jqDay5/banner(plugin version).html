@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../jquery-1.11.2.min.js"></script>
+	<script src='script/tyslide.js'></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.pptbox{
+				width: 400px;
+				height: 100px;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.pptbox  .innerwrapper{
+				width:2400px;/*当增加了li之后，大盒子的宽度也要相应的增加 这里增加了两个li，每个400，所以ul 从原来的1600变成了2400*/
+				height: 100px;
+				list-style: none;
+				position: absolute;
+				left: -400px;
+			}
+			
+			.innerwrapper li
+			{
+				width:400px;
+				height:100px;
+				float: left;
+			}
+			.innerwrapper li a
+			{
+				display: block;
+			}
+			
+			.innerwrapper li a img
+			{
+				width: 400px;
+				height:100px;
+				display:block;
+			}
+			
+			.btnleft{
+				width: 20px;
+				height: 50px;
+				position: absolute;
+				left:0;
+				top:25px;
+				background-color: black;
+				background-image:url(imgs/arrowBG.png);
+				background-position: -10px 4px;
+				cursor: pointer;
+				z-index: 100;
+			}
+			
+			.btnright{
+				width: 20px;
+				height: 50px;
+				position: absolute;
+				right:0;
+				top:25px;
+				background-color: black;
+				background-image:url(imgs/arrowBG.png);
+				background-position: -54px 4px;
+				cursor: pointer;
+				z-index: 100;
+				
+			}
+			
+			/*控制按钮开始*/
+			
+			.controls{
+				width:96px;
+				position: absolute;
+				left:152px;
+				bottom:10px;
+				list-style: none;
+			}
+			.controls li{
+				width: 20px;
+				height:20px;
+				background-color: gold;
+				float: left;
+				margin-right:2px;
+				text-align: center;
+				border-radius:10px ;
+				cursor: pointer;
+			}
+			
+			.controls li.current
+			{
+				background-color:aqua;
+				color: brown;
+			}
+			
+			/*控制按钮结束*/
+	</style>
+</head>
+<body>
+	<div class="pptbox" id="slideBoxSmall">
+	<ul class="innerwrapper">
+	<li><a href="#"><img src="imgs/project01.png"/></a></li>
+	<li><a href="#"><img src="imgs/project02.png"/></a></li>
+	<li><a href="#"><img src="imgs/project03.png"/></a></li>
+	</ul>
+	<ul class="controls">
+	<li class="current">1</li>
+	<li>2</li>
+	<li>3</li>
+	</ul>			
+	<span class="btnleft"></span>
+	<span class="btnright"></span>
+	</div>
+
+<script>
+	$("#slideBoxSmall").tyslide({
+		boxh:260,//盒子的高度
+		w:500,//盒子的宽度
+		h:260,//图片的高度
+		isShow:true,//是否显示控制器
+		isShowBtn:true,//是否显示左右按钮
+		controltop:5,//控制按钮上下偏移的位置,要将按钮向下移动   首先保证boxh 高度>图片 h
+		controlsW:10,//控制按钮宽度
+		controlsH:5,//控制按钮高度
+		radius:0,//控制按钮圆角度数
+		controlsColor:"#fff",//普通控制按钮的颜色
+		controlsCurrentColor:"#ffff00",//当前控制按钮的颜色
+		isShowNumber:false
+	});
+</script>
+</body>
+</html>

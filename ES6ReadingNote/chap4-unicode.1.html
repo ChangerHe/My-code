@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * ES6的模板字符串
+         *      使用变量直接添加到相应的字符串中 用法很简单,添加到相应的字符串中
+         * 需要注意的是,使用模板字符串的时候,需要使用反向引号将整体的字符串引起来,否则是无效的
+         *      模板字符串,其实就是模块化了的,放在${}里面的js代码
+         */
+        {
+            let name = 'Bob',
+                time = 'today'
+            console.log(`hello ${name}, how are you ${time}?`)
+            console.log('hello ${name}') // 无效
+        }
+
+        // 模板字符串还拥有更加灵活的用法
+        {
+            let a = 1,
+                b = 2;
+            console.log(`${a} + ${b} = ${a+b}`)
+
+            function foo() {
+                return 'hello'
+            }
+
+            console.log(`${foo()} world`)
+        }
+    </script>
+</body>
+
+</html>

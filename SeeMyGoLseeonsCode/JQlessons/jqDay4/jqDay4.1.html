@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+</head>
+<form action="http://www.baidu.com">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <input type="submit" value="提交">
+</form>
+
+<div id="chap1" style="width: 300px">
+    <table width="100%" border="1">
+        <thead>
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>添加</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>张三</td>
+            <td>10</td>
+            <td>删除</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<body>
+    <script>
+        $('input[type=submit]').click(function(){
+            $(this).triggerHandler('submit')
+        })
+
+        $('tr:first').click(function(){
+            $('tbody').append('<tr>\
+                <td>张三</td>\
+                <td>10</td>\
+                <td>删除</td>\
+                </tr>')
+        })
+        $('table').delegate('tr:not(:first) td:last-child','click',function(){
+            console.log(1)
+            $(this).parent().remove()
+        })
+
+        $('button').click(function(e){
+//            使用e.target来获取事件源对象
+            console.log(e.target);
+            var a = $(this).html()
+            console.log(a++)
+            $(this).html(a)
+        })
+
+        $(document).on('keydown',function(e){
+            console.log(e.type+ ":"+ e.which)
+        })
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

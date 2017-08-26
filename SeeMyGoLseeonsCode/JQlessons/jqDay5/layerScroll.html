@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="style/layerScroll.css"/>
+		<script src="../jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="script/layerScroll.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+		楼层滚动的原理是: 
+		offset().top 获取元素距离顶部的偏移值  
+		scrollTop()  滚动条距离顶部的距离
+		-->
+		<div id="loutinav">
+	        <ul>
+	            <li class="active"><span>享品质</span> </li>
+	            <li><span>服饰美妆</span> </li>
+	            <li><span>电脑数码</span> </li>
+	            <li><span>3C运动</span> </li>
+	            <li><span>爱吃</span> </li>
+	            <li><span>母婴居家</span> </li>
+	            <li><span>图书汽车</span> </li>
+	            <li><span>虚拟</span> </li>
+	            <li><span>还没逛够</span> </li>
+	            <li class="last">顶部</li>
+	        </ul>
+	    </div>
+	    <!--楼层内容开始-->
+	    <div id="header">
+	    	向下滚动鼠标查看效果
+	    </div>
+	    <div id="main">
+	        <div class="louti" style="background: #cc0033;">
+	            享品质
+	        </div>
+	        <div class="louti" style="background: #999933;">
+	            服饰美妆
+	        </div>
+	        <div class="louti" style="background: #ccff33;">
+	            电脑数码
+	        </div>
+	        <div class="louti" style="background: #006633;">
+	            3C运动
+	        </div>
+	        <div class="louti" style="background: #6666cc;">
+	            爱吃
+	        </div>
+	        <div class="louti" style="background: #ff6600;">
+	            母婴居家
+	        </div>
+	        <div class="louti" style="background: #ffff00;">
+	            图书汽车
+	        </div>
+	        <div class="louti" style="background: #3333ff;">
+	            虚拟
+	        </div>
+	        <div class="louti" style="background: #ff00cc;">
+	            还没逛够
+	        </div>
+	    </div>
+	    <div id="footer">
+	    	网站底部
+	    </div>
+	    <!--楼层内容结束-->
+	</body>
+</html>

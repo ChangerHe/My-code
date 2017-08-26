@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background: #900;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+    <script>
+    var isDrag = false;
+    $('#box').mousedown(function(e) {
+        isDrag = true;
+        x1 = parseFloat($(this).css('left'))
+        y1 = parseFloat($(this).css('top'))
+        mx1 = e.pageX;
+        my1 = e.pageY;
+        $(this).fadeTo(200,.5)
+    });
+
+    // 移动鼠标正在拖拽
+    $(document).mousemove(function(e) {
+        if(isDrag) {
+            mx2 = e.pageX;
+            my2 = e.pageY;
+            var dx = mx2 - mx1;
+            var dy = my2 - my1;
+            $('#box').css({'left':(x1 + dx) + 'px', 'top':y1+dy+'px','cursor':'move'})
+        }
+    });
+
+    $(document).mouseup(function(e) {
+        isDrag = false;
+        $('#box').css({'cursor':'default'}).fadeTo(200, 1)
+    });
+    for (var i = 0; i < box.length; i++) {
+        box[i]
+    }
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

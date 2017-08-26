@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script src="../jquery-1.11.2.min.js"></script>
+	<script src="base.js"></script>
 	<style>
 		* {
 			margin: 0;
@@ -15,7 +15,7 @@
 			width: 600px;
 			height: 300px;
 			margin: 50px auto;
-			overflow: hidden;
+			/*overflow: hidden;*/
 		}
 
 		img {
@@ -78,7 +78,7 @@
 			background: orange;
 		}
 
-		.active {
+		#active {
 			background: orange;
 		}
 	</style>
@@ -95,87 +95,71 @@
 	<span class="arrow" id="left">&lt;</span>
 	<span class="arrow" id="right">&gt;</span>
 	<div id="dots">
-		<span class="dot active"></span>
+		<span id="active" class="dot"></span>
 		<span class="dot"></span>
 		<span class="dot"></span>
 	</div>
 </div>
 <script>
-var index = 1;
-// 定义播放联动
-function changeNum() {
-	$('.dot').eq(index-1).addClass('active').siblings().removeClass('active')
-}
+	var container = document.getElementById('container')
+	var box = document.getElementById('box')
+	var left = document.getElementById('left')
+	var right = document.getElementById('right')
+	var dots = document.getElementById('dots')
+	var dot = dots.getElementsByTagName('span')
+	var img = document.getElementsByTagName('img')
 
-
-// 定义可以复用的播放函数
-function playAni() {
-	if(arguments.length == 0 || arguments[0] == 'right'){
-		var num = 0
-	} else {
-		var num = -1
+	/*
+		需求:
+			1.制作点击两侧图标的滚动效果
+			2.点击下方原点,也会产生滚动效果,
+			3.不动,也能产生滚动效果
+	*/
+	// 为下方的小点添加index,方便后面的查找
+	for (var i = 0; i < dot.length; i++) {
+		dot[i].setAttribute('index',i)
 	}
-	if (index == 4) {
-		index = 0;
-		$('#box').css('left','0px')
-	} else if (index == -1) {
-		index = 3
-		$('#box').css('left','-1800px')
-	} else {
-		var move = -600 * index + 'px'
-		$('#box').animate({'left':move},1000)
+	if (parseInt(getStyle(box,'left')) == ) {}
+
+
+	// 左边的点击换图效果
+	left.onclick = function() {
+		var curPos = parseInt(getStyle(box,'left'))
+		if(curPos <= -1800) {
+			console.log(1)
+			box.style.left = -600+ 'px';
+		} else {
+			box.style.left = curPos - 600 + 'px'
+		}
 	}
-}
 
-// 自动播放
-var timer = setInterval(function(){
-	if(index == 3) {
-		index = 0
-	} else if (index == 0) {
-		index = 3
+	// 右边的点击换图效果
+	right.onclick = function() {
+		var curPos = parseInt(getStyle(box,'left'))
+		if(curPos >= -600) {
+			console.log(1)
+			box.style.left = -1800+ 'px';
+		} else {
+			box.style.left = curPos + 600 + 'px'
+		}
 	}
-	index++;
-	console.log(index)
-	playAni()
-	changeNum()
-	if(index == 0) {
-		index = 3
-		$('#box').css('left','-1800px')
+
+
+
+
+
+
+
+
+	// 计算样式的封装
+	function getStyle(tag,attr) {
+		if(typeof Object.prototype.currentStyle == 'function'){
+			return tag.currentStyle(attr)
+		} else {
+			return window.getComputedStyle(tag)[attr]
+		}
 	}
-},2000)
-
-// 左右的点击效果
-$('#right').click(function() {
-	index++;
-	playAni('right')
-	changeNum()
-	if(index == 4){index = 0}
-})
-$('#left').click(function() {
-	index--;
-	console.log(index)
-	playAni('left')
-	changeNum()
-})
-
-// 设置鼠标悬浮其上即停止自动播放
-$('#container').hover(function(){
-	clearInterval(timer)
-},function(){
-	timer = setInterval(function(){
-		index++;
-		playAni()
-		changeNum()
-	},2000)
-})
-
-// 下方小球的点击效果
-$('.dot').click(function(){
-	console.log($(this).index())
-	index = $(this).index()+1
-	playAni()
-	changeNum()
-})
+	console.log(getStyle(box, 'left'))
 </script>
 </body>
 </html>

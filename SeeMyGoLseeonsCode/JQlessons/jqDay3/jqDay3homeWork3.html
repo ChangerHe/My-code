@@ -154,8 +154,16 @@
             $(this).removeClass('act')
             $('.content').eq($(this).attr('index')).fadeOut(0)
         })
-        $('.content').mouseover(function(){
+        $('.content').hover(function(){
+            for(let i = 0; i < $('.content').length; i++) {
+                if($(this)[0] == $('.content')[i]){
+                    $('#left li').eq(i).addClass('act')
+                }
+            }
             $(this).css('display','block')
+        },function(){
+            $('#left li').removeClass('act')
+            $(this).css('display','none')
         })
     </script>
 

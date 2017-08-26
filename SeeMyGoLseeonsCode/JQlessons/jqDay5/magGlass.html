@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/zoom.css">
+	<script src="../jquery-1.11.2.min.js"></script>
+	<script src="script/imageZoom.min.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+		<div class="box">
+			<!--大图-->
+			<div class="tb-booth tb-pic tb-s310">
+				<a href="imgs/01.jpg"><img src="imgs/01_mid.jpg" alt="" rel="imgs/01.jpg" class="jqzoom" style="cursor: crosshair;"></a>
+			</div>
+			<!--缩略图-->
+			<ul class="tb-thumb" id="thumblist">
+				<li class="tb-selected"><div class="tb-pic tb-s40"><a href="#"><img src="imgs/01_small.jpg" mid="imgs/01_mid.jpg" big="imgs/01.jpg"></a></div></li>
+				<li><div class="tb-pic tb-s40"><a href="#"><img src="imgs/02_small.jpg" mid="imgs/02_mid.jpg" big="imgs/02.jpg"></a></div></li>
+				<li><div class="tb-pic tb-s40"><a href="#"><img src="imgs/03_small.jpg" mid="imgs/03_mid.jpg" big="imgs/03.jpg"></a></div></li>
+				<li><div class="tb-pic tb-s40"><a href="#"><img src="imgs/04_small.jpg" mid="imgs/04_mid.jpg" big="imgs/04.jpg"></a></div></li>
+				<li><div class="tb-pic tb-s40"><a href="#"><img src="imgs/05_small.jpg" mid="imgs/05_mid.jpg" big="imgs/05.jpg"></a></div></li>		
+			</ul>
+		</div>
+		<!--产品放大镜插件结束-->
+		<script type="text/javascript">
+			$(function(){
+				$(".jqzoom").imagezoom();
+				$("#thumblist li a").click(function(){
+					$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+					$(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+					$(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+				});
+			});
+		</script>
+
+
+</body>
+</html>

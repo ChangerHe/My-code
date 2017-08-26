@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+         * es6加强了对Unicode的支持,并扩展了字符串对象
+         *
+         *
+         * */
+
+        // codePointAt()方法,可以很方便地判定字符是由2字节还是4字节组成
+        {
+            let a = '\uD842\uDFB7'
+            console.log(a);
+            let b = '\u20BB7'
+            let c = '\u{20BB7}'
+            console.log(b)
+            console.log(c)
+
+            let d = '𠮷a'
+            console.log(d.length)
+            console.log(d.charAt(0))
+            console.log(d.charAt(1))
+            console.log(d.charAt(2))
+            console.log(d.charAt(3))
+            console.log(d.codePointAt(0))
+            console.log(d.codePointAt(1))
+        }
+
+        // 在之前es5中定义的fromCharCode()方法,只能够识别16位的字符,并将其转换为相应字符,但是当我们需要进行32位字符码点转换为字符的时候,就无能为力了,这个时候ES6定义了一个新的方法: fromCodePoint()
+        {
+            let a = '𠮷a'
+            console.log(a.codePointAt(0))
+        }
+
+        // 在ES6中新定义的for-of循环可以实现识别使用32位编码的字符
+        {
+            let text = String.fromCodePoint(0x20bb7);
+            for (let i = 0; i < text.length; i++) {
+                console.log(text[i])
+                console.log(i)
+            }
+            for (let i of text) {
+                console.log(i)
+            }
+        }
+
+        // ES5为字符串对象提供了charAt方法,返回给定位置的字符,该方法不能识别码点大于0xFFFF的字符
+        // 因此,ES7定义了at方法,用于识别码点大于0xFFFF的字符
+        {
+            console.log('𠮷a'.charAt(0))
+                //        console.log('𠮷'.at(0))
+        }
+
+        /*
+         *
+         * ES6新增了一些查找字符串的相应方法
+         *      includes() 返回布尔值,表示是否找到了参数字符串
+         *      startsWith() 返回布尔值,表示字符串是否在元字符串的头部
+         *      endsWith()  返回布尔值,表示参数自粗换是否在源字符串的头部
+         *      repeat()  返回一个新字符串,表示将原字符串重复n次
+         */
+
+        {
+            var str = 'hello'
+            console.log(str.startsWith('he'))
+            console.log(str.endsWith('lo'))
+            console.log(str.includes('lo'))
+            console.log(str.repeat(3))
+
+        }
+    </script>
+</body>
+
+</html>

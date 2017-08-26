@@ -1,0 +1,93 @@
+   * {
+    margin: 0;
+    padding: 0;
+    font-family: 'microsoft yahei';
+    }
+    
+    #loutinav {
+        width: 35px;
+        position: fixed;
+        top: 100px;
+        left: 50px;
+        border: 1px solid #ddd;
+        display: none;
+        
+    }
+    
+    #loutinav ul li {
+        width: 35px;
+        height: 32px;
+        border-bottom: 1px dotted #DDDDDD;
+        list-style: none;
+        font-size: 12px;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        padding: 10px 0;
+        background: #918888;
+        color: #fff;
+    }
+    
+    #loutinav ul li span {
+        width: 35px;
+        height: 32px;
+        padding: 10px 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+   
+    
+    #loutinav ul li.last {
+        background: #5e4a4a;
+        color: #fff;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #loutinav ul li.active span {
+        background: #c00;
+        color: #fff;
+        display: block;
+    }
+
+    #loutinav ul li:hover span {
+        background: #c00;
+        color: #fff;
+        display: block;
+    }
+    
+    #header {
+        width: 1000px;
+        height: 1000px;
+        background: #cc6633;
+        margin: 0 auto;
+         font-size: 50px;line-height: 1000px;text-align: center;
+         color: #000;
+    }
+    
+    #main {
+        width: 1000px;
+        background: #66ff66;
+        margin: 0 auto;
+    }
+    
+    #main .louti {
+        height: 600px;
+        width: 1000px;
+        font-size: 50px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        line-height: 600px;
+    }
+
+    
+    #footer {
+        width: 1000px;
+        height: 400px;
+        background: red;
+        margin: 0 auto;
+        font-size: 50px;line-height: 400px;text-align: center;
+         color: #000;
+    }
