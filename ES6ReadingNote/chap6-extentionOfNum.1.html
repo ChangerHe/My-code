@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 安全整数  : javascript可以准确地表示在2的负53次方到2的正53次方之间的整数,超出则无法精确显示
+        {
+            console.log(Math.pow(2, 53) === Math.pow(2, 53) - 1) // 返回的是false,书上的有问题
+        }
+
+        /* 
+        在ES6中,新增了17个对数学对象处理相关的方法
+            Math.trunc() 用于取出一个数的小数部分,返回整数部分
+            Math.sign()  用于判断一个数到底是整数,还是负数,还是零
+            Math.cbrt()  用于计算一个数的立方根
+            Math.clz32() 用于返回一个数的32位二进制的数值表示的数,前面有多少个前导零
+            Math.imul()  返回两个数以32位带符号整数形式相乘的结果,返回的也是一个32位带符号整数
+            Math.fround()返回数值的单精度浮点数的数值表示,也就是以64位存储的浮点数
+            Math.hypot() 返回所有参数的平方和的平方根
+            Math.expm1(x) 返回其相应的指数减一  即 e ^ x -1  
+            Math.log1p(x) 返回 ln(1+x) 等价于 Math.log(1 + x)
+            Math.log10(x) 返回以10为底的对数
+            Math.log2()  返回以2为底的对数
+         */
+        {
+            console.log(Math.trunc(4.9)) //4
+            console.log(Math.trunc(-4.9)) //-4
+            console.log(Math.sign(5)) //1  (表示是正数)
+            console.log(Math.sign(-0)) //-0 表示是负零
+            console.log(Math.sign(0))
+            console.log(Math.sign()) //NaN 表示为非数值
+            console.log(Math.cbrt(8)) //2
+            console.log(Math.clz32(1)) //31  表示1的32位二进制的数值,1前面一共有21个零
+            console.log(Math.clz32(1.9)) //31  对于有小数的情况,只返回相应的整数部分
+            console.log(Math.clz32(NaN)) //32  此方法有隐式类型转换的机制
+            console.log(Math.imul(2, 4)) // 8
+            console.log(Math.fround(1.337)) //1.3370000123977661 丧失了精度
+            console.log(Math.hypot(3, 4)) //5
+            console.log(Math.expm1(0)) //0
+            console.log(Math.expm1(1)) //1.718281828459045
+            console.log(Math.log10(10)) //1.718281828459045
+            console.log(Math.log2(2)) //1.718281828459045
+
+        }
+
+        /* 
+        ES7还新增了一个指数运算符,目前babel转码器已经支持
+         */
+        {
+            console.log(2 ** 2) //4
+            console.log(2 ** 3) //8
+                // 同时,指数运算符还可与等号结合,形成一个新的赋值运算符 **=
+            let a = 3
+            console.log(a **= 2) // 9
+            let b = 2
+            console.log(b **= 3) // 8
+        }
+    </script>
+</body>
+
+</html>
