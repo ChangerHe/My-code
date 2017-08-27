@@ -1,0 +1,33 @@
+/**********************************
+
+Use: Main Screen Import
+
+***********************************/
+
+@import "reset.css";
+@import "core.css";
+
+@import "cmxformTemplate.css";
+@import "cmxform.css";
+
+#commentForm {
+	width: 500px;
+}
+#commentForm label {
+	width: 250px;
+}
+#commentForm label.error, #commentForm input.submit {
+	margin-left: 253px;
+}
+#signupForm {
+	width: 670px;
+}
+#signupForm label.error {
+	margin-left: 10px;
+	width: auto;
+	display: inline;
+}
+#newsletter_topics label.error {
+	display: none;
+	margin-left: 103px;
+}

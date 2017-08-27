@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/validation.css">
+    <script src="../jquery-1.11.2.min.js"></script>
+    <script src="script/jquery.validate.js"></script>
+</head>
+
+<body>
+    <form action="http://www.baidu.com" id="commentForm">
+        <p><label for="username">username:<input type="text" name="username"></label></p>
+        <p><label for="password">password:<input type="password" name="password"></label></p>
+        <p><label for="confPassword">confPassword:<input id="password" type="password" name="confPassword"></label></p>
+        <p><label for="email">email:<input type="text" name="email"></label></p>
+        <p><label for="submit"><input type="submit" name="submit" value="submit"></label></p>
+    </form>
+
+    <script>
+        console.log($)
+        $(function() {
+            $('#commentForm').validate({
+                rules: {
+                    username: {
+                        required: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    confPassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: '#password'
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    }
+
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
