@@ -1,11 +1,10 @@
 {
     "version": "0.2.0",
-    "configurations": [
-        {
+    "configurations": [{
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:4000",
+            "url": "${workspaceRoot}",
             "webRoot": "${workspaceRoot}"
         },
         {

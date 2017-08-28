@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <script>
+        // Array.from()方法用于将两类对象转为真正的数组,他们分别是类数组对象,和可遍历对象
+        {
+            let arrayLike = {
+                0: 'a',
+                1: 'b',
+                2: 'c',
+                length: 3
+            }
+            let arr1 = Array.prototype.slice.call(arrayLike)
+            console.log(arr1)
+                // 其实将伪数组转为真正的数组,使用的就是位于数组的原型链上的slice方法,对对象进行了浅复制,从而完成形成新数组的工作,而ES6中,只需要一句话就就够了
+            let arr2 = Array.from(arrayLike)
+            console.log(arr2) // 也能得到与第一个完全相同的结果
+
+            // 同时使用Array.form() 方法,可以实现字符串的拆分
+            console.log(Array.from('hello'))
+
+            // 其实只要数据结构中有Iterator的接口,就是可以转换为数组的(遍历器接口: Symble.iterator, 如果对象没有部署该接口则无法被转换)
+            // 扩展运算符,也可以将某些数据结构转换为数组
+            console.log([...document.querySelectorAll('div')])
+
+            // Array.from还接受第二个参数用于遍历所有的数组值,并返回新的结果
+            var arrLike = {
+                0: 0,
+                1: 1,
+                2: 2,
+                length: 3
+            }
+            let arr3 = Array.from(arrLike, x => x * x)
+            console.log(arr3)
+
+            // 下面的例子将数组中布尔值为false的成员转为0
+            console.log(Array.from([1, 2, , 3]), (n) => n || 0)
+        }
+    </script>
+</body>
+
+</html>
