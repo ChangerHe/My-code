@@ -121,6 +121,58 @@
             console.log(['a', 'b', 'c'].fill(7, 1, 2))
 
         }
+
+        // ES6提供了三个新方法用于遍历数组,   keys() 对键名的遍历   values() 对键值的遍历   entries() 对键值对的遍历
+        {
+            // for (let index of['a', 'b'].keys()) {
+            //     console.log(index)
+            // }
+            // for (let index of['a', 'b'].values()) {
+            //     console.log(index)
+            // }
+            // for (let index of['a', 'b'].entries()) {
+            //     console.log(index)
+            // }
+
+        }
+
+        // includes() 方法返回一个实例,表示某数组是否包含给定的值
+        {
+            let a = [1, 2, 3]
+            console.log(a.includes(2))
+            console.log(a.includes(4))
+
+            // 当浏览器不兼容的时候,可以使用indexOf方法进行替代
+            // 但是indexOf有一个弊端,原因是indexOf内部使用的是全等操作符进行匹配,所以这个时候当我们判定NaN的时候,是无法判定成功的, 因为NaN!==NaN
+            console.log([NaN].indexOf(NaN)) // -1
+        }
+
+        // ES5在很多情况下,对于数组的空位是直接忽略的,例如
+        // forEach filter every some 等方法会跳过空位
+        // map 会跳过空位,但会保留这个值
+        // join 和 toString 会将空位视为undefined 而undefined和null会被处理为字符串
+        {
+            [, 'a'].forEach((x, i) => console.log(i)); // 1 因为第零个是空位,被忽略了
+            console.log([, 'a'].filter((x, i) => true)); // 小红书有讲过的方法,使用true将数组的空位去除
+            console.log([, 'a'].every((x, i) => x !== undefined)) // true
+            console.log([, 'a'].some((x, i) => x === undefined)) // false
+            ;
+            console.log([, 'a'].map((x, i) => 1));
+            console.log([, 'a', undefined, null].join('#')) // #a##
+
+            // 而ES6则是将空位明确专务undefined
+            console.log([...['a', , 'b']]) //["a", undefined, "b"]
+
+        }
+
+        // 数组推导
+        {
+            // let a1 = [1, 2, 3, 4]
+            // var a2 = [
+            //     for (i of a1) i * 2
+            // ];
+            // console.log(a2)  // 无法正常解析执行
+        }
     </script>
 </body>
 
