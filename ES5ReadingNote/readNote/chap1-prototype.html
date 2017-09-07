@@ -10,26 +10,70 @@
 
 <body>
     <script>
-        var scope = "global scope";
+        var value = 10;
 
-        function checkscope() {
-            var scope = "local scope";
-
-            function f() {
-                return scope;
+        var foo = {
+            value: 2,
+            bar: function() {
+                return this.value;
             }
-            return f();
         }
-        checkscope();
-        console.log(checkscope());
 
-        console.log(this instanceof Object);
+        //示例1
+        console.log(foo.bar());
+        //示例2
+        console.log((foo.bar)());
+        //示例3
+        console.log((foo.bar = foo.bar)());
+        //示例4
+        console.log((false || foo.bar)());
+        //示例5
+        console.log((foo.bar, foo.bar)());
+        var a = 1,
+            a = 2;
+        console.log(a)
+            // var scope = "global scope";
 
-        console.log(Math.random());
-        console.log(this.Math.random());
+        // // function checkscope() {
+        // //     var scope = "local scope";
 
-        var a = 1;
-        console.log(this.a);
+        // //     function f() {
+        // //         return scope;
+        // //     }
+        // //     return f();
+        // // }
+        // // checkscope();
+        // // console.log(checkscope());
+
+        // // console.log(this instanceof Object);
+
+        // // console.log(Math.random());
+        // // console.log(this.Math.random());
+
+        // // var a = 2;
+        // // console.log(this.a);
+
+        // // function foo() {
+        // //     console.log(a);
+        // //     a = 1;
+        // // }
+
+        // // foo(); // ???
+
+        // // console.log(b)
+
+        // foo.[
+        //     [scope]
+        // ] = [
+        //     globalContext.VO
+        // ];
+
+        // bar.[
+        //     [scope]
+        // ] = [
+        //     fooContext.AO,
+        //     globalContext.VO
+        // ];
     </script>
 </body>
 

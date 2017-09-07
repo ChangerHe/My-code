@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        //3.扩展Array类型，提供inArray方法用来检查数组中是否包含”张三”
+        Array.prototype.inArray = function() {
+            return this.some(function(x) {
+                return x == '张三'
+            })
+        }
+
+        var a = new Array()
+
+        a = ['王二', '张三', '李四', '赵六']
+        console.log(a.inArray())
+
+        // 4.基于面向对象思想，创建类
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        Person.prototype.sayName = function() {
+            return this.name
+        }
+
+        var p1 = new Person('王二', 18)
+        console.log(p1.sayName())
+
+        {
+            class Dog {
+                constructor(name, age) {
+                    this.name = name
+                    this.age = age
+                }
+                wang() {
+                    console.log('wangwangwang')
+                }
+            }
+            let dog1 = new Dog('张三', 19)
+            dog1.wang()
+        }
+
+        {
+            class Car {
+                constructor(name, price) {
+                    this.name = name
+                    this.price = price
+                }
+                fly() {
+                    return this.name + ' is flying!'
+                }
+            }
+            var c1 = new Car('Lambochini', '1b')
+            console.log(c1.fly())
+        }
+    </script>
+</body>
+
+</html>
