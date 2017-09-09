@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            // this的指向在之前是可变的,但是在箭头函数中是固定的
+            function foo() {
+                setTimeout(() => {
+                    console.log('id:', this.id)
+                }, 100)
+            }
+
+            foo.call({
+                id: 42
+            })
+
+            // 上面的函数中,因为使用的是箭头函数,所以this的指向并没有指向window
+
+            function foo2() {
+                setTimeout(function() {
+                    console.log('id', this.id)
+                }, 100)
+            }
+
+            foo2.call({
+                id: 42
+            })
+
+            // 因此不论嵌套多少层,都是没有问题的,朝阳指向调用的对象
+            function foo3() {
+                return () => {
+                    return () => {
+                        console.log('id: ', this.id) // 42
+                    }
+                }
+            }
+            foo3.call({
+                id: 42
+            })()()
+
+            // foo()
+        }
+
+        {
+            // 因为箭头函数没有自己的this, 所以我们在内部绑定this,是不能生效的
+            var a = (function() {
+                return [
+                    (() => this.x).bind({
+                        x: 'inner'
+                    })
+                ]
+            }).call({
+                x: 'outer'
+            })
+            console.log(a)
+        }
+
+        {
+            // 箭头函数的内部还可以再使用箭头函数
+            function insert(value) {
+                return {
+                    into: function(array) {
+                        return {
+                            after: function(afterValue) {
+                                array.splice(array.indexOf(afterValue) + 1, 0, value)
+                            }
+                        }
+                    }
+                }
+            }
+
+            console.log(insert(2).into([1, 3]).after(1))
+        }
+
+        {
+            let log = ::console.log()
+        }
+    </script>
+</body>
+
+</html>

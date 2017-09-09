@@ -50,13 +50,138 @@
 
         {
             // 扩展运算符的另一个作用是,替代数组的apply方法
-                // 在ES5之前,我们如果需要将数组的值作为函数的参数逐一传进函数的时候,最简便的方法就是使用apply方法\
+            // 在ES5之前,我们如果需要将数组的值作为函数的参数逐一传进函数的时候,最简便的方法就是使用apply方法\
             function f(x, y, z) {}
-            var args = [1,2,3]
+            var args = [1, 2, 3]
             f.apply(null, args)
 
             // 在ES6中,写法是这样的
             function f2(x, y, z) {}
+            var args = [0, 1, 2]
+            f2(...args)
+
+
+            // 当我们需要对数组进行最大最小值的判断的时候,在ES5中,用法是这样的
+            var a = [1, 2, 4, 12, 3, 5, 1, 12]
+            console.log(Math.max.apply(null, a))
+
+            // 但是在ES6中,我们就不必要这么麻烦了,因为扩展运算符 ... 可以将数组直接转换为普通的单个数字
+            console.log(Math.max(...a))
+        }
+
+        {
+            // 同样的,在ES5中,如果我们需要使用push方法将两个数组连接起来的时候,我们需要这样做
+            var a = [1, 2, 3]
+            var b = [4, 5, 6]
+            a.push(b)
+            console.log(a)
+            console.log(b)
+            Array.prototype.push.apply(a, b)
+                // 实际上因为push方法的参数不能是数组,因为是数组的话会变成两个数组之间的链接了,后面的数组接到前面的数组上面,其方括号并不会被舍弃掉,而是作为前面数组的最后的一项保留了下来
+            console.log(a)
+            console.log(b)
+
+            // 当然,这样子的a其实并不是我们想要的,那么,怎么样才能得到我们需要的a的扁平化数组的值呢?
+            a = [1, 2, 3]
+            a.push(...b)
+            console.log(a)
+            console.log(b)
+        }
+
+        {
+            // 同样的,ES6还提供了数组合并的新写法:\
+
+            // 最开始,原始的写法是这样的
+            var a = [1, 2, 3]
+            var b = [4, 5, 6]
+            var c = a.concat(b)
+            console.log(c)
+
+            // 在ES6中,因为有了 ... 运算符,那么其实concat是可以省略的
+            var d = [...a, ...b]
+            console.log(d)
+
+            // 那么现在问题来了,我们使用三点运算符,对多维数组是否有效呢?
+            var e = [1, 2, [3, [4]]]
+            console.log(...e) //1 2 Array(2) [3, Array(1)]
+                // 事实证明,并没有效
+        }
+
+        {
+            // 三点运算符的另一用法: 与解构赋值结合起来,用于生成数组
+
+            // 那么,我们先来看一下,在ES5中,是怎么做到的
+            var a = [1, 2, 3, 4]
+            var b = a[0]
+            var c = a.slice(1)
+            console.log(b, c)
+
+            // 那么在ES6中,这样的形式就很容易实现了,通过解构赋值和三点运算符结合的方式
+            let [d, ...e] = a
+            console.log(d, e)
+
+            // 当我们对一个空的数组进行解构赋值的时候,会出现什么情况呢?
+            let [f, ...g] = []
+            console.log(f, g) //undefined  []
+
+            let [h, ...i] = ['foo']
+            console.log(h, i) // foo  []
+
+            // 需要注意的是,我们使用扩展运算符,也就是三点运算符,这个运算是必须要放在参数的最后一位的,否则会报错
+            // let [...j, k] = [1, 2, 3, 4]
+            // console.log(j, k) //报错,Rest element must be last element 
+
+
+        }
+
+        {
+            // 扩展运算符对字符串的支持
+            console.log([...
+                    'hello'
+                ]) // ["h", "e", "l", "l", "o"] 扩展运算符将字符串中的每一个值都拆分成了单个的字符组成的数组
+
+            // 当然,这还不是最重要的,重要的是, 扩展运算符对32位Unicode字符的支持
+            // 但是经过测试,因为字符串的
+            console.log('\u{20bb7}')
+            console.log([...
+                    'x\u{20bb7}\u20bb7'
+                ].length)
+                // 可见,两个大括号完美地解决了32位字符这个bug的尴尬
+        }
+
+        {
+            // 括展运算符内部调用的是数据结构的iterator接口,因此只要具有iterator接口的对象,都可以使用扩展运算符
+            let map = new Map([
+                [1, 'one'],
+                [2, 'two'],
+                [3, 'three']
+            ])
+            let arr = [...map.values()]
+            console.log(arr)
+        }
+
+        {
+            // Generator函数运行后返回一个遍历器对象,因此也可以使用扩展运算符
+            var go = function*() {
+                yield 1
+                yield 2
+                yield 3
+
+            }
+            console.log([...go()])
+        }
+
+        {
+            // 函数的那么属性返回该函数的函数名
+            function foo() {}
+            console.log(foo.name)
+        }
+
+        {
+            // 通过bind返回的函数, name属性会加上'bound'前缀
+            function foo() {}
+            console.log(foo.bind({}).name) //bound foo
+
         }
     </script>
 </body>

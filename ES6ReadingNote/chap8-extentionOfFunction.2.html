@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        {
+            // ES6允许使用箭头定义函数
+            var f = v => v
+                // 上面的箭头其实就等价于
+            var f = function(v) {
+                return v
+            }
+
+            // 那么,上面是需要参数的情况下,当我们不需要参数的时候怎么办呢?
+            // 那么,在这个情况下是可以使用圆括号代替的
+            var f = () => 5
+                // 等价于
+            var f = function() {
+                return 5
+            }
+
+            // 当存在多个参数的时候
+            var f = (num1, num2) => num1 + num2
+                // 等价于
+            var f = function(num1, num2) {
+                return num1 + num2
+            }
+
+            // 如果箭头函数的代码块部分多于一条语句, 就要使用大括号将其括起来, 并使用return语句返回
+            // 由于大括号被解释为代码块,所以当我们需要箭头函数返回一个对象的时候,需要使用圆括号将对象括起来
+            var f = id => ({
+                id: id,
+                name: 'temp'
+            })
+
+            // 还有一点是,箭头函数还可以和解构赋值一起使用
+            var full = ({
+                    first,
+                    last
+                }) => first + ' ' + last
+                // 等价于
+            var full = function(person) {
+                return first + " " + last
+
+            }
+
+
+        }
+
+        {
+            // 箭头函数的另一个用处就是简化回调函数
+            // 正常的函数写法
+            [1, 2, 3].map(function(x) {
+                return x * x
+            })
+
+            // 箭头函数的写法
+            [1, 2, 3].map(x => x * x)
+
+
+            // 另一个例子
+            var result = values.sort(function(a, b) {
+                    return a - b
+                })
+                // 箭头函数写法
+            var result = values.sort((a, b) => a - b)
+
+
+            // 还有就是三点运算符,也就是rest参数的写法
+            const headAndTail = (head, ...tail) => [head, tail]
+
+        }
+
+        /**
+         * 箭头函数的使用注意点: 
+         *      1.函数体内的this对象就是定义的时候所在的对象,而不是使用的时候所在的对象
+         *      2.不可以拿来当做构造函数,也就是不可以拿来new一下,否则会抛出一个错误
+         *      3.不可以使用arguments对象,该对象在函数体内是不存在的,如果需要使用,可以使用rest参数将arguments对象转为数组之后使用
+         *      4.不可以使用yield命令,因此箭头函数不能用作Generator参数
+         */
+    </script>
+</body>
+
+</html>
