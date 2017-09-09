@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //在ES6中引入了rest参数, 用于获取函数的多余参数,这样就不需要使用arguments对象了,rest参数搭配的变量是一个数组,该变量将//多余的参数放入其中
+        {
+            function add(...values) {
+                let sum = 0
+                console.log(values)
+                for (var val of values) {
+                    sum += val
+                }
+                return sum
+            }
+            console.log(add(2, 3, 4))
+        }
+
+        {
+            // 使用小技巧: 将数组的参数按照大小进行排序
+            const sortNumbers = (...numbers) => numbers.sort()
+            console.log(sortNumbers(1, 2, 3, 5, 2, 12))
+        }
+
+        {
+            // 使用函数的特性,改写push方法
+            function push(array, ...items) {
+                items.forEach(function(item) {
+                    array.push(item)
+                })
+                return array
+            }
+            console.log(push([1, 2, 3], 1, 2, 3, 4, 54))
+        }
+
+        {
+            // 扩展运算符  ...   好比rest参数的逆运算,将一个数组转为用逗号分隔的参数序列
+            console.log(...[1, 2, 3])
+            console.log(1, ...[2, [
+                [3], 4
+            ]], 5)
+        }
+
+        {
+            // 扩展运算符的另一个作用是,替代数组的apply方法
+                // 在ES5之前,我们如果需要将数组的值作为函数的参数逐一传进函数的时候,最简便的方法就是使用apply方法\
+            function f(x, y, z) {}
+            var args = [1,2,3]
+            f.apply(null, args)
+
+            // 在ES6中,写法是这样的
+            function f2(x, y, z) {}
+        }
+    </script>
+</body>
+
+</html>

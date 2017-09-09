@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在ES6以前,函数的默认值只能在函数体内进行判断
+        {
+            function log(x, y) {
+                y = y || 'World'
+                console.log(x, y)
+            }
+            log('hello ')
+
+            // 但是以上写法还是存在问题,当我们给参数y赋值一个布尔值为false的字符串等,这个时候它就会变成默认值
+            log('hello ', false)
+            log('hello ', '')
+            log('hello ', undefined)
+        }
+
+        // 而ES6则允许将参数设置默认值,即直接写在参数定义的后面
+        {
+            function log(x, y = 'world') {
+                console.log(x, y)
+            }
+            log('hello')
+
+            // 可见,ES6的写法比之前更加的简单,也更加地自然了
+            function Point(x = 0, y = 0) {
+                this.x = x
+                this.y = y
+            }
+            var p1 = new Point()
+            console.log(p1.x, p1.x)
+
+            var p2 = new Point(2)
+            console.log(p2.x, p2.y)
+        }
+
+        // 与变量的解构赋值默认值结合使用
+        {
+            function foo({
+                x,
+                y = 5
+            }) {
+                console.log(x, y)
+            }
+            foo({})
+            foo({
+                x: 1
+            })
+        }
+
+        // 函数使用解构赋值时,因为有必填的参数,所以这个情况下必须要有填需要的参数,否则会报错
+        // 但是当我们不想要在这种情况下让它报错的话,可以使用双重解构赋值的方式解决此问题
+        {
+            function fetch(url, {
+                method = 'GET'
+            } = {}) {
+                console.log(method)
+            }
+            fetch('http://example.com')
+        }
+
+        // 变量的解构赋值的两种方法的区别
+        {
+            function m1({
+                x = 0,
+                y = 0
+            } = {}) {
+                return [x, y]
+            }
+
+            function m2({
+                x,
+                y
+            } = {
+                x: 0,
+                y: 0
+            }) {
+                return [x, y]
+            }
+
+            // 在函数没有参数的情况下
+            console.log(m1())
+            console.log(m2())
+
+            // 上面的代码并不能看出什么区别,因为两者都是得到的值为[0,0]
+            // 但是,当在x 有值而 y没有值的情况下,两者的区别就很明显了
+            console.log(m1({
+                    x: 3
+                })) // [3, 0]
+
+            console.log(m2({
+                    x: 3
+                })) // [3, undefined]
+        }
+
+        // 当我们将非尾部的参数设置了默认值,那么这个时候这个参数是没有办法省略的
+        {
+            function f(x = 1, y) {
+                return [x, y]
+            }
+
+            console.log(f()) // [1, undefined]
+            console.log(f(1)) // [1, undefined]
+                // console.log(f(, 1)) // 报错
+
+            function f2(x, y = 5, z) {
+                return [x, y, z]
+            }
+
+            console.log(f2())
+                // console.log(f2(1, , 2))
+        }
+
+        // 函数的length属性, 指定了默认值后.函数的length属性将会返回没有指定默认值的参数个数,也就是说,指定了默认值后length只会显示没有默认值的形参个数
+        {
+            // console.log((function(x) {}).length)
+            // console.log((function(x = 90, a, b) {}).length)
+            // console.log((function(x, a = 90, b) {}).length)
+            // console.log((function(x, a, b = 90) {}).length)
+        }
+
+        {
+            let a = 1
+
+            function f() {
+                // console.log(a)  // 此处会报错
+                let a = 2
+                console.log(a)
+            }
+            f()
+        }
+
+        // 另外需要注意的地方是,如果参数默认值是一个变量,则该变量所处的作用域与其他的变量的作用域是一样的,即先是当前函数的作用域,然后才是全局作用域
+        {
+            let x = 1
+
+            function f(x, y = x) {
+                console.log(y) // 输出2
+            }
+            f(2)
+
+            function f1(y = x) {
+                let x = 2
+                console.log(y)
+            }
+            f1(1)
+        }
+
+        {
+            // 临时的补充: 递归的书写方式: 确认递归的入口和递归的出口
+            function add(n) {
+                if (n > 1) {
+                    return n + add(n - 1)
+                } else {
+                    return 1
+                }
+            }
+            console.log(add(10))
+        }
+
+        {
+            let foo = 'outer'
+
+            function bar(func = x => foo) {
+                let foo = 'inner'
+                console.log(func())
+            }
+            bar()
+                // console.log(func())
+        }
+
+        // 函数的参数中可以进行默认值的传递,利用此技巧可以强制在使用该函数的时候必须要传参,否则抛出错误
+        {
+            function f1() {
+                throw new Error('Missing parameter')
+            }
+
+            function f2(x = f1()) {
+                console.log(x)
+            }
+            f2(1)
+        }
+    </script>
+</body>
+
+</html>

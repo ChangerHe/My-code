@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    1. 实现一个flatten函数,将一个嵌套多层的数组转换为只要一层的数组
+    <script>
+
+        // 方法1 : 使用函数内嵌套自执行函数,并进行递归的方式,得到相应的扁平化数组
+        var a = [1, [2, [3, [4]]]]
+        /*
+        function flatten1(arr) {
+            var newArr = [];
+            (function _flatten1(arr) {
+                for (var i = 0; i < arr.length; i++) {
+                    console.log(Array.isArray(arr[i]))
+                    if(Array.isArray(arr[i])) {
+                        _flatten1(arr[i])
+                    } else {
+                        newArr = newArr.concat(arr[i])
+                    }
+                }
+            })(arr)
+            
+            return newArr
+        }
+
+        console.log(flatten1(a))
+        */
+        // function flatten2(arr) {
+        //     var newArr = []
+        //     function _flat(arr) {
+        //         arr.forEach(val => {
+
+        //         })
+        //     }
+        // }
+
+        
+    </script>
+</body>
+
+</html>
