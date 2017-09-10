@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES6允许写入变量和函数作为对象的属性和方法
+        // 也就是说,在ES6中是允许在对象中只写属性名,不写属性值的
+        {
+            var foo = 'bar'
+            var baz = {
+                foo
+            }
+            console.log(baz)
+
+            function f(x, y) {
+                return {
+                    x,
+                    y
+                }
+            }
+            console.log(f(1, 2))
+        }
+
+        {
+            // 除了属性简写,方法也是可以简写的
+            var o = {
+                    method() {
+                        return 'Hello!'
+                    }
+                }
+                // 等价于
+            var o = {
+                method: function() {
+                    return 'Hello'
+                }
+            }
+        }
+
+        {
+            // CommonJS模块输出变量就非常适合使用简洁写法
+            var ms = {}
+
+            function getItem(key) {
+                return key in ms ? ms[key] : null
+            }
+
+            function setItem(key, value) {
+                ms[key] = value
+            }
+
+            function clear() {
+                ms = {}
+            }
+
+            // module.exports = {
+            //         getItem,
+            //         setItem,
+            //         clear
+            //     }
+            //     // 其实就等同于
+            // module.exports = {
+            //     getItem: getItem,
+            //     setItem: setItem,
+            //     clear: clear
+            // }
+        }
+
+        // {
+        //     // 属性的赋值器和取值器就采用了这种写法
+        //     var cart = {
+        //         _wheels: 4,
+
+        //         get Wheels() {
+        //             return this._wheels
+        //         }
+
+        //         set Wheels(value) {
+        //             if (value < this._wheels) {
+        //                 throw new Error('Number is so small')
+        //             }
+        //             this._wheels = value
+        //         }
+        //     }
+        // }
+
+        {
+            // 但是简洁写法中属性名总是字符串,这样会导致一些看上去比较奇怪的结果
+            var obj = {
+                    class() {}
+                }
+                // 等同于
+            var obj = {
+                'class': function() {}
+            }
+
+            // ES6同时开放了使用表达式放在方括号内,作为字面量的方式定义对象
+            // var obj = {
+            //     [propkey]: true,
+            //     ['a' + 'bc']: 123
+            // }
+
+
+        }
+
+        {
+            // var a = {
+            //     'first word': 'hello',
+            //     [lastword]: 'word'
+            // }
+            // console.log(a['first word'])
+            // console.log(a[lastword])
+            // 经测试,现在的chrome是不支持此方式的
+        }
+
+        {
+            // 函数的name属性返回函数名,对象方法也是函数,因此也存在name属性
+            console.log((new Function()).name) //anonymous
+
+            // 正常的情况下,函数的函数体的name值返回函数的名称
+            // 当我们使用get或者set方法对函数进行描述的时候,会返回对应的前缀加上函数名
+            // 当我们使用bind方法创造的函数,函数会有一个bound来修饰
+            // 当使用构造函数来创造的函数中,name值固定为anonymous
+            // 如果对象的方法是一个symbol值, 那么那么属性返回的是这个symbol值的描述
+            const key1 = Symbol('description')
+            const key2 = Symbol()
+            let obj = {
+                [key1]() {},
+                [key2]() {}
+            }
+            console.log(obj[key1].name) // '[description]'
+            console.log(obj[key2].name) // ''
+        }
+
+        {
+            // Object.is() 是ES6新定义的方法,用于确定传入的两个参数是否严格相等
+            // 但是, 与全等 === 符号唯一不同的地方是 +0不等于-0  NaN等于自身NaN
+            console.log(-0 === +0)
+            console.log(NaN === NaN)
+
+            console.log(Object.is(-0, +0))
+            console.log(Object.is(NaN, NaN))
+
+            // 在ES5中可以部署对应的方法
+            Object.defineProperty(Object, 'is', {
+                value: function(x, y) {
+                    if (x === y) {
+                        return x !== 0 || 1 / x === 1 / y
+                    }
+                    return x !== x && y !== y
+                },
+                configurable: true,
+                enumerable: false,
+                writable: true
+            })
+        }
+
+        {
+            // Object.assign() 方法将源对象的所有可枚举属性复制到目标对象
+            let target = {
+                a: 1
+            }
+            let source1 = {
+                b: 2
+            }
+            let source2 = {
+                c: 3
+            }
+            Object.assign(target, source1, source2)
+
+            console.log(target)
+        }
+
+        {
+            // 同样的,Object.assign 方法可以用来复制数组,但是因为会将数组视为一个对象,所以后面数组的对应数组下标的值会覆盖之前的数组的下标的值
+            var a = [1, 2, 3]
+            var b = [4, 5]
+            Object.assign(a, b)
+            console.log(a) // [4,5,3]
+        }
+
+        {
+            // 通过使用Object.assign() 方法,可以在对象的原型上添加对应的方法
+            // 下面是对应方法的伪代码
+            // Object.assign(someClass.prototype, {
+            //     f1() {},
+            //     f2() {}
+            // })
+        }
+
+        {
+            // 使用Object.assign可以将原始对象赋值到一个空对象, 就得到了原始对象的克隆
+            function clone(origin) {
+                return Object.assign({}, origin) // 通过将对象赋值到一个空对象的方式,获得了这个origin对象的克隆
+            }
+            // 不过,采用这种方法克隆,只能克隆原始对象自身的值,而不能克隆它继承的值
+
+            // 在此之前,我们先了解一下getPrototypeOf这个API 
+            console.log(Object.getPrototypeOf(' foo')) // string 这个API在ES5是不存在的,所以在ES5环境下,会报错
+                // 那么,如果想要获得保持原型链的对象,那么就需要使用这样的方法
+            function clone(origin) {
+                let originProto = Object.getPrototypeOf(origin)
+                return Object.assign(Object.create(originProto), origin)
+                    // 其方式就是这样的,使用getPropertyOf方法获取了origin的原型,然后将函数体合并到原型中,并返回
+            }
+        }
+
+        {
+
+        }
+    </script>
+</body>
+
+</html>
