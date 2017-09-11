@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+			JS实现继承的三句话
+				1.子类的原型等于父类原型创建出来的实例
+				Student.prototype = Object.create(Person.prototype)
+
+				2.让子类拥有父类的所有属性,子类的构造函数调用父类的构造函数
+				Person.apply(this, arguments)
+	
+				3.找回被替换掉的构造函数
+				Student.prototype.constructor = Student
+		*/
+
+
+		// 需求: 定义一个Person类,并定义类上面相应的属性和方法
+		// 再定义一个Student类,同样的,定义一些上面的属性和方法
+		// 使student类继承person类上面的相应属性和方法
+
+		function Person(name, age) {
+			this.name = name
+			this.age = age
+		}
+		Person.prototype.run = function(){
+			// console.log(this());
+			console.log(this.name+' is running')
+		}
+
+		function Student(name , age, klass) {
+			this.klass = klass
+			// 在这里将参数放到Person中去执行,从而实现Student类中可以调用Person类的方法, 要调用Person上面的方法,这个是重要的一步
+			Person.apply(this, arguments)
+		}
+
+		// 将学生类的原型指向使用Object.create()方法创建出来的Person.prototype对象,目的在于形成这样的一种链式调用
+
+		// 当我们不这样做的时候,会发现其实student类并不是继承于person类的,而是默认的继承于Object
+		// 那么,如果是继承于object的话,就没有办法调用对应的Person上面的方法了
+		// person上面新增的方法,都无法调用
+
+		Student.prototype = Object.create(Person.prototype)
+
+		Student.prototype.constructor = Student
+
+		console.log(Student.prototype)
+		var s1 = new Student('小强', 12, "三班")
+		s1.getKlass()
+		console.dir(s1)
+
+		// 如果我们像要在Person上面增加方法,那么能否在实例化的对象上面实现呢?
+
+		s1.run()
+		s1.getAge()
+
+
+		// 那么我们在student上面继续扩展相应的方法
+		Student.prototype.study = function() {
+			console.log(this.name+' is studying');
+		}
+		s1.study()
+
+		// Student.prototype = {
+		// 	reseting: function(){
+		// 		console.log('reset all prototype function')
+		// 	}
+		// }
+		// Person.prototype = {
+		// 	res: function(){
+		// 		console.log('res all prototype function')
+		// 	}
+		// }
+
+
+
+		
+		var s2 = new Student('小红', 13, "四班")
+		console.dir(s1)
+		console.dir(s2)
+
+		s2.res()
+		s1.res()
+	</script>
+</body>
+</html>

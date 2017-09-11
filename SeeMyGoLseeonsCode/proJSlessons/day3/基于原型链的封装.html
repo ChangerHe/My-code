@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 需求,定义一个人类.并设置特权方法,来针对不同性别返回是否返回真实年龄
+		(function(){
+			function _Person(name, age, gender) {
+				var _name = name
+				var _age = age
+				var _gender = gender
+
+				this.getName = function(){
+					console.log(_name);
+				}
+
+				this.setName = function(nameId) {
+					_name = nameId
+				}
+
+				this.getAge = function(){
+					if(_gender == "man"|| _gender == '男'){
+						console.log("哥今年"+ _age + "岁了")
+					} else{
+						console.log("保密")
+					}
+				}
+			}
+			window.Person = _Person
+		})()
+		var p1 = new Person('刘备', 18, "男")
+		p1.getName()
+		p1.getAge()
+
+		// 我们可以再向构造函数添加一些静态方法,需要的时候可以随意调用
+		Person.year = '公元1000年'
+		Person.situation = "天下三分"
+
+		console.log(p1.year) // undefined
+		console.log(Person.year)
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // proxy 用于修改某些操作的默认行为,等同于在语言层面做出修改,所以属于一种元编程, 即对编程语言进行编程
+        // Proxy 可以理解为在目标对象前架设一个拦截层,外界对该对象的访问都必须先通过这一层拦截,因此提供了一钟机制来对外界的访问进行过滤和改写
+        // 所以,Proxy 也可以理解为一种代理器
+        {
+            let obj = new Proxy({}, {
+                get: function(target, key, receiver) {
+                    console.log('getting ${key}')
+                    return Reflect.get(target, key, receiver)
+                },
+                set: function(target, key, value, receiver) {
+                    console.log('setting ${key}')
+                    return Reflect.set(target, key, value, receiver)
+                }
+            })
+
+            obj.count = 1
+            obj.count++
+
+        }
+
+        {
+            // // 一个小技巧是,可以将Proxy对象设置到object.proxy属性,从而可以在object对象上调用
+            // var object = {
+            //     proxy: new Proxy(target, handler)
+            // }
+
+            // // 那么我们就可以直接定义一个proxy对象,并在需要的时候使用Object.create() 进行对象的创建即可
+            // var proxy = new Proxy({}, {
+            //     get: function(target, property) {
+            //         return 35
+            //     }
+            // })
+
+            // let obj = Object.create(proxy)
+
+            // console.log(obj.time)
+        }
+
+        {
+
+        }
+    </script>
+</body>
+
+</html>

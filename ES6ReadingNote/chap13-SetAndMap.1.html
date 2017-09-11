@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // javascript的对象本质上是键值对的集合,但是只能用字符串作为键
+        // {
+        //     let data = {}
+        //     let element = document.getElementById('myDiv')
+
+        //     data[element] = metadata
+        //     console.log(data['[Object HTMLElement]'])
+        // }
+
+        {
+            // ES6提供了Map数据结构,它类似于对象,也是键值对的集合,但是键的范围不限于字符串,各种类型的值都可以当做键
+
+            // 因此,map是比object更加合适的键值对结构
+            let m = new Map()
+            let o = {
+                p: 'Hello world'
+            }
+            m.set(o, 'content')
+            console.log(m.get(o))
+
+            console.log(m.has(o))
+            console.log(m.delete(o))
+            console.log(m.has(o))
+        }
+
+        {
+            // 另外有一点需要注意的是,map的键是和内存地址绑定的,只要内存地址不一样,那么就会被视为两个键, 这样就解决了同名属性的碰撞问题
+            let map = new Map()
+
+            let k1 = ['a']
+            let k2 = ['a']
+
+            map.set(k1, 111)
+            map.set(k2, 222)
+
+            console.log(map.get(k1))
+            console.log(map.get(k2))
+
+        }
+
+        {
+            // 那么同样的,当我们使用简单数据类型时,只要两值完全相等,map就将其视为一个键
+            // 包括+0 和 -0 , 以及NaN
+            let map = new Map()
+
+            map.set(NaN, 123)
+            console.log(map.get(NaN))
+
+            map.set(-0, 321)
+            console.log(map.get(+0))
+        }
+
+        {
+            //map结构转为数组结构比较方便的方法就是使用三点运算符,或者说是扩展运算符,或者说是rest参数
+
+            let map = new Map([
+                [1, 'one'],
+                [2, 'two'],
+                [3, 'three']
+            ])
+
+            console.log([...map.keys()])
+            console.log([...map.values()])
+            console.log([...map.entries()])
+            console.log([...map])
+        }
+
+        {
+            // Weakmap的结构和map结构基本类似,但是weakmap只接受对象作为键名,不接受其他类型的值作为键名
+            // weakmap的应用典型场景就是在DOM节点作为键名的时候
+            // let myElement = document.getElementById('logo')
+            // let myWeakmap = new WeakMap()
+
+            // myWeakmap.set(myElement, {
+            //     timesClicked: 0
+            // })
+
+            // myElement.addEventListener('click', () => {
+            //     let logoData = myWeakmap.get(myElement)
+            //     logoData.timesClicked++
+            //         myWeakmap.set(myElement, logoData)
+            // }, false)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+			javascript中的this指向问题
+				1.全局的this,直接指向window
+				2.函数中的this, 指向调用的对象
+				3.对象中的this, 就指向这个对象本身
+				4.构造函数上的this, 指向实例化的新对象
+		*/
+
+		/*
+			函数可以交给另外一个对象去调用
+				函数.call(对象, 参数1, 参数2)
+				函数.apply(对象, [参数1, 参数2])
+				回调函数.bind(对象, 参数1, 参数2)
+
+		*/
+		// bind用来被动改变this的指向
+		var p3 = {}
+		p3.name = ' p1'
+		p3.phone = function() {
+			console.log(this);
+			setTimeout(function(){
+				console.log(this);
+				console.log("I'm"+this.name)
+			}.bind(p3), 1000)
+		}
+
+		p3.phone()
+	</script>
+</body>
+</html>
