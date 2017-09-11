@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在ES6之前,当我们命名变量的时候,总是会担心,如果我把之前的变量改写了该怎么办呢
+        // 那么,现在ES6推出了继 null undefined string number boolean 这五中数据类型以外的第六种简单数据类型symbol
+        // 推出的主要目的在于,解决属性名冲突的问题
+        {
+            let s = Symbol()
+            console.log(typeof s)
+
+            // symbol一般会传入一个字符串作为不同symbol实例的描述,方便进行区分
+            let a = Symbol('a')
+            let b = Symbol('b')
+            console.log(a, b)
+            console.log(a.toString(), b.toString())
+
+            // symbol无法与其他类型值进行运算,否则会报错
+            // symbol可以转为布尔值,但是无法转为数值
+            // symbol作为变量时,不能使用点运算符
+        }
+
+        {
+            // 因为symbol是一个特殊的基本类型,因此使用点运算符是不行的,这样会被理解为是在使用字符串作为变量名称
+            // 那么这个时候,可以使用方括号加上symbol名称的方式,来调取这个symbol值
+            var mySymbol = Symbol('aaa')
+            var a = {}
+            a.mySymbol = 'hello'
+            console.log(a[mySymbol])
+            console.log(a.mySymbol)
+            console.log(a['mySymbol'])
+
+            let c = Symbol
+            let d = c
+            console.log(d, d === c)
+        }
+
+        {
+            // symbol作为属性名,该属性不会出现在for...in for...of 循环中,也不会被Object.keys()/Object.getOwnPropertyNames()返回
+            // 但它也不是私有属性,有一个Object.getOwnPropertSymbols方法可以获取指定对象的所有symbol属性名
+            var obj = {}
+            var a = Symbol('a')
+            var b = Symbol.for('b')
+
+            obj[a] = 'hello'
+            obj[b] = 'world'
+
+            var objectSymbols = Object.getOwnPropertySymbols(obj)
+
+            console.log(objectSymbols)
+
+            var symbolNames = Object.getOwnPropertyNames(obj)
+
+            console.log(symbolNames)
+                // 由以上可知,使用getOwnPropertySymbols() 方法可以得到对应的symbol值,而getOwnPropertyNames() 是得不到对应的symbol值的
+        }
+
+        {
+            // ES6中定义了一个新的API Reflect.ownKeys(obj) 可以返回所有类型的键名称,包括常规键名和symbol键名
+            let obj = {
+                [Symbol('my_key')]: 1,
+                enum: 2,
+                nonEnum: 3
+            }
+
+            console.log(Reflect.ownKeys(obj))
+        }
+
+        {
+            let a = ['a', 'b']
+            let b = ['c', 'd']
+            let c = ['d']
+            console.log(a.concat(b, c))
+
+            b[Symbol.isConcatSpreadable] = true
+
+            console.log(a, b, c)
+        }
+    </script>
+</body>
+
+</html>
