@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery.min.js"></script>
+	<script src="jquery.setColor.js"></script>
+</head>
+<body>
+<div id="div2">
+	<div id="div1">
+		<h1 >今天发生一件大事</h1>
+	</div>
+</div>
+
+	<script>
+	// 自定义事件
+	// 主要通过trigger的方法,将事件绑定到对应的标签上
+	$(function(){
+		$('html').contextmenu(function(){
+			return false
+		})
+		$('html').mousedown(function(e){
+			
+			if(e.which === 3) {
+				$('h1').trigger('rclick')
+			}
+		})
+	})
+
+	$('h1').on('rclick',function(){
+		console.log(111);
+	})
+
+	// // 事件的命名空间
+	// // 当我们对绑定的时间添加相应的点加后缀时,就可以很方便地解除自己想要解除的事件而不需要影响其他事件
+	$('h1').on('click.c1',function(){
+		$(this).css('color', '#f00')
+	})
+	$('h1').on('click.c2',function(){
+		$(this).css('backgroundColor', '#0f0')
+	})
+
+	$('h1').off('click.c2')
+
+	// 使用原生方法的实现	
+	// var h1 = document.querySelector('h1')
+	// h1.onclick = function(e) {
+	// 	console.log(e)
+	// }
+
+	// 使用noConflict来实现避免变量命名冲突的问题
+	// var a = jQuery.noConflict(1)
+	// console.log(a('h1').html());
+
+
+	$('h1').setColor('#009')
+
+
+	</script>
+</body>
+</html>

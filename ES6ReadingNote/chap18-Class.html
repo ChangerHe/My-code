@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 
+        {
+            class B {
+                constructor() {}
+                toString() {}
+                toValue() {}
+            }
+            // 其实上面的代码就等价于我们使用原型模式定义的构造函数原型上面的方法
+            /* 
+                B.prototype = {
+                    constructor() {}
+                    toString() {}
+                    toValue() {}
+                }
+             */
+
+            let b = new B()
+            console.log(b.constructor === B.prototype.constructor)
+        }
+
+        {
+            // constructor方法是类的默认方法, 通过new命令生成对象实例时自动调用该方法. 一个类必须有constructor方法
+            // 如果没有显式定义, 那么会添加一个默认的空的constructor方法
+            class Foo {
+                constructor() {
+                    return Object.create(null)
+                }
+            }
+
+            // 当我们将constructor方法的返回值设置为原型指向null的新的方法时,那么这个时候new 出来的对象的原型就不再属于之前的构造函数了
+            console.log(new Foo() instanceof Foo)
+        }
+
+        {
+            // 和ES5一样,实例的属性除非定义在其本身上,否则都是定义在原型上
+            class Point {
+                constructor(x, y) {
+                    this.x = x
+                    this.y = y
+                }
+
+                toString() {
+                    return '(' + this.x + " ," + this.y + ')'
+                }
+            }
+
+            let p1 = new Point(1, 3)
+            console.log(p1.toString())
+
+            console.log(p1.hasOwnProperty('x'))
+            console.log(p1.hasOwnProperty('toString'))
+            console.log(p1.__proto__.hasOwnProperty('toString'))
+        }
+
+        {
+            // 与函数一样,class也可以使用表达式的方式进行定义
+            const MyClass = class Me {
+                getClassName() {
+                    return Me.name
+                }
+            }
+
+            let inst = new MyClass()
+            console.log(inst.getClassName())
+                // 以上代码充分证明了,当我们在类名外执行一个变量进行赋值的时候,其实class后面的变量已经编程了class内部的私有变量,只有该class内部可以访问了,这个和使用函数的情况是一样的
+            let a = function b() {
+                console.log(b)
+                console.log(a) // 返回的都是b这个函数
+            }
+            a()
+
+            // 另外有一点要注意的是,class不存在变量的提升
+        }
+
+        {
+            class Point {
+                constructor(x, y) {
+                    this.x = x
+                    this.y = y
+                }
+
+                toString() {
+                    return '(' + this.x + " ," + this.y + ')'
+                }
+            }
+
+            // class之间使用extends实现继承
+            class ColorPoint extends Point {
+                constructor(x, y, color) {
+                    super(x, y)
+                    this.color = color
+                }
+
+                toString() {
+                    return this.color + ' ' + super.toString()
+                }
+            }
+
+            let cp = new ColorPoint(25, 8, 'green')
+            console.log(cp instanceof ColorPoint)
+            console.log(cp instanceof Point)
+        }
+
+        {
+            class A {
+                constructor(name, age) {
+                    this.name = name
+                    this.age = age
+                }
+
+                sayName() {
+                    return this.name
+                }
+            }
+
+            class B extends A {
+                constructor(name, age) {
+                    super(name, age)
+
+                }
+
+                study() {
+                    return this.name + " is study"
+                }
+            }
+
+            console.log(B.__proto__ === A)
+            console.log(B.prototype.__proto__ === A.prototype)
+            console.log(B.prototype === A)
+        }
+
+        // {
+        //     function testable(target) {
+        //         target.isTestable = true
+        //     }
+
+        //     @testable
+        //     class MyTestableClass {}
+
+        //     console.log(MyTestableClass.isTestable)
+        // }
+    </script>
+</body>
+
+</html>

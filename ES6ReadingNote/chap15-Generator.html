@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Generator函数是ES6提供的一种异步编程解决方案,语法行为与传统函数完全不同
+
+        {
+            function* helloWorldGenerator() {
+                yield 'hello'
+                yield 'world'
+                return 'ending'
+            }
+
+            let hw = helloWorldGenerator()
+
+            console.log(hw.next())
+            console.log(hw.next())
+            console.log(hw.next())
+            console.log(hw.next())
+            console.log(hw.next())
+        }
+
+        // {
+        //     let arr = [1, [
+        //             [2, 3], 4
+        //         ],
+        //         [5, 6]
+        //     ]
+
+        //     let flat = function*(a) {
+        //         a.forEach(function(item) {
+        //             if (typeof item !== 'number') {
+        //                 yield* flat(item)
+        //             } else {
+        //                 yield item;
+        //             }
+        //         })
+        //     }
+
+        //     for (let f of flat(arr)) {
+        //         console.log(f)
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
