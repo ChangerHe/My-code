@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery.min.js"></script>
+    <script src="jquery.slideTable.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        ul li {
+            width: 100px;
+            height: 50px;
+            float: left;
+            list-style: none;
+            background: #ccc;
+        }
+        
+        .bbb div {
+            width: 300px;
+            height: 300px;
+            background: #900;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="aaa">
+        <li>滑动1</li>
+        <li>滑动2</li>
+        <li>滑动3</li>
+    </ul>
+    <div class="bbb">
+        <div>盒子1</div>
+        <div>盒子2</div>
+        <div>盒子3</div>
+    </div>
+
+    <script>
+        // var index;
+        // $('.J_slideTable').find('li').hover(function() {
+        //     // 初始化整个ul中的li颜色
+        //     $('.J_slideTable').find('li').css('background', '#ccc')
+        //         // 设置移入的颜色为对应的颜色
+        //     $(this).css('background', '#900')
+        //         // 将index值存入
+        //     console.log($(this).index())
+        //     index = $(this).index()
+        //         // 先将所有的div隐藏
+        //     $('.J_slideTableBox').find('div').hide()
+        //         // 对应index值的div显示
+        //     $('.J_slideTableBox').find('div').eq(index).show()
+        // }, function() {
+        //     // $(this).css('background', '#ccc')
+        // })
+
+        // // 设置相应的插件
+
+
+        $.fn.extend.slideTable({
+            headClass: 'aaa',
+            headColor: "#444",
+            headHoverColor: '#009',
+            btnClass: 'bbb',
+            btnColor: '#f09'
+        })
+    </script>
+</body>
+
+</html>

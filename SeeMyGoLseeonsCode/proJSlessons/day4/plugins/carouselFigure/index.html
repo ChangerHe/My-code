@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery.min.js"></script>
+    <script src="jquery.carouselFigure.js"></script>
+    <style>
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        img {
+            vertical-align: middle;
+        }
+        
+        .banner {
+            position: relative;
+            width: 800px;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .bannerImg img {
+            width: 800px;
+            height: 300px;
+            display: block;
+            float: left;
+        }
+        
+        .bannerImg {
+            position: absolute;
+            left: -800px;
+            width: 4000px;
+        }
+        
+        .bannerDot {
+            position: absolute;
+            bottom: 0px;
+        }
+        
+        .bannerDot span {
+            display: block;
+            float: left;
+            width: 20px;
+            height: 20px;
+            margin: 0 4px;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+            background: #ff0;
+        }
+        
+        .bannerBtn {}
+        
+        .bannerBtn div {
+            position: absolute;
+            width: 30px;
+            height: 80px;
+            top: 100px;
+            background-color: rgba(0, 0, 0, .3);
+        }
+        
+        .banner:hover .bannerBtn div {
+            background-color: rgba(0, 0, 0, .6);
+        }
+        
+        .bannerBtn div:first-child {
+            left: 0;
+            background-image: url(images/arrowBG.png);
+            background-repeat: no-repeat;
+            background-position: -6px 20px;
+        }
+        
+        .bannerBtn div:last-child {
+            right: 0;
+            background-image: url(images/arrowBG.png);
+            background-repeat: no-repeat;
+            background-position: -50px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <ul class="bannerImg">
+            <img src="images/p1.jpg" alt="">
+            <img src="images/p2.jpg" alt="">
+            <img src="images/p3.jpg" alt="">
+        </ul>
+        <div class="bannerDot">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+        </div>
+        <div class="bannerBtn">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            // 复制第一个和最后一个元素,并插入到文档流中
+            var firstImg = $('.bannerImg img').first().clone()
+            var lastImg = $('.bannerImg img').last().clone()
+            $('.bannerImg').append(firstImg)
+            $('.bannerImg').prepend(lastImg)
+
+            // 定义一个index参数,每次图片位置改变的时候它相应的更改
+            var index = 1;
+
+            // 定义函数,由index来操控对应的状态
+            function change(index) {
+
+                // 向左移动的值等于下标乘图片的宽度
+                $('.bannerImg').css('left', index * (-800))
+
+                // 初始化所有的span的颜色
+                $('.bannerDot span').css('backgroundColor', '#ff0')
+
+                // 因为有一次是移动到了第四张,所以在第四张图片的时候,下标为1的颜色应该改变
+                if (index == 4) {
+                    $('.bannerDot span').eq(0).css('backgroundColor', '#900')
+                }
+
+                // 再设置对应的激活状态下的spanyanse
+                $('.bannerDot span').eq(index - 1).css('backgroundColor', '#900')
+            }
+            change(index)
+
+            function countAmi() {
+
+
+                // 对应的下标改变的动画
+                $('.bannerImg').animate({
+                    'left': index * (-800)
+                }, 1000, function() {
+                    // 在回调中进行判断,当index为4,也就是到底的时候,就跳转到第一个页面
+                    if (index == 4) {
+                        index = 1
+                        $('.bannerImg').css({
+                            'left': index * (-800)
+                        })
+                        change(index)
+                    } else if (index == 0) {
+                        index = 3
+                        $('.bannerImg').css({
+                            'left': index * (-800)
+                        })
+                        change(index)
+                    }
+                })
+            }
+
+            // 设置定时器
+            var timer = setInterval(function() {
+
+                // 每运行一次,下标都加一
+                index++
+
+                // 在不动的时候,使其自执行
+                countAmi()
+
+                // 运行之后,同步改变样式
+                change(index)
+            }, 2000)
+
+            // 鼠标移入的时候,定时器应该关闭
+            $('.banner').hover(function() {
+                clearInterval(timer)
+            }, function() {
+                timer = setInterval(function() {
+
+                    // 每运行一次,下标都加一
+                    index++
+
+                    // 在不动的时候,使其自执行
+                    countAmi()
+
+                    // 运行之后,同步改变样式
+                    change(index)
+                }, 2000)
+            })
+
+            // 设置左右两侧按钮的点击效果
+            $('.bannerBtn').find('div').first().click(function() {
+                if (!$('.bannerImg').is(":animated")) {
+
+                    // 每运行一次,下标都加一
+                    index++
+                    countAmi()
+                    change(index)
+                }
+            })
+            $('.bannerBtn').find('div').last().click(function() {
+                if (!$('.bannerImg').is(":animated")) {
+                    index--
+                    countAmi()
+                    change(index)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

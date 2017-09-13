@@ -4,34 +4,31 @@ var fs = require('fs')
 
 var filename = '3.txt'
 
-// 使用同步模式完成文档中没哟改文件时创建,有改文件时增加内容的功能
-if(!fs.existsSync(filename)) {
-    fs.writeFileSync(filename, 'changer')
-    console.log('新文件创建成功')
-} else {
-    fs.appendFileSync(filename, 'he')
-    console.log('新内容增加成功')
-}
+fs.readFile(filename, function(err, data) {
+    if( !err) {
+        console.log(data.toString())
+    } else {
+        console.log('读取失败')
+    }
+})
 
+fs.unlink('2.txt',function(err){
+    if(!err) {
+        console.log('文件删除成功')
+    } else {
+        console.log('文件删除失败')
+    }
+})
 
+fs.rename('3.txt', '3.new.txt',function(err) {
+    if(!err) {
+        console.log('文件重命名成功')
+    }
+})
 
-// fs.exists(filename, function(err1){
-//     // console.log(arguments)
-//     if(!err1) {
-//         fs.writeFile(filename, 'hello', function(err2){
-//             if(err2) {
-//                 console.log('出错了')
-//             } else {
-//                 console.log('创建新文件成功')
-//             }
-//         })
-//     } else {
-//         fs.appendFile(filename, ' world', function(err3){
-//             if(err3) {
-//                 console.log('出错了')
-//             } else {
-//                 console.log('内容追加成功')
-//             }
-//         })
-//     }
-// })
+fs.stat('3.new.txt',function() {
+    console.log(arguments)
+})
+fs.watch('3.new.txt',function() {
+    console.log(arguments)
+})

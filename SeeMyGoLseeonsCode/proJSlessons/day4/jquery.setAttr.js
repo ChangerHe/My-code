@@ -1,13 +1,19 @@
 ;(function($){
 	var _this
-	var _setAttr = function(height, width, bg) {
+	var def = {
+		'width':'200px', 
+		'height':'400px', 
+		'backgroundColor':'#f00'
+	}
+	var _setAttr = function(conf) {
 		_this = this
 
-		$(this).css({
-			'height': height,
-			'width': width,
-			'backgroundColor':bg
+		var config = $.extend({}, def, conf)
 
+		$(this).css({
+			'height': config.height,
+			'width': config.width,
+			'backgroundColor':config.backgroundColor
 		})
 
 
