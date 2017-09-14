@@ -148,14 +148,13 @@
                         $('.bannerImg').css({
                             'left': index * (-800)
                         })
-                        change(index)
                     } else if (index == 0) {
                         index = 3
                         $('.bannerImg').css({
                             'left': index * (-800)
                         })
-                        change(index)
                     }
+                    change(index)
                 })
             }
 
@@ -167,9 +166,6 @@
 
                 // 在不动的时候,使其自执行
                 countAmi()
-
-                // 运行之后,同步改变样式
-                change(index)
             }, 2000)
 
             // 鼠标移入的时候,定时器应该关闭
@@ -183,9 +179,6 @@
 
                     // 在不动的时候,使其自执行
                     countAmi()
-
-                    // 运行之后,同步改变样式
-                    change(index)
                 }, 2000)
             })
 
@@ -196,14 +189,12 @@
                     // 每运行一次,下标都加一
                     index++
                     countAmi()
-                    change(index)
                 }
             })
             $('.bannerBtn').find('div').last().click(function() {
                 if (!$('.bannerImg').is(":animated")) {
                     index--
                     countAmi()
-                    change(index)
                 }
             })
         })
