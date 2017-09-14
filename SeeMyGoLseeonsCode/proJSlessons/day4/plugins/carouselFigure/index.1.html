@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery.min.js"></script>
+    <script src="jquery.carouselFigure.js"></script>
+</head>
+<style>
+    * {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    img {
+        vertical-align: middle;
+    }
+</style>
+
+<body>
+    <div class="banner">
+        <ul class="bannerImg">
+            <img src="images/p1.jpg" alt="">
+            <img src="images/p2.jpg" alt="">
+            <img src="images/p3.jpg" alt="">
+        </ul>
+        <div class="bannerDot">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+        </div>
+        <div class="bannerBtn">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <script>
+        $.fn.extend.carouselFigure()
+    </script>
+</body>
+
+</html>
