@@ -1,0 +1,525 @@
+/* 段落的标题的公共类 */
+
+.headTitle {
+    height: 40px;
+    border-bottom: 6px solid #ff6600;
+    font-size: 18px;
+}
+
+.headTitle span {
+    font-size: 24px;
+    background: #ff6600;
+    color: #fff;
+    padding: 9px;
+    cursor: pointer;
+}
+
+
+/* header area */
+
+.header .topBar .logo .title1,
+.header .topBar .logo .title2 {
+    font-size: 20px;
+}
+
+.header .navBar .allItem {
+    background: #93d470;
+}
+
+.header .navBar .allItem .downArrow {
+    background-position-y: -140px;
+}
+
+.bannerAndItem {
+    height: 0;
+}
+
+#item {
+    display: none;
+    position: absolute;
+}
+
+
+/* bookIntro area */
+
+.bookIntro {
+    background: #f2f2f2;
+    height: 600px;
+}
+
+.bookIntro a {
+    color: #464646;
+    font-size: 16px;
+}
+
+.bookIntro a:hover {
+    color: #ff6600;
+}
+
+.bookIntro .breadNav {
+    color: #464646;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.bookIntro .breadNav .bigFont a {
+    font-size: 24px;
+}
+
+.bookIntro .bookIntroContent {
+    height: 510px;
+    background: #fff;
+}
+
+.bookIntro .bookIntroContent img {
+    -webkit-transition: transform 1000s;
+    transition: transform 1000s;
+    -ms-transition: transform 1000s;
+    -o-transition: transform 1000s;
+}
+
+.bookIntro .bookIntroContent .sidePic {
+    width: 350px;
+    padding: 10px;
+}
+
+.bookIntroContent .sidePic .bigPic {
+    border: 2px solid #fff;
+}
+
+.bookIntroContent .sidePic .bigPic:hover {
+    border: 2px solid #ff6600;
+}
+
+.bookIntroContent .sidePic .btnPic {
+    margin-top: 20px;
+}
+
+.bookIntroContent .sidePic .btnPic .leftArrow {
+    display: block;
+    float: left;
+    width: 30px;
+    height: 40px;
+    background: url(../images/icon_shop.png) -350px -200px;
+    cursor: pointer;
+}
+
+.bookIntroContent .sidePic .btnPic .rightArrow {
+    display: block;
+    float: right;
+    width: 30px;
+    height: 40px;
+    background: url(../images/icon_shop.png) -300px -200px;
+    cursor: pointer;
+}
+
+.bookIntroContent .sidePic .btnPic .books {
+    display: block;
+    float: left;
+    width: 55px;
+    height: 55px;
+    margin: 0 10px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+.bookIntroContent .sidePic .btnPic .books:hover {
+    border: 2px solid #ff6600;
+}
+
+.bookIntroContent .sidePic .btnPic p {
+    padding-top: 80px;
+    text-align: center;
+    color: #666;
+}
+
+
+/* bookIntro rightIntro area */
+
+.bookIntro .rightIntro {
+    width: 786px;
+    margin-right: 30px;
+}
+
+.bookIntro .rightIntro .bookTitle {
+    font-size: 22px;
+    line-height: 60px;
+    padding-top: 30px;
+}
+
+.bookIntro .rightIntro .bookDescribe {
+    font-size: 18px;
+    line-height: 28px;
+    color: #fb2f2f;
+}
+
+.bookIntro .rightIntro .author {
+    font-size: 16px;
+    line-height: 28px;
+    color: #a6a6a6;
+}
+
+.bookIntro .rightIntro .priceMsg {
+    height: 120px;
+    background: #f5f5f5;
+    padding: 10px;
+    position: relative;
+}
+
+.bookIntro .rightIntro .priceMsg p {
+    color: #6c6c6c;
+    font-size: 16px;
+}
+
+.rightIntro .priceMsg .price {
+    letter-spacing: 4px;
+}
+
+.rightIntro .priceMsg .price .truePrice {
+    font-size: 24px;
+    color: red;
+}
+
+.rightIntro .priceMsg .price .priceBefore {
+    font-size: 16px;
+    text-decoration: line-through;
+}
+
+.rightIntro .priceMsg .discountMsg {
+    letter-spacing: 2px;
+    padding-top: 6px;
+    line-height: 30px;
+}
+
+.rightIntro .priceMsg .discountMsg .red {
+    font-size: 16px;
+    color: red;
+}
+
+.rightIntro .priceMsg .getTicket {
+    padding-top: 20px;
+}
+
+.rightIntro .priceMsg .getTicket .title {
+    float: left;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding-right: 20px;
+}
+
+.rightIntro .priceMsg .getTicket .ticket {
+    display: block;
+    float: left;
+    margin-right: 20px;
+    width: 90px;
+    height: 26px;
+    background: url(../images/icon_shop.png) -203px -411px;
+}
+
+.rightIntro .priceMsg .totalEvaluate {
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    width: 74px;
+    height: 40px;
+    font-size: 14px;
+    margin: 10px;
+    padding-left: 10px;
+    text-align: center;
+    border-left: 2px solid #6c6c6c;
+}
+
+.rightIntro .priceMsg .totalEvaluate .red {
+    color: red;
+    font-size: 14px;
+}
+
+.rightIntro .chooseType {
+    margin-top: 16px;
+    padding: 10px;
+    color: #5d5d5d;
+}
+
+.rightIntro .chooseType .chooseTypeLine {
+    height: 88px;
+}
+
+.rightIntro .chooseType .choose {
+    float: left;
+    line-height: 36px;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.rightIntro .chooseType .simpleVersion,
+.rightIntro .chooseType .delicateVersion {
+    display: block;
+    float: left;
+    width: 89px;
+    height: 32px;
+    border: 2px solid #a6a6a6;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.rightIntro .chooseType .simpleVersion:hover,
+.rightIntro .chooseType .delicateVersion:hover {
+    background: url(../images/icon_shop.png)-128px -473px;
+    border: 2px solid #ff6600;
+}
+
+.rightIntro .chooseType .active {
+    background: url(../images/icon_shop.png)-128px -473px;
+    border: 2px solid #ff6600;
+}
+
+
+/* 计数和加入购物车区域 */
+
+.rightIntro .chooseType .numCount {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #a6a6a6;
+    line-height: 40px;
+    text-align: center;
+}
+
+.chooseType .numCount .num {
+    position: absolute;
+    z-index: 999;
+    top: -1px;
+    left: -1px;
+    width: 25px;
+    height: 40px;
+    border: 1px solid #a6a6a6;
+    padding-left: 15px;
+    outline: none;
+}
+
+.chooseType .numCount .num:hover {
+    border: 1px solid #ff6600;
+}
+
+.chooseType .numCount .add,
+.chooseType .numCount .reduce {
+    position: absolute;
+    left: 41px;
+    width: 19px;
+    height: 19px;
+    line-height: 19px;
+    background: #e6e6e6;
+    border: 1px solid #a6a6a6;
+    color: #808080;
+    cursor: pointer;
+}
+
+.chooseType .numCount .add {
+    top: -1px;
+}
+
+.chooseType .numCount .add:hover,
+.chooseType .numCount .reduce:hover {
+    border: 1px solid #ff6600;
+}
+
+.chooseType .numCount .reduce {
+    bottom: -1px;
+}
+
+.chooseType .addToCart {
+    width: 190px;
+    height: 60px;
+    margin-left: 50px;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    background: #ff6600;
+}
+
+.chooseType .remind {
+    margin-top: 80px;
+    color: #808080;
+}
+
+.singleProduct .discountContent {
+    height: 300px;
+}
+
+
+/* seeOverAndOverAgain and produce and evaluate area  */
+
+.productMsg .leftSeeOverAgain {
+    width: 316px;
+    border: 1px solid #e6e6e6;
+}
+
+.productMsg .leftSeeOverAgain .titleMsg {
+    height: 40px;
+    background: #f4f4f4;
+    text-align: center;
+    line-height: 40px;
+}
+
+.productMsg .leftSeeOverAgain .discount {
+    padding: 20px 38px 30px;
+}
+
+.productMsg .produceAndEvaluate {
+    width: 860px;
+}
+
+.produceAndEvaluate .headTitle .notActive {
+    background: #fff;
+    color: #666;
+}
+
+.produceAndEvaluate .evaluateNum {
+    font-size: inherit;
+}
+
+
+/* productMsg右侧的评价区域 */
+
+.productMsg .evaluateBanner .grade {
+    height: 180px;
+}
+
+.evaluateBanner .grade .evaluateRank {
+    width: 180px;
+    height: 150px;
+    font-size: 50px;
+    color: red;
+    text-align: center;
+}
+
+.evaluateBanner .grade .evaluateRank .goodRank {
+    display: block;
+    margin-top: 30px;
+    font-size: 50px;
+}
+
+.evaluateBanner .grade .evaluateRank .text {
+    display: block;
+    padding-left: 30px;
+    font-size: 14px;
+    color: #666;
+}
+
+.grade .evaluateChart {
+    width: 670px;
+    margin-top: 40px;
+    font-size: 14px;
+    line-height: 32px;
+}
+
+.grade .evaluateChart .chartCon li {
+    position: relative;
+}
+
+.grade .evaluateChart .chartCon li .chart {
+    display: inline-block;
+    margin: 10px 0 0 10px;
+    width: 0px;
+    height: 16px;
+    background: red;
+}
+
+.grade .evaluateChart .chartCon .chart:after {
+    content: '';
+    position: relative;
+    z-index: -1;
+    display: block;
+    width: 150px;
+    height: 16px;
+    background: #ccc;
+}
+
+.grade .evaluateChart .evaluateMenber {
+    width: 400px;
+}
+
+.grade .evaluateChart .evaluateMenber li {
+    float: left;
+    width: 160px;
+    margin: 0 20px;
+}
+
+
+/* 评价区域 */
+
+.productMsg .evaluateBox .evaluateHead {
+    height: 30px;
+    line-height: 30px;
+    background: #f5f5f5;
+}
+
+.productMsg .evaluateBox .evaluateHead a {
+    margin: 0 15px;
+}
+
+.evaluateBox .evaluatedList .memberEvaluate {
+    width: 820px;
+    height: 145px;
+    border-bottom: 2px solid #f5f5f5;
+    padding: 20px;
+    line-height: 20px;
+    color: #acacac;
+}
+
+.evaluatedList .memberEvaluate .time {
+    width: 150px;
+}
+
+.evaluateBox .evaluatedList .star {
+    float: left;
+}
+
+.evaluatedList .memberEvaluate .evaContent {
+    width: 460px;
+}
+
+.evaluatedList .memberEvaluate .evaMemberMsg {
+    width: 130px;
+}
+
+.evaluatedList .memberEvaluate .evaMemberMsg .iconHead {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(../images/icon_shop.png) -320px -410px;
+}
+
+.evaluatedList .memberEvaluate .evaMemberMsg .gold {
+    color: #f4b212;
+}
+
+
+/* 页面的点击跳转下一页效果 */
+
+.evaluatedPage {
+    clear: both;
+    margin-top: 30px;
+}
+
+.evaluatedPage span {
+    display: inline-block;
+    padding: 0px 12px;
+    margin: 4px;
+    border: 1px solid #acacac;
+    line-height: 30px;
+    text-align: center;
+}
+
+.evaluatedPage .active {
+    border: 1px solid #fff;
+    color: #f8380c;
+}

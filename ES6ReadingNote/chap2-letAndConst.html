@@ -10,10 +10,10 @@
     <script>
         {
             let a = 10;
-            var b = 1;
+            // var b = 1;
         }
-        console.log(b)
-            // console.log(a)  会报错,说明let其实是有块级作用域的,当我们使用循环语句的时候,let来声明变量是一个不错的选择
+        // console.log(b)
+        // console.log(a)  会报错,说明let其实是有块级作用域的,当我们使用循环语句的时候,let来声明变量是一个不错的选择
 
         var a = [];
         for (let i = 0; i < 10; i++) {
@@ -47,7 +47,7 @@
         // bar()  //报错, y is not defined
 
         // 我们吧上面的代码稍微改一下就不会报错了
-        function bac(y = 2, x = y) {
+        /* function bac(y = 2, x = y) {
             return [x, y]
         }
         console.log(bac()) // [2,2]
@@ -71,21 +71,25 @@
                 }
             }
         }
-
+*/
         // 关于函数的相关问题,好像错了啊
-        // var f = function () {
-        //     console.log('outside')
-        // }
-        // function aaa(){
-        //     if(false) {
-        //         function f() {
-        //             console.log('inside')
-        //         }
-
+        // {
+        //     function f() {
+        //         console.log('outside')
         //     }
-        //     f()
+
+        //     function aaa() {
+        //         if (false) {
+        //             function f() {
+        //                 console.log('inside')
+        //             }
+
+        //         }
+        //         f();
+        //     }
+        //     aaa()
         // }
-        // aaa()
+
 
         let f;
         console.log(f); {
@@ -119,8 +123,16 @@
         foo1.prop = 1;
         console.log(foo1.prop)
 
-        let b = 1;
+        // let b = 1;
         //        console.log(window.b)  // 报错 b 已经被定义
+
+        var a = 1
+        let b = 2
+        const c = 3
+
+        console.log(window.a)
+        console.log(window.b)
+        console.log(window.c)
     </script>
 </body>
 

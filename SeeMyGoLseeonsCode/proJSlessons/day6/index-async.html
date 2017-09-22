@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/require.js"></script>
+	<!-- <script src="js/async.js"></script> -->
+	<script>
+		require(['js/async.js'], function(a){
+			console.log(a.show());
+			console.log($)
+		})
+
+		require(['js/jquery.min.js'], function(){
+			console.log($);
+		})
+
+		function a(a,b,c) {
+			console.log(arguments);
+		}
+		a(1,1)
+		console.log(a.length);
+	</script>
+</head>
+<body>
+	<h1>异步加载</h1>
+	<!-- 
+		
+		requirejs的使用
+			1. 引入require.js的文件
+			2. 定义模块 define
+				新建一个独立文件写入定义模块内容
+				define(模块名, 依赖包, 回调函数)
+
+			3. 使用模块require
+				在引入框架文件的页面上,写使用模块的代码
+				require(依赖包, 回调函数)
+
+			4. 语法
+				requirejs框架只提供三个函数
+					1).define 用于定义或创建模板
+					2).requirejs 用于调用和使用对应的依赖包
+					3).require 和requirejs完全一样
+			
+
+	注意:
+		在定义模块时有可能需要依赖,依赖的查找按调用文件的位置开始查找,所以将所有的JS放在一个独立的文件夹中,便于使用
+		在引入jQuery时,不需要使用$接受返回值,因为返回值是undefined
+
+		有时候当我们需要使用jQuery等框架引入在前,而后面的依赖引入需要返回值,那么这个时候使用define的回调函数的返回值咋参数需要与之前的引入依赖一一对应,那么这个时候就需要在jQuery的对应的位置也引入一个参数,但是并不去使用它.但记住,一定不要使用$符作为这个参数.
+
+		使用define和require,注意事项相同
+	 -->
+</body>
+</html>

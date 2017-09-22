@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <script src="js/jquery.min.js"></script>
+	<script src="js/jquery.setColor.js"></script> -->
+
+	<!-- 使用模块化思想重新进行修改 -->
+	<!-- 第一步,引入requirejs -->
+	<script src="js/require.js"></script>
+
+
+</head>
+<body>
+	<h1>又发生了一件大事,好嗨哦~</h1>
+
+	<script>
+	// 第三部,调用此模块 
+	// require(['js/jquery.setColor.js','js/jquery.setHeight.js'], function(a){
+	// 	console.log(a);
+	// 	$('h1').setColor('red').css('background', '#099').setHeight('86px')
+	// })
+
+	// 为了避免在一个脚本中引入多个依赖的问题,可以加入配置信息文件
+	// 同时,可以再加上信息文件
+	/*
+		require.config({
+			baseUrl: 公共的目录文件夹
+			paths: {
+				文件的别名: "文件的本名",
+				文件的别名: "文件的本名",
+				...
+			}
+		})
+	*/
+	require.config({
+		baseUrl: "./js/",
+		paths: {
+			sc: "jquery.setColor",
+			sh: "jquery.setHeight",
+			jq: "jquery.min"
+		}
+	})
+
+	require(['sc','sh'], function(a){
+		console.log(a);
+		$('h1').setColor('red').css('background', '#099').setHeight('86px')
+	})
+	// 使用配置的方式需要注意的是,当我们加载依赖的时候,在依赖的名字写上了 '.js' 这个时候require会认为我们是写的文件名,所以会直接在文件中找,所以会报错在当前文件夹中找不到该文件夹
+	// 所以我们一般将这些依赖不加 '.js'
+	</script>
+</body>
+</html>

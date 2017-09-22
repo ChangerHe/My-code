@@ -91,6 +91,7 @@
         // Array.of() 方法用于将一组值转换为数组
         {
             console.log(Array.of(1, 8, 3))
+            console.log(Array.of())
         }
 
         // 数组的copyWithin() 方法,
@@ -112,6 +113,9 @@
             let a = [1, 2, 3, -4, 3]
             console.log(a.find((x) => x < 0))
 
+            let b = [1, 5, 10, 15].find((value, index, arr) => value > 9)
+            console.log(b) // 10
+
         }
 
         // 数组实例的fill() 该方法使用给定值填充数组
@@ -122,15 +126,23 @@
 
         }
 
+        {
+            let a = [NaN].indexOf(NaN)
+            console.log(a)
+
+            let b = [NaN].findIndex(y => Object.is(NaN, y))
+            console.log(b)
+        }
+
         // ES6提供了三个新方法用于遍历数组,   keys() 对键名的遍历   values() 对键值的遍历   entries() 对键值对的遍历
         {
             // for (let index of['a', 'b'].keys()) {
             //     console.log(index)
             // }
-            // for (let index of['a', 'b'].values()) {
+            // for (let index of ['a', 'b'].values()) {
             //     console.log(index)
             // }
-            // for (let index of['a', 'b'].entries()) {
+            // for (let index of ['a', 'b'].entries()) {
             //     console.log(index)
             // }
 
@@ -163,6 +175,8 @@
             // 而ES6则是将空位明确专务undefined
             console.log([...['a', , 'b']]) //["a", undefined, "b"]
 
+            let g = [, 'a', 'b', , ].copyWithin(2, 0) //
+            console.log(g)
         }
 
         // 数组推导

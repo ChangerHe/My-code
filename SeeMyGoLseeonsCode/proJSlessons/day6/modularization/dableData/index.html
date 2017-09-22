@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="../jquery.min.js"></script>
+    <script src="jquery.tableData.js"></script> -->
+    <script src="../require.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        
+        table td,
+        table th {
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>张三</td>
+                <td>17</td>
+                <td>男</td>
+                <td>删除</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <script>
+        // $('tbody').tableData('testData.json')
+
+        // $('tbody').tableData({
+        //     url: 'testData.json',
+        //     click: function() {
+        //         $(this).css('background', '#900')
+        //     },
+        //     mouseover: function() {
+        //         $(this).css('background', '#ccc')
+        //     },
+        //     mouseout: function() {
+        //         $(this).css('background', '#fff')
+        //     }
+        // })
+
+        require.config({
+            baseUrl: "./",
+            paths: {
+                td: "jquery.tableData",
+                jq: "../jquery.min"
+            }
+        })
+
+        require(["td"], function(a) {
+            $('tbody').tableData({
+                url: 'testData.json',
+                click: function() {
+                    $(this).css('background', '#900')
+                },
+                mouseover: function() {
+                    $(this).css('background', '#ccc')
+                },
+                mouseout: function() {
+                    $(this).css('background', '#fff')
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

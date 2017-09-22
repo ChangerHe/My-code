@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery.min.js"></script>
+    <script src="jquery.formValidate.js"></script>
+</head>
+<body>
+    <form action="index.html">
+        <p>姓名: <input type="text" name="username" check='require'></p>
+        <p>密码: <input type="password" name="password" check='password'></p>
+        <p>确认密码: <input type="password" check='samePassword'></p>
+        <p>输入邮箱: <input type="text" name="email" check="email"></p>
+        <p><input type="submit" ></p>
+    </form>
+    <script>
+
+        $('form').formValidate()
+
+    </script>
+</body>
+</html>

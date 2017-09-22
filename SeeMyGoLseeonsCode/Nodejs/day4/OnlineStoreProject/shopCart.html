@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="网上购物,网上商城,手机,笔记本,电脑,MP3,CD,VCD,DV,相机,数码,配件,手表,存储卡,乐购">
+    <meta name="description" content="乐购商城legochina.cn-专业的综合网上购物商城,销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等数万个品牌优质商品.便捷、诚信的服务，为您提供愉悦的网上购物体验!">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>乐购商城-购物车|网上购物|网上商城|手机</title>
+    <link rel="stylesheet" href="styles/public.css">
+    <link rel="stylesheet" href="styles/shopCart.css">
+</head>
+
+<body>
+    <!-- head area -->
+    <div class="header allWidth">
+        <div class="width1200">
+            <div class="topBar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt=""></a>
+                    <span class="title2">购物车</span>
+                    <!-- <span class="title">购物车</span> -->
+                </div>
+                <span class="leftText">legochina.cn</span>
+                <span class="rightText">欢迎光临<a href="index.html">乐购</a>,<span class="memberInfo">请&nbsp;<a href="login.html">登陆</a>/<a href="register.html">注册</a></span> </span>
+            </div>
+            <div class="search">
+                <div class=" fr"><a href="">我的订单</a></div>
+                <div class="active fr"><a href="">购物车 <span class="shopCarNum"></span></a></div>
+                <form action="" class="searchItem">
+                    <input type="submit" class="fr" value="">
+                    <input type="text" class="fr" value="">
+                </form>
+            </div>
+            <div class="distribution">
+                配送至: <select name="address" id="address">
+                    <option value="深圳市宝安区西部硅谷">深圳市宝安区西部硅谷</option>
+                    <option value="深圳市南山区高新科技园">深圳市南山区高新科技园</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 订单区域 area -->
+    <div class="orderForms width1200">
+        <p class="remind">全部商品 ( <span class="shopCarNum"></span> ) </p>
+        <ul class="formsHead">
+            <li class="check"><input class="selectAllItem" type="checkbox">全选</li>
+            <li class="itemMsg">商品</li>
+            <li class="price">单价</li>
+            <li class="itemNum">数量</li>
+            <li class="countPrice">小计</li>
+            <li class="option">操作</li>
+        </ul>
+        <div class="itemContent J_itemContent">
+            <!-- 商品内容开始,下面是模板,我们暂时不需要它 -->
+            <!-- <ul class="formsContent J_product">
+                <li class="check"><input class="selector" type="checkbox"></li>
+                <li class="itemMsg"><span class="imgCon"><img class="J_img" src="images/index08_05.jpg" alt=""></span>
+                    <p class="intro J_name">从你的全世界路过</p>
+                    <p class="intro J_descripe">从你的全世界路过</p>
+                </li>
+                <li class="price J_price">41.20</li>
+                <li class="itemNum"><input type="button" class="reduce" value="-"><input type="text" class="msgInput J_itemShopCartNumber" value="1"><input type="button" class="add" value="+"><span class="warning"><br>您输入的数字不合法</span></li>
+                <li class="countPrice">41.00</li>
+                <li class="option"> <a class="deleteThisItem" href="javascript:void(0)">删除</a><br><a href="javascript:void(0)">移到我的关注</a> </li>
+            </ul> -->
+        </div>
+        <!-- 结算区域 -->
+        <ul class="settleAll">
+            <li class="totalCheck"><input class="selectAllItem" type="checkbox"></li>
+            <li class="deleteSelectedItem">
+                <p><a class="deleteSelected" href="javascript:void(0)">删除选中商品</a> </p>
+            </li>
+            <li class="totalPrice">&emsp;</li>
+            <li class="totalItemNum">已选 <span class="selectedTotalNum">0</span> 件商品</li>
+            <li class="totalCountPrice">&yen; : 0.00</li>
+            <li class="totalOption fr ">
+                <a href="payCenter.html"><input type="button" class="J_goPay" value="去结算"></a>
+            </li>
+        </ul>
+    </div>
+    <!-- 猜你喜欢区域 -->
+    <div class="guessULike width1200 discountContent">
+        <div class="headTitle">
+            <span>人气单品</span>
+        </div>
+        <div class="discount fl J_product ">
+            <a href="">
+                <img class="bigJpg J_img" src="images/baiyexing.jpg" alt="">
+                <span class="discountRank"></span>
+                <p class="item J_descripe">白夜行 &emsp; 东野圭吾</p>
+                <p class="intro">推荐: <span class="star"></span></p>
+                <p class="price "><span class="J_price">&yen; : 38</span> &emsp;&emsp;<del>&yen; : 58</del></p>
+            </a>
+        </div>
+        <div class="discount fl J_product ">
+            <a href="">
+                <img class="bigJpg J_img" src="images/baiyexing.jpg" alt="">
+                <span class="discountRank"></span>
+                <p class="item J_descripe">白夜行 &emsp; 东野圭吾</p>
+                <p class="intro">推荐: <span class="star"></span></p>
+                <p class="price "><span class="J_price">&yen; : 38</span> &emsp;&emsp;<del>&yen; : 58</del></p>
+            </a>
+        </div>
+        <div class="discount fl J_product ">
+            <a href="">
+                <img class="bigJpg J_img" src="images/baiyexing.jpg" alt="">
+                <span class="discountRank"></span>
+                <p class="item J_descripe">白夜行 &emsp; 东野圭吾</p>
+                <p class="intro">推荐: <span class="star"></span></p>
+                <p class="price "><span class="J_price">&yen; : 38</span> &emsp;&emsp;<del>&yen; : 58</del></p>
+            </a>
+        </div>
+        <div class="discount fl J_product ">
+            <a href="">
+                <img class="bigJpg J_img" src="images/baiyexing.jpg" alt="">
+                <span class="discountRank"></span>
+                <p class="item J_descripe">白夜行 &emsp; 东野圭吾</p>
+                <p class="intro">推荐: <span class="star"></span></p>
+                <p class="price "><span class="J_price">&yen; : 38</span> &emsp;&emsp;<del>&yen; : 58</del></p>
+            </a>
+        </div>
+        <div class="discount fl J_product ">
+            <a href="">
+                <img class="bigJpg J_img" src="images/baiyexing.jpg" alt="">
+                <span class="discountRank"></span>
+                <p class="item J_descripe">白夜行 &emsp; 东野圭吾</p>
+                <p class="intro">推荐: <span class="star"></span></p>
+                <p class="price "><span class="J_price">&yen; : 38</span> &emsp;&emsp;<del>&yen; : 58</del></p>
+            </a>
+        </div>
+    </div>
+    <!-- adBanner area -->
+    <div class="adBanner width1200">
+        <a href="">
+            <img src="images/adBanner.jpg" alt="">
+        </a>
+    </div>
+    <!-- footer area -->
+    <div class="footer allWidth">
+        <div class="width1200">
+            <div class="promise">
+                <img class="logo" src="images/logo_00.png" alt="">
+                <img src="images/222_11.png" alt="">
+                <img src="images/222_12.png" alt="">
+                <img src="images/222_13.png" alt="">
+                <img src="images/222_14.png" alt="">
+            </div>
+            <ul class="shopIntro">
+                <li>
+                    <ul>
+                        <li class="first"><a href="">购物指南</a></li>
+                        <li><a href="">购物流程</a></li>
+                        <li><a href="">发票制度</a></li>
+                        <li><a href="">账户管理</a></li>
+                        <li><a href="">会员优惠</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li class="first"><a href="">支付方式</a></li>
+                        <li><a href="">货到付款</a></li>
+                        <li><a href="">网上支付</a></li>
+                        <li><a href="">礼品卡支付</a></li>
+                        <li><a href="">银行转账</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li class="first"><a href="">订单服务</a></li>
+                        <li><a href="">订单配送查询</a></li>
+                        <li><a href="">订单状态说明</a></li>
+                        <li><a href="">自助取消订单</a></li>
+                        <li><a href="">自助修改订单</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li class="first"><a href="">退换货</a></li>
+                        <li><a href="">退换货政策</a></li>
+                        <li><a href="">自助申请退换货</a></li>
+                        <li><a href="">退换货进度查询</a></li>
+                        <li><a href="">退款方式和时间</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li class="first"><a href="">商家服务</a></li>
+                        <li><a href="">商家中心</a></li>
+                        <li><a href="">运营服务</a></li>
+                        <li><a href="">加入尾品汇</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="componyIntro">
+                <a href="">公司简介</a>|
+                <a href="">Investor Relations</a>|
+                <a href="">网站联盟</a>|
+                <a href="">乐购招商</a>|
+                <a href="">机构销售</a>|
+                <a href="">手机乐购</a>|
+                <a href="">官方Bolg</a>|
+                <a href="">热词搜索</a><br>
+                <p>&copy;Copyright (C) 乐购网 2004-2016, All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+    <!-- 顶部悬停搜索条 -->
+    <div class="searchFxedBar allWidth">
+        <div class="logo">LOGO</div>
+        <form action="" class="searchItem">
+            <input type="text" class="" value="">
+            <input type="submit" class="" value="">
+        </form>
+    </div>
+    <script src="scripts/jquery1.11.min.js"></script>
+    <script src="scripts/tyslide.js"></script>
+    <script src="scripts/jquery.lazyload.js"></script>
+    <script src="scripts/public.js"></script>
+    <script src="scripts/shopCart.js"></script>
+</body>
+
+</html>

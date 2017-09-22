@@ -1,0 +1,111 @@
+    什么时缓存区?
+        缓存区是一个内存区域,用来存放数据
+    创建缓存区
+        var buf = new Buffer(10)
+        var buf = new Buffer([97, 98, 99])
+        var buf = new Buffer('HELLO')
+
+    写入缓存区
+        buf.write('内容')
+
+    读取缓存区
+        buf.toString()
+        buf.length
+
+    复制缓存区
+        buf1.copy(buf2)
+
+ 文件操作
+    var fs = require('fs')
+
+    读取文件:
+        fs.readFile('文件名称', function(err, data){
+
+        })
+    写入文件
+        fs.writeFile('文件路径', '写入数据', 回调函数)
+    读取文件信息
+        fs.stat('文件路径', function(err, stats){
+            // 返回一个包含文件信息的对象
+            // 常用的属性 stats.size
+            // 常用的方法 stats.isFile() 判断是否为文件
+            // 常用的方法 stats.isDirectory() 判断是否为文件夹
+        })
+    删除文件
+        fs.unlink('文件路径', function(err){
+            //
+        })
+    创建目录
+        fs.mkdir('目录路径', function(err){
+            //
+        })
+    读取目录
+        fs.readdir('目录路径', function(err, arr){
+            // 读取之后的结果是一个数组
+        })
+    删除空目录
+        fs.rmdir('目录路径', function(err){
+            //
+        })
+
+ 文件流操作
+    读取流
+        创建可读流
+            var stream = fs.createReadStream('文件路径')
+            // 绑定事件
+            stream.on('data', function(data){
+                // 读取对应的文档内容
+            })
+            stream.on('end', function(){
+                // 结束之后的回调函数
+            })
+            stream.on('error', function(err){
+                // 如果出错可以使用此事件抛出错误
+            })
+        创建写入流
+            var stream = fs.createWriteStream('写入对象')
+            stream.write('数据') // 可以多次写入数据
+            stream.end() // 因为可以多次写入,因此可以在传完之后向计算机传递结束标识
+
+            stream.on('finish', function(){
+                // 数据写入成功时触发
+            })
+            stream.on('error', function(err){
+                // 数据写入出错时触发
+            })
+
+管道pipe
+    什么是管道
+        提供一个从输出流直接到输入流的机制, 中间少量经过缓存,可以快速复制大文件等复制操作, 降低了大量的内存压力
+    管道的语法
+        输出流.pipe(输入流)
+    链式流
+        输出流.pipe('中转流').pipe(输入流)
+
+path和url
+    path模块
+        用于处理文件与目录的路径
+            var pathObj = path.parse()//返回一个对象的路径的各个部分
+            path.join(路径1, 路径2, 路径3)// 连接多个路径
+
+    url模块
+        用于URL的处理和解析
+        url.parse(url的地址) // 返回url的各个部分
+
+        URI: 统一资源标识符,网站内部的相对路径
+        URL: 统一资源定位符,就是常见的网址
+
+            完整的URL:以百度为例
+                http://www.baidu.com:80/2017/09/15/index.html?name=changer
+                    http 协议
+                    www 主机名
+                    baidu 名
+                    com 域
+                    80 端口号
+                    2007/09/15 文件路径
+                    index 文件名
+                    html 后缀
+                    name=changer 查询字符串
+
+
+
