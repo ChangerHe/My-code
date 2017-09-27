@@ -71,6 +71,7 @@
                         return {
                             after: function(afterValue) {
                                 array.splice(array.indexOf(afterValue) + 1, 0, value)
+                                return array
                             }
                         }
                     }

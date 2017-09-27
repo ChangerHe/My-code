@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title><%=data.title%></title>
+</head>
+<body>
+<form action="/admin/save_add.html" method="post">
+    <p>标题: <input type="text" name="title" value="<%=data.title%>"></p>
+    <p>作者: <input type="text" name="author" value="<%=data.author%>"></p>
+    <p>来源: <input type="text" name="source" value="<%=data.source%>"></p>
+    <p><textarea name="content"><%=data.content%></textarea></p>
+    <p><input type="submit" value="修改"></p>
+</form>
+</body>
+</html>

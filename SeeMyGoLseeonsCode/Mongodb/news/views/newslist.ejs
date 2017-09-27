@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="./add.html">新增</a></p>
+    <%for(var i = 0; i < data.length; i++){%>
+    <div>
+        <p>标题:<%=data[i].title%></p>
+        <p>来源:<%=data[i].source%></p>
+        <p>作者:<%=data[i].author%></p>
+        <p>内容:<%=data[i].content%></p>
+        <p>发布时间:<%=data[i].ctime.toLocaleString()%></p>
+        <p>点击量:<%=data[i].hits%></p>
+        <p><a href="./change_data.html?id=<%=data[i]._id%>">修改</a></p>
+        <p><a href="./delete_data.html?id=<%=data[i]._id%>">删除</a></p>
+    </div>
+    <%}%>
+</body>
+</html>

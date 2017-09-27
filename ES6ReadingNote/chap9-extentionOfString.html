@@ -239,32 +239,32 @@
         {
             // rest参数(扩展运算符) 用于从一个对象取值,相当于将所有可遍历但尚未被读取的键但尚未读取的属性,分配到指定的对象上,所有的键及相应的值都会被赋值到新对象上
             // 但似乎目前这种解构赋值的写法无法被支持,但rest参数现在是已经支持了的
-            // let {
-            //     x,
-            //     y,
-            //     ...z
-            // } = {
-            //     x: 1,
-            //     g: 5,
-            //     y: 2,
-            //     f: 4,
-            //     z: 3
-            // }
-            // console.log(x)
-            // console.log(y)
-            // console.log(z)
+            let {
+                x,
+                y,
+                ...z
+            } = {
+                x: 1,
+                g: 5,
+                y: 2,
+                f: 4,
+                z: 3
+            }
+            console.log(x)
+            console.log(y)
+            console.log(z)
         }
 
         {
             // 有一点要注意的是,rest参数的复制是浅复制
-            // let obj = {
-            //     a: {
-            //         b: 1
-            //     }
-            // }
-            // let {...x,
-            // } = obj
-            // console.log(obj.a.b)
+            let obj = {
+                a: {
+                    b: 1
+                }
+            }
+            let {...x,
+            } = obj
+            console.log(obj.a.b)
         }
     </script>
 </body>

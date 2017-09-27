@@ -1,0 +1,311 @@
+/* 抽取了标签的headtitle部分，标题的导航栏 */
+
+
+/* 因为没有其他页面会用到这个css,因此直接提升到当前文档之前 */
+
+.headTitle {
+    color: #323232;
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: bold;
+    border-bottom: 6px solid #ff6600;
+}
+
+.headTitle span {
+    display: block;
+    float: right;
+    width: 100px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    font-size: 16px;
+    color: #323232;
+    cursor: pointer;
+}
+
+.headTitle .active {
+    background: #ff6600;
+    color: #fff;
+}
+
+.btnContent {
+    display: none;
+}
+
+
+/* recommend area */
+
+.recommend .headTitle p {
+    font-size: 24px;
+    padding: 0 18px;
+    color: #ff6600;
+    line-height: 36px;
+    border-bottom: 6px solid #ff6600;
+}
+
+.recommend .recommendBox {
+    width: 1188px;
+    height: 496px;
+    margin: 0 auto;
+    border: 1px solid #ff6600;
+}
+
+.recommend .recommendBox .recommends {
+    float: left;
+    width: 196px;
+    height: 246px;
+    border: 1px solid #ff6600;
+}
+
+.recommends .bigJpg {
+    width: 148px;
+    margin-left: 24px;
+}
+
+.recommends .item,
+.recommends .desc {
+    padding: 0 4px;
+    font-size: 14px;
+}
+
+.recommends .desc {
+    color: red;
+}
+
+.recommends .price {
+    padding: 4px 8px;
+    font-size: 18px;
+    color: red;
+}
+
+
+/* eBooks area */
+
+.eBooks {
+    margin-top: 40px;
+    height: 520px;
+}
+
+.eBooks .barPrice {
+    height: 436px;
+}
+
+.eBooks .barPrice img {
+    height: 286px;
+}
+
+.eBooks .eBook {
+    width: 900px;
+}
+
+.eBook .carnival {
+    width: 163px;
+    height: 216px;
+    border: 1px solid #ccc;
+}
+
+.eBook .carnival img {
+    width: 158px;
+    height: 116px;
+}
+
+.eBook .carnival .title {
+    font-size: 16px;
+    margin-top: 18px;
+}
+
+.eBook .carnival .desc {
+    color: red;
+    margin-bottom: 6px;
+}
+
+.eBook .carnival .price {
+    font-size: 14px;
+    color: red;
+    line-height: 24px;
+}
+
+.eBook .carnival .price del {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.eBook .moreBorder {
+    border-left: 3px solid #ccc;
+}
+
+
+/* clothes area */
+
+.clothes,
+.childClothes,
+.outDoors {
+    height: 670px;
+}
+
+.home {
+    height: 600px;
+}
+
+.home .leftBigPic {
+    border: 2px solid #ccc;
+    display: block;
+    width: 484px;
+    height: 500px;
+}
+
+.home .leftBigPic img {
+    width: 484px;
+    height: 500px;
+}
+
+.home .rightTopPic img {
+    display: block;
+    float: left;
+    padding-top: 38px;
+    width: 176px;
+    height: 300px;
+    border: 1px solid #ccc;
+}
+
+.home .rightBottomPic img {
+    display: block;
+    float: left;
+    border: 1px solid #ccc;
+    width: 176px;
+    height: 162px;
+}
+
+
+/* popularize area */
+
+.popularize .headTitle {
+    color: #ff6600;
+}
+
+.popularize .headTitle .dot {
+    float: right;
+    width: 36px;
+    margin-top: 14px;
+}
+
+.popularize .headTitle span {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    border-radius: 7px;
+    background: #ccc;
+}
+
+.popularize .headTitle .active {
+    background: #ff6600;
+}
+
+.popularize .btnContent {
+    width: 1170px;
+    height: 650px;
+    margin: 0 auto;
+}
+
+.popularize .btnContent .item {
+    width: 154px;
+    height: 252px;
+    padding: 24px 30px;
+    margin: 10px;
+}
+
+.popularize .btnContent .item:hover {
+    background: #f2f2f2;
+}
+
+.popularize .btnContent .item img {
+    display: block;
+    width: 148px;
+    height: 148px;
+    margin: 0 auto;
+}
+
+.popularize .btnContent .item .descripe {
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+.popularize .btnContent .item .price {
+    color: red;
+    font-size: 24px;
+}
+
+.popularize .items .item .intro span {
+    color: red;
+}
+
+
+/* 左右侧的楼层滚动及优惠券领取效果 */
+
+.leftFloor {
+    position: fixed;
+    display: none;
+    top: 200px;
+    left: 0;
+}
+
+.leftFloor li {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.leftFloor li span {
+    display: block;
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+
+.leftFloor li p {
+    float: right;
+    display: none;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+.leftFloor .reco span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -240px;
+}
+
+.leftFloor .book span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 0px;
+}
+
+.leftFloor .clothes span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -80px;
+}
+
+.leftFloor .sport span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -160px;
+}
+
+.leftFloor .baby span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -200px;
+}
+
+.leftFloor .home span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -280px;
+}
+
+.leftFloor .spread span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -400px;
+}
+
+.leftFloor .back span {
+    background: #f2f2f2 url(../images/icon_shop.png) 0 -520px;
+}
+
+.leftFloor .active {
+    background-color: #93d470;
+}

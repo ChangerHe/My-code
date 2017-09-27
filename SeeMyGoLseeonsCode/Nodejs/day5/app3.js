@@ -18,22 +18,21 @@ server.on('request', function(req, res) {
         urlPath = './www' + req.url
     }
     console.log(urlPath)
-    fs.readFile(urlPath, function(err, data) {
-        console.log(data)
-        if(data) {
-            res.writeHead(404, {
-                'Content-Type': 'text/plain;charset=utf-8'
-            })
-            res.write('404 您访问的页面出错')
-        } else {
-            var mimeType = mime.getType(urlPath)
-            res.writeHead(200, {
-                'Content-Type': mimeType +';charset=utf-8'
-            })
-            res.write(data)
-        }
-    })
+    var data = fs.readFileSync(urlPath)
+    if(!data) {
+        res.writeHead(404, {
+            'Content-Type': 'text/plain;charset=utf-8'
+        })
+        res.write('404 您访问的页面出错')
+    } else {
+        var mimeType = mime.getType(urlPath)
+        res.writeHead(200, {
+            'Content-Type': mimeType +';charset=utf-8'
+        })
+        res.write(data)
+    }
 
+    console.log(1)
 
     // var mimeType = mime.getType(urlPath)
     // res.writeHead(200, {

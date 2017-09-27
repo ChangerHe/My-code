@@ -70,6 +70,7 @@
                 enum: 2,
                 nonEnum: 3
             }
+            console.log(Object.keys(obj))
 
             console.log(Reflect.ownKeys(obj))
         }
@@ -83,6 +84,23 @@
             b[Symbol.isConcatSpreadable] = true
 
             console.log(a, b, c)
+        }
+
+
+        {
+            let s1 = Symbol.for('foo')
+            let s2 = Symbol.for('foo')
+
+            console.log(s1 === s2)
+
+            console.log(Symbol.for('bar') === Symbol.for('bar'))
+            console.log(Symbol('bar') === Symbol('bar'))
+
+            let s3 = Symbol.for('aaa')
+            let s4 = Symbol('bbb')
+
+            console.log(Symbol.keyFor(s3))
+            console.log(Symbol.keyFor(s4))
         }
     </script>
 </body>

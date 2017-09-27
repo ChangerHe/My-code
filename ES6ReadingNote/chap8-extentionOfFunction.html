@@ -30,6 +30,9 @@
                 console.log(x, y)
             }
             log('hello')
+            log('hello ', false)
+            log('hello ', '')
+            log('hello ', undefined)
 
             // 可见,ES6的写法比之前更加的简单,也更加地自然了
             function Point(x = 0, y = 0) {
@@ -117,15 +120,18 @@
             }
 
             console.log(f2())
+            console.log(f2(1))
+            console.log(f2(1, undefined, 3))
                 // console.log(f2(1, , 2))
         }
 
         // 函数的length属性, 指定了默认值后.函数的length属性将会返回没有指定默认值的参数个数,也就是说,指定了默认值后length只会显示没有默认值的形参个数
         {
-            // console.log((function(x) {}).length)
-            // console.log((function(x = 90, a, b) {}).length)
-            // console.log((function(x, a = 90, b) {}).length)
-            // console.log((function(x, a, b = 90) {}).length)
+            console.log((function(x) {}).length)
+            console.log((function(x = 90, a, b) {}).length)
+            console.log((function(x, a = 90, b) {}).length)
+            console.log((function(x, a, b = 90) {}).length)
+            console.log((function(...args) {}).length)
         }
 
         {
@@ -141,17 +147,23 @@
 
         // 另外需要注意的地方是,如果参数默认值是一个变量,则该变量所处的作用域与其他的变量的作用域是一样的,即先是当前函数的作用域,然后才是全局作用域
         {
-            let x = 1
+            // let x = 1
 
-            function f(x, y = x) {
-                console.log(y) // 输出2
-            }
-            f(2)
+            // function f(x, y = x) {
+            //     console.log(y) // 输出2
+            // }
+            // f(2)
 
-            function f1(y = x) {
+            // function f1(y = x) {
+            //     let x = 2
+            //     console.log(y)
+            // }
+
+            f1 = (y = x) => {
                 let x = 2
                 console.log(y)
             }
+
             f1(1)
         }
 
