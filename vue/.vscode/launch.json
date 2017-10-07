@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+            "name": "Launch Chrome and new instance of Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:80/test1.html",
+            "sourceMaps": true,
+            "webRoot": "D:/wamp64/bin/apache/apache2.4.23/bin"
+        },
+        {
+            "name": "Attach to Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}
