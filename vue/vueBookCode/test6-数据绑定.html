@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <!--<h1>hello {{*name}}</h1>-->
+        <!--<h1 v-once="name">hello {{name}}</h1>-->
+
+        <!--<h2 id="id-{{id}}"></h2>-->
+        <!--<h2 v-bind:id="'id-' + id"></h2>-->
+
+        <!--<h1>{{index + 1}}</h1>-->
+        <!--<h1>{{index == 0 ? 'a' : 'b'}}</h1>-->
+        <!--<h1>{{name.split('').join('|')}}</h1>-->
+        <!--<h1>{{var a = 1}}</h1>-->
+        <!--<h1>{{if(ok){return name}}}</h1>-->
+
+        <!--<h1>{{name | uppercase}}</h1>-->
+        <!--<h1>{{name | lowercase}}</h1>-->
+        <!--<h1>{{name | capitalize}}</h1>-->
+        <!--<h1>{{name | currency ('$', 2)}}</h1>-->
+        <!--<h1>{{name | pluralize 'item'}}</h1>-->
+
+        <img src="{{avatar}}" alt="">
+        <img v-bind:src="avatar" alt="">
+        <button v-on:click.stop="doclick">111</button>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: 1,
+                index: 0,
+                name: 'vUe',
+                avatar: 'https://cn.vuejs.org/images/logo.png',
+                count: [1,2,3,4,5],
+                names: ['Vue1.0', 'Vue2.0'],
+                items: [
+                    {name: 'Vue1.0', version: '1.0'},
+                    {name: 'Vue2.0', version: '2.0'}
+                ]
+            },
+            filter: {
+                uppercase() {
+                    return name.toUpperCase()
+                }
+            },
+            methods: {
+                doclick() {
+                    alert(1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

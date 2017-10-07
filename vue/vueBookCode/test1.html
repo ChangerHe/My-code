@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{message}}</h1>
+        <input type="text" v-model="message">
+        <message content="Hello world"></message>
+    </div>
+    <script>
+
+
+        var Message = Vue.extend({ // 创建一个简单的Vue组件
+            props: ['content'],
+            template: '<h1>{{content}}</h1>' // 模板, 默认会将template值替换挂载元素, 即el值对应的元素,并合并挂载元素和模板根节点的属性, 我们在body内容中添加<script id='tpl' type='x-template'>来将html从js中分离出来
+        })
+
+        Vue.component('message', Message)
+
+        var vm = new Vue({
+            el: '#app', // 为实例提供挂载元素, 一般我们会使用css选择符或原生的dom元素
+            data: {
+                message: 'Hello world , I am Vue js'
+            }
+        })
+    </script>
+</body>
+</html>

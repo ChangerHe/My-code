@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <h1>123</h1>
+        <h2>{{a}}</h2>
+        <h2>{{data.a}}</h2>
+        <h2>{{vm.a}}</h2>
+        <!--<h2>{{b}}</h2>-->
+        <h2>{{data.b}}</h2>
+        <input type="text" v-model="data.a">
+        <my-component title="myTitle" content="myContent"></my-component>
+    </div>
+<script>
+    var myComponent = Vue.component('my-component', {
+        props: ['title', 'content'],
+        data() {
+            return {
+                desc: '123'
+            }
+        },
+        template: '<h1>{{title}}</h1><p>{{content}}</p><p>{{desc}}</p>'
+    })
+    var data = {a : 1}
+    var vm = new Vue({
+        el: '#app',
+        data: data,
+//        template: '#tpl'
+    })
+    console.log(vm.$data === data)
+    console.log(vm.a === data.a)
+    data.a = 2
+
+    console.log(vm.$data === data)
+    console.log(vm.a === data.a) // 由此证明,实例中的data对象是对data对象的浅拷贝,因此,我们对实例中的data进行更改,也会影响到data中的值
+
+    vm.$data.b = 3 // 当我们尝试在页面中渲染b的时候,会报错,但是我们使用data.b进行渲染是没有问题的
+//    vm.$set('b', 3)
+</script>
+</body>
+</html>

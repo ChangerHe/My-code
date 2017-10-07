@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="alert">alert</button>
+    </div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {a: 1},
+        methods: {
+            alert() {
+                alert(this.a)
+            }
+        },
+//        events: {
+//            'event.alert'() {
+//                alert(this.a)
+//            }
+//        }
+        created() {
+            console.log('created')
+        }
+    })
+
+//    var vm1 = new Vue({
+//        el: '#app',
+//        data: {a: 1},
+//        events: {
+//            'event.alert'() {
+//                alert(this.a)
+//            }
+//        }
+//    })
+//    vm.$emit('event.alert')
+</script>
+</body>
+</html>

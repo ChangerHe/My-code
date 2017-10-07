@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            init() {
+                console.log('init')
+            },
+            beforeCreate() {
+                console.log('beforeCreate')
+            },
+            created() {
+                console.log('created')
+            },
+            beforeCompile() {
+                console.log('beforeCompile')
+            },
+            beforeMount() {
+                console.log('beforeMount')
+            },
+            compiled() {
+                console.log('compiled')
+            },
+            mounted() {
+                console.log('mounted')
+            },
+            attached() {
+                console.log('attached')
+            },
+            dettached() {
+                console.log('dettached')
+            },
+            beforeDestory() {
+                console.log('beforeDestory')
+            },
+            destoryed() {
+                console.log('destoryed')
+            },
+            ready() {
+                console.log('ready')
+                this.$destroy()
+            }
+        })
+    </script>
+</body>
+</html>

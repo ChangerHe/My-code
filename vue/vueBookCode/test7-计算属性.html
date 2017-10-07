@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <h1>{{cents}}</h1>
+        <h1>{{price}}</h1>
+
+        <!--<h1>{{firstName}}</h1>-->
+        <!--<h1>{{lastName}}</h1>-->
+        <!--<h1>{{fullName}}</h1>-->
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                cents: 100
+            },
+            computed: {
+                price: {
+                    set(newValue) {
+                        this.cents = newValue * 100
+                    },
+                    get() {
+                        return (this.cents/100).toFixed(2)
+                    }
+                }
+            }
+        })
+
+
+
+
+        //        var vm = new Vue({
+//            el: '#app',
+//            data: {
+//                firstName: 'Gavin',
+//                lastName: 'CLO'
+//            },
+//            computed: {
+//                fullName() {
+//                    return this.firstName + ' ' + this.lastName
+//                }
+//            }
+//        })
+    </script>
+</body>
+</html>

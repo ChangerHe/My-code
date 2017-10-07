@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,key,index) in items">
+                <h1>title: {{index}}-{{key}}-{{item}}</h1>
+                <!--<p>description: {{item.description}}</p>-->
+            </li>
+        </ul>
+
+
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+//                items: [
+//                    {title: 'title-1', description: 'description-1'},
+//                    {title: 'title-2', description: 'description-2'},
+//                    {title: 'title-3', description: 'description-3'},
+//                    {title: 'title-4', description: 'description-4'}
+//                ]
+                items: {
+                    title1: 'title-1',
+                    title2: 'title-2',
+                    title3: 'title-3',
+                    title4: 'title-4'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

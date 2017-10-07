@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="../node_modules/vue/dist/vue.min.js"></script>-->
+    <script src="../node_modules/vue/dist/vue1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="sayForm('formParam')">Say</button>
+        <button @click="showEvent">不传值</button>
+        <button @click="showEvent($event)">传值$event</button>
+        <button @click.left="showEvent(1)" @click.right="showEvent(2)"  @click.middle="showEvent(3)">传值空</button>
+        <button @click.prevent.right.middle="showEvent(2)">传值空</button>
+
+        <input type="text" @keyup.13="submit">
+        <input type="text" @keyup.f2="submit">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello i am vue'
+            },
+            methods: {
+                sayForm(msg) {
+                    alert(this.msg1 + " " +  msg)
+                },
+                showEvent(event) {
+                    alert(event)
+                },
+                submit() {
+                    alert('submited')
+                }
+            }
+        })
+        Vue.directive('on').keyCodes.f2 = 112
+    </script>
+</body>
+</html>

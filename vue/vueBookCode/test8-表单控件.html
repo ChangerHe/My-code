@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message"><p>your input is {{message}}</p>
+        <label for="gender"><input type="radio" value="male" v-model="gender">男</label>
+        <label for="gender"><input type="radio" value="female" v-model="gender">女</label>
+        <p>gender: {{gender}}</p>
+        <input type="checkbox" v-model="checked">
+        <p>checked: {{checked}}</p>
+        <label for="check"><input type="checkbox" value="1" v-model="multiChecked">1</label>
+        <label for="check"><input type="checkbox" value="2" v-model="multiChecked">2</label>
+        <label for="check"><input type="checkbox" value="3" v-model="multiChecked">3</label>
+        <p>multiChecked: {{multiChecked}}</p>
+        <select v-model="selected">
+            <option value="a" selected>a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+        </select>
+        <p>selected: {{selected}}</p>
+        <select v-model="multiSelected" multiple>
+            <option value="a" selected>a</option>
+            <option value="b" selected>b</option>
+            <option value="c">c</option>
+        </select>
+        <p>multiselected: {{multiSelected}}</p>
+
+        <input type="text" v-model="query" lazy >
+        <!--<input type="text" v-model.lazy="query" >-->
+        <p>query: {{query}}</p>
+
+        <input type="text" v-model="age" number>
+        <p>age: {{age}}</p>
+
+        <input type="text" v-model.trim="test">
+        <p>test: {{test}}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                test: '',
+                age: '',
+                query: '',
+                message: '',
+                gender: '',
+                checked: '',
+                multiChecked: [],
+                selected: '',
+                multiSelected: []
+            }
+        })
+    </script>
+</body>
+</html>

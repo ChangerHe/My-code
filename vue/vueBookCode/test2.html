@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>123</h1>
+    </div>
+    <!--<script id="tpl" type="x-template">-->
+        <!--<div class="tpl">-->
+            <!--<p>this is a tpl from script tag</p>-->
+        <!--</div>-->
+    <!--</script>-->
+
+    <script id="tpl" type="x-template">
+        <div class="wrapper">
+            <div class="tpl">
+                ...
+            </div>
+            <div class="tpl">
+                ...
+            </div>
+        </div>
+    </script>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            template: '#tpl'
+        })
+    </script>
+</body>
+</html>
