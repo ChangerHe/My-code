@@ -16,11 +16,11 @@
         {
             let obj = new Proxy({}, {
                 get: function(target, key, receiver) {
-                    console.log('getting ${key}')
+                    console.log(`getting ${key}`)
                     return Reflect.get(target, key, receiver)
                 },
                 set: function(target, key, value, receiver) {
-                    console.log('setting ${key}')
+                    console.log(`setting ${key}`)
                     return Reflect.set(target, key, value, receiver)
                 }
             })
@@ -32,20 +32,20 @@
 
         {
             // // 一个小技巧是,可以将Proxy对象设置到object.proxy属性,从而可以在object对象上调用
-            // var object = {
-            //     proxy: new Proxy(target, handler)
-            // }
+            var object = {
+                proxy: new Proxy(target, handler)
+            }
 
             // // 那么我们就可以直接定义一个proxy对象,并在需要的时候使用Object.create() 进行对象的创建即可
-            // var proxy = new Proxy({}, {
-            //     get: function(target, property) {
-            //         return 35
-            //     }
-            // })
+            var proxy = new Proxy({}, {
+                get: function(target, property) {
+                    return 35
+                }
+            })
 
-            // let obj = Object.create(proxy)
+            let obj = Object.create(proxy)
 
-            // console.log(obj.time)
+            console.log(obj.time)
         }
 
         {
