@@ -1,0 +1,12 @@
+artTemplate模板的用法
+    1.引入模板引擎文件
+        <script src="template.js"></script>
+
+    2.编写模板
+        <script id="模板名" type="text/html">
+            // 模板固定语法
+        </script>
+
+
+    3.渲染模板
+        template("模板名", JSON数据)

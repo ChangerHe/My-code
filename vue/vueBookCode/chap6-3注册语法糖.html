@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="../node_modules/vue/dist/vue.min.js"></script>-->
+    <script src="../node_modules/vue/dist/vue1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-child></my-child>
+        <my-parent></my-parent>
+        <my-component></my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: '<p>this is a component</p>'
+        })
+
+        Vue.component('my-parent',{
+            template: `<div>
+                <p>this is a parent component</p>
+                <my-child></my-child>
+                </div>`,
+            components: {
+                'my-child': {
+                    template: '<p>this is a child component</p>'
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

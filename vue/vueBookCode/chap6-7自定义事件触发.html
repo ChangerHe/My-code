@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="../node_modules/vue/dist/vue.min.js"></script>-->
+    <script src="../node_modules/vue/dist/vue1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="connect">
+        <button @click="addTodo">添加</button>
+        <button @click="broadcast">广播</button>
+        <child-todo name="one"></child-todo>
+        <child-todo name="two"></child-todo>
+        <ul>
+            <li v-for="value in todo">
+                {{value}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.component('child-todo', {
+            props: ['name'],
+            data() {
+                return { content: '' }
+            },
+            template: `<div>child {{name}} <input type="text" v-model="content"><button @click="add">添加</button></div>`,
+            methods: {
+                add() {
+                    this.$dispatch('add', 'Child ' + this.name + ': ' + this.content)
+                    this.content = ''
+                }
+            },
+            events: {
+                'to-child'(msg) {
+                    this.$dispatch('add', 'Child ' + this.name + ': ' + msg)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

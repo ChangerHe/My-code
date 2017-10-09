@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #city {
+            display: none;
+        }
+
+        #block {
+            display: none;
+
+        }
+
+        select {
+            margin-top: 40px;
+        }
+    </style>
+    <script src="./template.js"></script>
+</head>
+<body>
+<select name="prov" id="prov">
+    <option value="">请选择</option>
+    <option value="gd">广东</option>
+    <option value="jx">江西</option>
+</select>
+<select name="city" id="city">
+    <option value="">请选择</option>
+    <option value="sz">深圳</option>
+    <option value="gz">广州</option>
+
+</select>
+<select name="block" id="block">
+    <option value="">请选择</option>
+    <option value="baq">宝安区</option>
+    <option value="ftq">福田区</option>
+    <option value="nsq">南山区</option>
+
+</select>
+<script id="temp" type="text/html">
+    <option value="">请选择</option>
+    {{each data v i}}
+    <option value="{{v.value}}">{{v.text}}</option>
+    {{/each}}
+</script>
+
+<script>
+    function ajax(data, fn) {
+        var ajax = new XMLHttpRequest()
+        ajax.open('post', '/getData.html')
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        ajax.send("msg="+data)
+        ajax.onreadystatechange = function() {
+            if(ajax.readyState == 4 && ajax.status == 200) {
+                var msg = ajax.responseText
+                fn(msg)
+            }
+        }
+    }
+</script>
+<script>
+    var prov = document.getElementById('prov')
+    var city = document.getElementById('city')
+    var block = document.getElementById('block')
+    prov.onclick = function() {
+        if(this.value) {
+            ajax(this.value, function(data) {
+                var data = JSON.parse(data)
+                console.log(data)
+                var html = template('temp', {data: data})
+                city.innerHTML = html
+            })
+            city.style.display = "block"
+            block.style.display = "none"
+        } else {
+            city.style.display = "none"
+            block.style.display = "none"
+        }
+    }
+    city.onclick = function() {
+        if(this.value) {
+            ajax(this.value, function(data) {
+                var data = JSON.parse(data)
+                console.log(data)
+                var html = template('temp', {data: data})
+                block.innerHTML = html
+            })
+            block.style.display = "block"
+        } else {
+            block.style.display = "none"
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table thead {
+            width: 80%;
+            margin: 0 auto;
+        }
+        table thead th,table tbody td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        table thead th {
+            background: #f6f6f6;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.tmpl.js"></script>
+</head>
+<body>
+<table>
+    <thead>
+    <th>ID</th>
+    <th>编号</th>
+    <th>姓名</th>
+    <th>籍贯</th>
+    <th>性别</th>
+    <th>年龄</th>
+    <th>评分</th>
+    <th>代表作</th>
+    <th>歌手信息</th>
+    </thead>
+    <tbody id="bodyArea">
+    </tbody>
+</table>
+
+<script id="tpl" type="text/html">
+    <tr>
+        <td>{{= _id}}</td>
+        <td>{{= num}}</td>
+        <td>{{= name}}</td>
+        <td>{{= country}}</td>
+        <td>{{= sex}}</td>
+        <td>{{= age}}</td>
+        <td>{{= score}}</td>
+        <td>{{= works}}</td>
+        <td>{{= description}}</td>
+    </tr>
+</script>
+
+<script>
+    $.ajax({
+        url: "/users/getJson.html",
+        type: "get",
+        dataType: "json",
+        success: function(data) {
+            $('#tpl').tmpl(data).appendTo('#bodyArea')
+        }
+    })
+
+
+
+//    window.onload = function() {
+//        var ajax = new XMLHttpRequest()
+//        ajax.open('get', '/users/getJson.html')
+//        ajax.onreadystatechange = function() {
+//            if(ajax.status == 200 && ajax.readyState == 4) {
+//                var data = JSON.parse(ajax.responseText)
+//                console.log(data)
+//                var $body = $('#body')
+//                $('#tpl').tmpl(data).appendTo('#bodyArea')
+//            }
+//        }
+//        ajax.send()
+//    }
+</script>
+</body>
+</html>

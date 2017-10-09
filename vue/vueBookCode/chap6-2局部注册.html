@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <my-child></my-child>
+        <my-parent></my-parent>
+        <!--在模板中写上对应的标签-->
+    </div>
+    <script>
+        var Child = Vue.extend({
+            template: '<h1>this is a child component</h1>'
+        })
+
+        var Parent = Vue.extend({
+            template: `<div>
+                <p>this is a parent component</p>
+                <my-child></my-child>
+
+            </div>`,
+            components: {
+                'my-child': Child
+            }
+        })
+
+        Vue.component('my-parent', Parent)
+
+        var vm = new Vue({
+            el: '#app'
+
+        })
+    </script>
+</body>
+</html>

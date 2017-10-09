@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="price">
+        <h1>{{date| dynamic  (price)}}</h1>
+    </div>
+    <script>
+
+        new Vue({
+          el: '#app',
+          data: {
+            date: new Date(),
+            price: 150
+          }
+        })
+        var value = Vue.filter('dynamic')
+        Vue.filter('dynamic', (date, price) => {
+          return date.toLocaleDateString() + " : " + value
+        })
+    </script>
+</body>
+</html>

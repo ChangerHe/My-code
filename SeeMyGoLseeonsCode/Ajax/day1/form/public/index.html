@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+    <p>用户名: <input type="text" name="username" id="username"></p>
+    <p>密码: <input type="password" name="password" id="password"></p>
+    <p>邮箱: <input type="text" name="email" id="email"></p>
+    <p><input type="button" value="提交" id="submit"></p>
+</form>
+
+
+<script>
+var username = document.querySelector("#username")
+var password = document.querySelector("#password")
+var email = document.querySelector("#email")
+var submit = document.querySelector("#submit")
+email.onblur = function() {
+        var ajax = new XMLHttpRequest()
+        ajax.open('post', "/save.html")
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+        ajax.onreadystatechange = function() {
+            console.log(+ajax.responseText)
+            if(ajax.statusCode == 200 && ajax.status == 4) {
+                if(+ajax.responseText) {
+                    email.style.border = "1px solid #0f0"
+                } else {
+                    email.style.border = "1px solid #f00"
+                }
+            }
+        }
+        ajax.send("&email=" + email.value)
+//        ajax.send("name=张三&age=18");
+    }
+
+
+
+//    username.onblur = function() {
+//        var usernameValue = username.value
+//        var ajax = new XMLHttpRequest()
+//        ajax.open('GET', '/test.html?username=' + usernameValue )
+//        ajax.onreadystatechange = function() {
+//            if(ajax.readyState == 4 && ajax.status == 200) {
+//                console.log(ajax.responseText)
+//                if(+ajax.responseText) {
+//                    username.style.border = "1px solid #0f0"
+//                } else {
+//                    username.style.border = "1px solid #f00"
+//                }
+//            }
+//        }
+//        ajax.send()
+//
+//    }
+</script>
+</body>
+</html>

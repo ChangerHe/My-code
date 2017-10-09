@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <div v-if="isExist" v-my-directive="param"></div>
+    </div>
+    <script>
+        Vue.directive('my-directive', {
+          bind() {
+            console.log('bind')
+          },
+          update() {
+            console.log('update')
+          },
+          unbind() {
+            console.log('unbind')
+          }
+        })
+
+        var vm = new Vue({
+          el: '#app',
+          data: {
+            param: 'param',
+            isExist: true
+          }
+        })
+    </script>
+</body>
+</html>

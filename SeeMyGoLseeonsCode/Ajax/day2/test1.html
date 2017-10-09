@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="homework1/public/template.js"></script>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script id="mytmpl" type="text/html">
+        <h1>{{title}}</h1>
+    </script>
+
+    <script>
+        var data = {"title":"模板测试数据.........."}
+        var html = template('mytmpl', data)
+
+        box.innerHTML=(html)
+    </script>
+</body>
+</html>

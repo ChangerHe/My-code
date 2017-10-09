@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    console.dir(window.XMLHttpRequest)
+/*
+* 使用Ajax引擎
+*   创建引擎
+*   创建请求
+*   发送请求
+*   接受服务器响应数据
+*
+* */
+
+// 1.创建引擎
+    var ajax = new XMLHttpRequest()
+
+// 构建ajxa请求
+    ajax.open('GET', './data1.json')
+
+// 发送请求
+    ajax.send()
+
+// 接受服务器相应的数据
+    ajax.onreadystatechange = () => {
+//        if(ajax.readyState == 4 && ajax.status == 200) {
+//            var data = ajax.responseText
+//        }
+    console.log(ajax.readyState, ajax.status, ajax.responseText)
+
+}
+
+
+/*
+* 格式
+*   var ajax = new XMLHttpRequest()
+*
+*   使用open方法发起请求
+*       ajax.open('请求的方式', '请求的URL', '同步还是异步')
+*       ajax.send(发送的请求)
+*       ajax.setRequestHeader() // 设置请求头的内容
+*
+*   属性
+*       ajax.onreadystatechange()  // 服务器的请求状态改变就触发
+*       ajax.readyState() // 请求的状态码, 当为4的时候表示请求状态成功
+*       ajax.responseText
+*
+*
+* */
+</script>
+</body>
+</html>

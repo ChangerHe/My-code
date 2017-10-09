@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="../node_modules/vue/dist/vue.min.js"></script>-->
+    <script src="../node_modules/vue/dist/vue1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <my-component :message="message"></my-component>
+        <my-msg :msg="msg"></my-msg>
+        <camel-test my-msg="hello"></camel-test>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            props: ['message'],
+            template: '<p>from parent: +{{message}}</p>'
+        })
+
+        Vue.component('my-msg', {
+            props: ['msg'],
+            template: '<p>{{msg + " is typeof " + typeof msg}}</p>'
+        })
+
+        Vue.component('camel-test', {
+            props: ['my-msg'],
+            template: '<p>this is {{my-msg}}</p>'
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'default',
+                msg: 'a'
+            }
+        })
+
+
+    </script>
+</body>
+</html>

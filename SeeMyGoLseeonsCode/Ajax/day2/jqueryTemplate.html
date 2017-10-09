@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="homework1/public/jquery.min.js"> </script>
+    <script src="homework1/public/jquery.tmpl.js"></script>
+</head>
+<body>
+    <div id="box"></div>
+
+
+    <script id="tpl" type="text/html">
+        <h1>${title}</h1>
+        {{if weather == "晴"}}
+            <h3>打篮球</h3>
+        {{else weather == "雨"}}
+            <h3>打游戏</h3>
+        {{else}}
+            <h3>学习</h3>
+        {{/if}}
+        <h2>我们要学习的内容有</h2>
+        <ul>
+        {{each(index, value) data.target}}
+            <li>{{= value}}</li>
+        {{/each}}
+        </ul>
+    </script>
+
+    <script>
+        var data = {
+            title: "今天星期五",
+            weather: "晴",
+            target: ['学js', '学vue', '学ng', '学react']
+        }
+
+        $('#tpl').tmpl(data).appendTo('#box')
+    </script>
+</body>
+</html>

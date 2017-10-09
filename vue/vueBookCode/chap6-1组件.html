@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <!--在模板中写上对应的标签-->
+    </div>
+    <script>
+        var MyComponent = Vue.extend({
+            template: '<p>this is a component</p>'
+            // 定义好对应的模板以便往里面渲染
+        })
+
+        Vue.component('my-component', MyComponent)
+        // 注册这个组件, 将组件渲染
+
+        var vm = new Vue({
+            el: '#app',
+            // 实例化Vue对象, 确定渲染的位置
+        })
+    </script>
+</body>
+</html>

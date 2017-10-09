@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    同步: 上一步执行完下一句才开始执行
+         执行时间长,下一句就会等待
+
+    异步: 程序同样也是从上往下执行,可以使用回调函数和事件等方式将复杂的程序变为异步的, 后面的代码不需要等待前面代码执行结束就可以继续执行
+
+    ajax中的同步和异步
+        默认情况下就是异步的
+
+-->
+
+<script>
+    console.log(111)
+    var ajax = new XMLHttpRequest()
+    ajax.open('GET', './data.json', false)
+    ajax.onreadystatechange = function() {
+        if(ajax.readyState == 4 && ajax.status == 200) {
+            console.log(222)
+            console.log(ajax.responseText)
+        }
+    }
+    ajax.send()
+    console.log(333)
+</script>
+</body>
+</html>

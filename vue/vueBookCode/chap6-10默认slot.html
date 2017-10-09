@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+</head>
+<body>
+    <div id="app">
+        <my-slot>
+            <p slot="title">{{title + '1'}}</p>
+            <p slot="title">{{title}}</p>
+            <div id="content">{{content}}</div>
+            <!--此时该id为content的内容还是被分发到了匿名的slot上-->
+        </my-slot>
+    </div>
+    <script>
+        Vue.component('my-slot', {
+            template: `<div><div class="title"><slot name="title"></slot></div><div class="content"><slot></slot></div></div>`
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'this is a title',
+                content: 'this is a content'
+            }
+        })
+    </script>
+</body>
+</html>

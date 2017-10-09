@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <!--<script src="../node_modules/vue/dist/vue1.min.js"></script>-->
+
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(index,item ) in items">
+                <h1>name: {{item.name}}    age: {{item.age}}</h1>
+                <div v-html="msg">111</div>
+
+                <div v-cloak>
+                    {{ message }}
+                </div>
+                <style>
+                    [v-cloak] {
+                        display: none;
+                    }
+                </style>
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="a in 10">
+                <h1>{{a}}</h1>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                items: [
+                    {name: '1', age: 1},
+                    {name: '2', age: 2},
+                    {name: '3', age: 3},
+                    {name: '4', age: 4}
+                ],
+                msg: '<h1>11111</h1>',
+            }
+        });
+
+        console.log(vm.$els.demo.innerText)
+    </script>
+</body>
+</html>

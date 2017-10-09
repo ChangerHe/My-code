@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>用户名: <input type="text" name="username" id="username"></p>
+<p>密码: <input type="password" name="password" id="password"></p>
+<p><input type="button" value="提交" id="submit"></p>
+
+
+<script>
+var username = document.querySelector("#username")
+var password = document.querySelector("#password")
+var submit = document.querySelector("#submit")
+
+
+    username.onblur = function() {
+        var usernameValue = username.value
+        console.log(usernameValue)
+
+
+    }
+</script>
+</body>
+</html>

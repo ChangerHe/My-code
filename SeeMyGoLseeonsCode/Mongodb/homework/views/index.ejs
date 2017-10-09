@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="add.html" method="post">
+      <p>姓名: <input type="text" name="name">电话: <input type="text" name="tel">留言时间: <input type="date" name="ctime"></p>
+      <p>留言: <textarea name="content" cols="30" rows="10"></textarea></p>
+      <p><input type="submit" value="提交"></p>
+    </form>
+
+    <ul class="msg">
+        <%for(var i = 0; i < data.length; i++){%>
+            <li>
+              <p>姓名: <%=data[i].name%></p>
+              <p>电话: <%=data[i].tel%></p>
+              <p>留言时间: <%=data[i].ctime.toLocaleString()%></p>
+              <p>留言: <%=data[i].content%></p>
+            </li>
+        <%}%>
+    </ul>
+  </body>
+</html>
