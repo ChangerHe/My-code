@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			width: 200px;
+			height: 200px;
+			background: #900;
+			animation: change 2s;
+			/*animation-duration: infinite;*/
+			animation-iteration-count:infinite;
+			animation-delay: 1s;
+			animation-direction: alternate;
+
+		}
+
+		@keyframes change {
+			0% {background: #900;transform: translate(0, 0);}/*
+			25% {background: #009;transform: translate(200px, 0);}
+			50% {background: #009;transform: translate(200px, 200px);}
+			75% {background: #009;transform: translate(0, 200px);}*/
+			100% {background: #009;transform: translate(0, 200px);}
+
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<div class="box" style="animation-play-state: paused;"></div>
+	<script>
+		var box = document.querySelector('.box')
+
+		setInterval(function() {
+			if(box.style.animationPlayState === "paused") {
+				box.style.animationPlayState = 'running'
+			} else {
+				box.style.animationPlayState = 'paused'
+			}
+			
+
+		},1000)
+	</script>
+</body>
+</html>

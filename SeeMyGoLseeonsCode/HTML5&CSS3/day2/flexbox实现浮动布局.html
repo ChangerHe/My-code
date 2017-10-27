@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.content {
+			width: 602px;
+			height: 624px;
+			background: #eee;
+			border-radius: 10px;
+		}
+
+		.top {
+			width: 100%;
+			height: 199px;
+			margin: 4px 0;
+			border-radius: 10px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.leftBox, .rightBox, .middleBox {
+			height: 100%;
+			width: 200px;
+		}
+
+		.leftBox {
+			border-radius: 10px 0  0 10px;
+			background: pink;
+		}
+
+		.rightBox {
+			border-radius: 0 10px 10px 0 ;
+		}
+
+		.middle {
+			background: pink;
+		}
+
+		.middleBox .middle {
+			height: 99px;
+			width: 100%;
+		}
+
+		.middleBox .middle:last-child {
+			margin-top: 1px;
+		}
+
+		.rightBox .middle {
+			height: 99px;
+			width: 100%;
+			border-radius:  0 10px 0 0;
+		}
+
+		.rightBox .middle:last-child {
+			margin-top: 1px;
+			border-radius: 0 0 10px 0 ;
+		}
+	</style>
+</head>
+<body>
+<div class="content">
+	<div class="top">
+		<div class="leftBox"></div>
+		<div class="middleBox">
+			<div class="middle moddleTop"></div>
+			<div class="middle middleBottom"></div>
+		</div>
+		<div class="rightBox">
+			<div class="middle rightTop"></div>
+			<div class="middle rightBottom"></div>
+		</div>
+	</div>
+	<div class="top middleBoxs"></div>
+	<div class="top bottom"></div>
+</div>
+</body>
+</html>

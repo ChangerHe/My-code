@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#app {
+			width: 600px;
+			height: 400px;
+			margin: 100px auto;
+		}
+
+		.hero {
+			float: left;
+			width: 200px;
+			height: 200px;
+			box-sizing: border-box;
+			border: 2px solid #000;
+			background: rgba(0,0,0,.5);
+		}
+
+		.hero:target {
+			background: #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<a href="#1" id="1" class="hero"></a>
+		<a href="#2" id="2" class="hero"></a>
+		<a href="#3" id="3" class="hero"></a>
+		<a href="#4" id="4" class="hero"></a>
+		<a href="#5" id="5" class="hero"></a>
+		<a href="#6" id="6" class="hero"></a>
+	</div>
+</body>
+</html>

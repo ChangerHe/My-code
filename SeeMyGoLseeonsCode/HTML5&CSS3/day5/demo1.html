@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		@media (max-width: 1000px) {
+			.container {
+				width: 100%;
+				height: 600px;
+				display: flex;
+				flex-direction: column;
+			}
+
+
+			.container .right-aside {
+				flex: 1;
+				padding-bottom: 100px;
+				background: #ff0;
+			}
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			width: 100%;
+			height: 80px;
+			background: #900;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			flex-wrap: wrap;
+		}
+
+		.container {
+			width: 100%;
+			height: 600px;
+			display: flex;
+		}
+
+		.container .left-aside {
+			flex: 0 0 25%;
+			/*width: 25%;*/
+			background: #0f0;
+		}
+
+		.container .article {
+			/*flex: 1;*/
+			flex: 0 0 60%;
+			/*width: 60%;*/
+			background: #00f;
+		}
+
+		.container .right-aside {
+			flex: 1;
+			background: #ff0;
+		}
+		footer {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 80px;
+			background: #900;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>I am header</h1>
+	</header>
+	<main class="container">
+		<aside class="left-aside">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti a similique ab quis. Iste sed aspernatur fugiat officiis culpa distinctio, quas corporis magni suscipit dolorem iusto, optio enim, illo magnam!</aside>
+		<article class="article">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur deleniti, magni consequuntur minus porro, similique nam molestias aspernatur eum molestiae non voluptatem provident cum vitae pariatur, quidem ut perspiciatis in.</article>
+		<aside class="right-aside">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere esse molestias atque iure, numquam sit a, quia magnam quo ut eum veniam provident asperiores reiciendis expedita similique, facilis, perspiciatis aliquam.</aside>
+	</main>
+	<footer><h1>I am footer</h1></footer>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			user-select: none;
+		}
+
+		a {
+			text-decoration: none;
+			color: #fff;
+		}
+
+		html, body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.content {
+			position: relative;
+			z-index: 1001;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			padding-top: 200px;
+		}
+
+		.box {
+			display: flex;
+			flex: 0 0 170px;
+			position: relative;
+			width: 170px;
+			height: 170px;
+			background: #e6674a;
+			border: 2px solid #fff;
+			margin: 4px;
+			color: #fff;
+			font-size: 24px;
+			font-weight: 700;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.box .img {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: -60px;
+			left: 20px;
+			width: 130px;
+			height: 130px;
+			border-radius: 50%;
+			background: #fff;
+			color: #fff;
+		}
+
+		.box .img img {
+			width: 120px;
+			height: 120px;
+			border-radius: 50%;
+			filter: saturate(50%);
+			z-index: 999;
+		}
+
+		.box:hover .img img {
+			filter: saturate(100%);
+
+		}
+
+		.box .fonts {
+			width: 170px;
+			height: 170px;
+			padding-top: 76px;
+			overflow: auto;
+			z-index: 999;
+		}
+
+
+
+		.box:active {
+			background: #ff794a;
+		}
+
+		.change {
+			
+			animation: change-bg 2s;
+		}
+
+		
+		.cover {
+			position: fixed;
+			z-index: 997;
+			width: 100%;
+			height: 100%;
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+
+/*		#J_cover1 {
+			background-image: url(imgs/bg1.jpg);
+		}
+		#J_cover2 {
+			background-image: url(imgs/bg2.jpg);
+		}
+		#J_cover3 {
+			background-image: url(imgs/bg3.jpg);
+		}
+		#J_cover4 {
+			background-image: url(imgs/bg4.jpg);
+		}
+		#J_cover5 {
+			background-image: url(imgs/bg5.jpg);
+		}*/
+
+		.cover{
+			/*display: none;*/
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 1000;
+		}
+
+		.cover img {
+			width: 100%;
+			height: 100%;
+		}
+
+		#J_cover1:target {
+			/*display: block;*/
+			z-index: 1001;
+			background-size: cover;
+			animation: changebg1 1s;
+		}
+
+		#J_cover2:target {
+			z-index: 1001;
+			background-size: cover;
+			transform-origin: left bottom;
+			animation: changebg2 1s;
+		}
+
+		#J_cover3:target {
+			z-index: 1001;
+			background-size: cover;
+			animation: changebg3 1s;
+		}
+
+		#J_cover4:target {
+			z-index: 1001;
+			background-size: cover;
+			animation: changebg4 1s;
+		}
+
+		#J_cover5:target {
+			z-index: 1001;
+			background-size: cover;
+			animation: changebg5 1s;
+		}
+
+
+		
+		@keyframes changebg4 {
+			0% {transform: skew(20deg, 20deg);}
+			100% {transform: translate(0, 0);}
+		}		
+		@keyframes changebg2 {
+			0% {transform: rotatez(-90deg);}
+			100% {transform: translate(0);}
+		}		
+		@keyframes changebg3 {
+			0% {transform: rotate(-360deg) scale(0);}
+			100% {transform: rotate(0deg) scale(1);}
+		}		
+		@keyframes changebg1 {
+			0% {transform: translate(-2000px);}
+			100% {transform: translate(0);}
+		}		
+		@keyframes changebg5 {
+			0% {transform: scale(.5,.5);}
+			100% {transform: scale(1,1);}
+		}
+
+	</style>
+</head>
+<body class="">
+	<div id="J_cover1" class="cover">
+		<img src="imgs/bg1.jpg" alt="">
+	</div>
+	<div id="J_cover2" class="cover">
+		<img src="imgs/bg2.jpg" alt="">
+	</div>
+	<div id="J_cover3" class="cover">
+		<img src="imgs/bg3.jpg" alt="">
+	</div>
+	<div id="J_cover4" class="cover">
+		<img src="imgs/bg4.jpg" alt="">
+	</div>
+	<div id="J_cover5" class="cover">
+		<img src="imgs/bg5.jpg" alt="">
+	</div>
+	<div class="content">
+		<div class=" box  box1">
+			<a href="#J_cover1">
+				<div class="img">
+					<img src="imgs/sbg1.jpg" alt="">
+				</div>
+				<div class="fonts">
+					<p>Lorem ipsum dolor sit amet</p>
+				</div>
+			</a>
+		</div>
+		<div class="box box2">
+			<a href="#J_cover2">
+				<div class="img">
+					<img src="imgs/sbg2.jpg" alt="">
+				</div>
+				<div class="fonts">
+					<p>sequi quis deserunt cum dicta dolore</p>
+				</div>
+			</a>
+		</div>
+		<div class="box box3">
+			
+			<a href="#J_cover3">
+				<div class="img">
+					<img src="imgs/sbg3.jpg" alt="">
+				</div>
+				<div class="fonts">
+					<p>Corporis fugiat sequi quis deserunt</p>
+				</div>
+			</a>
+		</div>
+		<div class="box box4">
+			
+			<a href="#J_cover4">
+				<div class="img">
+					<img src="imgs/sbg4.jpg" alt="">
+				</div>
+				<div class="fonts">
+					<p>vero vel architecto possimus</p>
+				</div>
+			</a>
+		</div>
+		<div class="box box5">
+			
+			<a href="#J_cover5">
+				<div class="img">
+					<img src="imgs/sbg5.jpg" alt="">
+				</div>
+				<div class="fonts">
+					<p>distinctio modi vitae voluptatem</p>
+				</div>
+			</a>
+		</div>
+	</div>
+
+<!-- 	<script>
+		var cover = document.getElementById('J_cover')
+		var box = document.querySelectorAll('.box')
+		// console.log(box)
+		box.forEach((item, index) => {
+			console.log(item)
+			item.onclick = function() {
+				cover.style.backgroundImage = 'url(imgs/bg' + (index+1) + '.jpg)'
+				cover.className = "change"
+			}
+		})
+
+	</script> -->
+</body>
+</html>

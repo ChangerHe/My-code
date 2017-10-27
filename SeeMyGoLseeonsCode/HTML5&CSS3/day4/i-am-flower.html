@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			width: 400px;
+			height: 400px;
+			background: #900;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.smallbox {
+			position: absolute;
+			bottom: -140px;
+			width: 100%;
+			height: 200px;
+			background: rgba(0,0,0,.4);
+			color: #fff;
+			font-size: 24px;
+			line-height: 60px;
+			transition: all 1s;
+		}
+
+		.box:hover .smallbox {
+			transform: translate(-140px,-140px);
+		
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="smallbox">我是祖国的</div>
+	</div>
+</body>
+</html>

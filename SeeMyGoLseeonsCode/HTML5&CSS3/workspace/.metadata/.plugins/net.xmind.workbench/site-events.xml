@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site-events>
+<events>
+<event action-text="升级" id="xmind8.0.3" open-external="true" prompt="once" style="popup" url="https://www.xmind.net/download/?ref=popup_update_8_3">XMind有更新版本可以下载，现在更新以获得更好的体验。</event>
+</events>
+</site-events>

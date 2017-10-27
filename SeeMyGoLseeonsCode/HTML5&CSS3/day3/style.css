@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'icon';
+  src:  url('fonts/icon.eot?qn2i73');
+  src:  url('fonts/icon.eot?qn2i73#iefix') format('embedded-opentype'),
+    url('fonts/icon.ttf?qn2i73') format('truetype'),
+    url('fonts/icon.woff?qn2i73') format('woff'),
+    url('fonts/icon.svg?qn2i73#icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-firefox:before {
+  content: "\eada";
+}
+.icon-IE:before {
+  content: "\eadb";
+}

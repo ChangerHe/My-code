@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="vue.js"></script>-->
+    <script src="vue1.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="num1" number><br>
+        <input type="text" v-model="num2" number><br>
+        <h1>{{num1}} + {{ num2}} = {{ num3}}</h1>
+    </div>
+    <div id="example">
+        <p>Original message: "{{ message }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        <button @click="toggleShow">toggle show</button>
+        <p>{{totalPrice}}</p>
+        <p v-if="showTotal">total price = {{totalPrice}}</p>
+        <input type="checkbox" name="checked" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+
+        <label for="flash"><input value="car" type="radio" name="flash" v-model="bizline">car</label>
+        <label for="flash"><input type="radio" value="bus" name="flash" v-model="bizline">bus</label>
+        <span>{{bizline}}</span>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num1: 2,
+                num2: 3
+            },
+            computed: {
+                num3: function() {
+                    return this.num1 + this.num2
+                }
+            }
+        })
+        var vm =new Vue({
+            el: '#example',
+            data: {
+                message: 'Hello',
+                basePrice : 1,
+                showTotal: true,
+                checked: false
+            },
+            computed: {
+                // 计算属性的 getter
+                reversedMessage: {
+                    get: function () {
+                        // `this` 指向 vm 实例
+                        return this.message + Date.now()
+                    }
+                },
+                totalPrice() {
+                    return this.basePrice++
+                }
+            },
+            methods: {
+                toggleShow() {
+                    this.showTotal = !this.showTotal
+                }
+            }
+        })
+    </script>
+</body>
+</html>

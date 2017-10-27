@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			/*width: 300px;*/
+			height: 300px;
+			background: #000;
+			transition-property: all;
+			transition-duration: 1s;
+		}
+
+		.box:hover {
+			/*width: 400px;*/
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+
+	<script>
+		var box = document.querySelector('.box')
+		var move = function move() {
+			console.log('transitionend!!');
+        	box.removeEventListener('transitionend',move)
+
+		}
+
+        box.addEventListener('transitionend',move);
+
+        /*
+			注意: 变化在多种的时候, 会触发对应的多种变化数量的transitioned事件
+		
+        */
+
+		// box.addEventListener('transitionend',() => {
+		// 	console.log('transitionend')
+		// })
+	</script>
+</body>
+</html>

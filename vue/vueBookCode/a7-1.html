@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--<script src="vue.js"></script>-->
+    <script src="vue1.js"></script>
+</head>
+</head>
+<body>
+    <div :class="dddr" id="app">
+        <h1 v-text="dddr"></h1>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                dr: 1,
+                dc: 0
+            },
+            computed: {
+                dddr() {
+                    return {
+                        dr: this.dr > 2 ? true : false,
+                        dc: this.dc < 1 ? true : false
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

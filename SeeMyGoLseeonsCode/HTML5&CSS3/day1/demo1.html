@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+			width: 300px;
+			height: 300px;
+			margin: 200px auto;
+			background-color: #ccc;
+		}
+
+
+		#box > .item {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			float: left;
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+		}
+
+		/*#box > .item:nth-child(2n) {
+			background-color: #fff;
+		}*/
+
+		/* #box > .item:nth-child(3n+4) {
+			background-color: #fff;
+		} */
+
+		#box > .item:nth-child(4n+1) {
+			background: red;
+		}
+
+		.hide {
+			display: none;
+		}
+
+		.hide:target {
+			display: block;
+			background: #000;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- 实现九宫格效果 -->
+	<div id="box">
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+		<div class="item">5</div>
+		<div class="item">6</div>
+		<div class="item">7</div>
+		<div class="item">8</div>
+		<div class="item">9</div>
+	</div>
+
+	<a href="#1">link to #1</a>
+	<a href="#2">link to #2</a>
+	<a href="#3">link to #3</a>
+	<div class="hide" id="1">I am #1</div>
+	<div class="hide" id="2">I am #2</div>
+	<div class="hide" id="3">I am #3</div>
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+</body>
+</html>

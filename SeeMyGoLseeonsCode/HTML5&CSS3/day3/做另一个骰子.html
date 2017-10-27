@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			width: 100px;
+			height: 100px;
+			background: #fff;
+			border-radius: 20px;
+			box-shadow: 2px 5px 8px;
+			margin: 10px;
+			display: flex;
+		}
+
+		.content {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #000;
+		}
+
+		.box1 {
+			justify-content: center;
+			align-items: center;
+		}
+
+		.box2 {
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.box3 {
+			box-sizing: border-box;
+			padding: 6px;
+			justify-content: center;
+		}
+
+		.box3 .content:first-child {
+			align-self: flex-end; 
+		}
+		.box3 .content:nth-child(2) {
+			align-self: center; 
+		}
+
+		.box4 {
+			/*align-content: space-around;*/
+			flex-direction: column;
+			justify-content: space-around;
+		}
+
+		.box4 >.sunbox  {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+
+		}
+
+		.box5 {
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-content: space-between;
+		}
+
+		.box5 .content1 {
+			align-self: center;			
+		}
+
+		.box6 {
+			align-items: center;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="box box1">
+		<div class="content"></div>
+	</div>
+	<div class="box box2">
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="box box3">
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="box box4">
+		<div class="sunbox">
+			<div class="content"></div>
+			<div class="content"></div>
+		</div>
+		<div class="sunbox s1">
+			<div class="content"></div>
+			<div class="content"></div>
+		</div>
+	</div>
+	<div class="box box5">
+		
+		<div class="content"></div>
+		<div class="content content1"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+	<div class="box box6">
+		
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+		<div class="content"></div>
+	</div>
+</body>
+</html>

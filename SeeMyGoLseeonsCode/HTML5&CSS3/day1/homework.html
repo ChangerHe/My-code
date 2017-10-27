@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			width: 100px;
+			height: 100px;
+			background: red;
+			margin-top: 20px;
+		}
+
+		#box2 {	
+			border-radius: 50%;
+		}
+
+		#box1 {
+			border-radius: 20px 20px;
+		}
+
+		#box3 {
+			width: 200px;
+			border-radius: 50%;
+		}
+
+		#box4 {
+			height: 50px;
+			border-radius: 50px 50px 0  0 ;
+		}
+
+		#box5 {
+			border-radius: 100% 0 0  0 ;
+		}
+
+		#box6 {
+			border-radius: 50% 0 50%  0 ;
+		}
+
+		#textLine:focus {
+			outline: none;
+			box-shadow: 2px 2px 4px #900;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box1"></div>
+	<div class="box" id="box2"></div>
+	<div class="box" id="box3"></div>
+	<div class="box" id="box4"></div>
+	<div class="box" id="box5"></div>
+	<div class="box" id="box6"></div>
+
+	<input type="text" id="textLine">
+	<br>
+	<br>
+	<br>
+	<br>
+
+</body>
+</html>
