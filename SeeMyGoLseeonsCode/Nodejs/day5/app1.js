@@ -1,7 +1,6 @@
 'use strict'
 
 const http = require('http')
-const ejs = require('ejs')
 
 var server = http.createServer()
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site-events>
+<events>
+<event action-text="查看详情" id="CXMtraing-2" open-external="true" prompt="once" style="popup" url="http://www.xmind.net/blog/cn/2017/10/cxm-training-camp-2/">「XMind 思维大师训练营 · 第二期」开始啦！11月5日前报名优惠1000元！</event>
+<event action-text="立即抢购" id="2017-11-11-cindy-kimi-2" open-external="true" prompt="once" style="popup" url="http://www.xmindchina.net/goumai.html#499">XMind 8 专业版  限时特价，直降￥200，仅售￥499</event>
+</events>
+</site-events>

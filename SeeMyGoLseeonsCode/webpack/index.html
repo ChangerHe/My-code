@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+11111111
+<h1>2222222</h1>
+<img id="img1" src="" alt="">
+<img id="img2" src="" alt="">
+
+<%= htmlWebpackPlugin.options.date%>
+
+<% for(var key in htmlWebpackPlugin.files) { %>
+	<% key %>
+<% } %>
+<script src="./bundle.js"></script>
+</body>
+</html>

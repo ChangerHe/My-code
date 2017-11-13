@@ -13,7 +13,7 @@
         // Generator函数是ES6提供的一种异步编程解决方案,语法行为与传统函数完全不同
 
         {
-            function* helloWorldGenerator() {
+            function *helloWorldGenerator() {
                 yield 'hello'
                 yield 'world'
                 return 'ending'
@@ -28,27 +28,56 @@
             console.log(hw.next())
         }
 
-        // {
-        //     let arr = [1, [
-        //             [2, 3], 4
-        //         ],
-        //         [5, 6]
-        //     ]
+        /*generator函数的特性 
+        1.遇到yield语句就暂停执行后面的操作, 并将紧跟在yield后的表达式作为返回的对象的vaule属性值
+        2.下一次调用next方法时再继续往下执行, 直到遇到下一条yield语句
+        3.如果没有再遇到yield语句, 就执行到函数结束
+        4.如果函数没有return语句, 则返回对象的value值为undefined, 所以当我们将上面函数的最后一个return换为yield的时候, 第三个会执行为{value: "ending", done: false}
+         */
 
-        //     let flat = function*(a) {
-        //         a.forEach(function(item) {
-        //             if (typeof item !== 'number') {
-        //                 yield* flat(item)
-        //             } else {
-        //                 yield item;
-        //             }
-        //         })
-        //     }
+        // generator函数可以不用yield语句,这时就变成了一个单纯的暂缓执行函数
+        {
+            function* f() {
+                console.log('执行了')
+            }
 
-        //     for (let f of flat(arr)) {
-        //         console.log(f)
-        //     }
+            var generator = f()
+
+            setTimeout(function() {
+                generator.next()
+            }, 2000);
+        }
+
+        // 从以上的代码可以看出, 当我们设置f为普通函数的时候, 在将f()赋值给generator的时候就应该执行了
+        // 但当我们将其设置为generator函数的时候, 它只会在调用next()之后才能得到执行
+
+        // 另外需要注意的是, generator中的yield是没有办法在普通函数中定义的, 所以特别是我们要在generator函数中定义函数遍历的时候,尤其要注意
+        // var arr = [1, [[2, 3], 4], [5, 6]]
+        // var flat = function* (a) {
+        //     a.forEach(function(item) {
+        //         if (typeof item !== 'number') {
+        //             yield flat(item)
+        //         } else {
+        //             yield item 
+        //         }
+        //     })
         // }
+
+        // for(var f of flat(arr)) {
+        //     console.log(f)
+        // }
+
+        // 当我们为next方法携带一个参数的时候, 其上下文就会
+        // 当generator函数从暂停状态到恢复运行, 其上下文状态是不变的, 也就是说可以再其不同运行阶段从外部向内注入不同的值来调整函数的行为
+        function* foo(x) {
+            var y = 2 * (yield (x + 1))
+            var z = yield (y / 3)
+            return (x + y + z)
+        }
+        var a = foo(5)
+        a.next()
+        a.next()
+        a.next()
     </script>
 </body>
 
