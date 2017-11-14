@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+	<!--
+    1.react核心对象
+      react: 为react提供核心功能, 如组件类等
+      reactDOM: 为组件提供渲染功能, 将组件渲染到dom页面上
+   -->
+   <!--
+    2.JSX是一种语法格式, 是JS的一种语法补充, 用于非常方便的在JS中编写HTML标签或组件
+
+    -->
+    <!--
+      3.JSX和HTML的区别
+        JSX所创建的标签是虚拟的DOM元素, 是React定义的对象, 上面只有其对应的DOM所需的一些属性和方法, 摒弃了一些原生DOM标签的一些不常用的属性和方法, 导致React的DOM元素的运行速度更加的快
+     -->
+     <!--
+       4.注意点
+        渲染标签时, HTML标签必须首字母小写
+        渲染组件时, 组件名称首字母必须大写
+        当我们直接使用JSX标签定义class和for时, 需要分别改为className和htmlFor
+      -->
+      <!--
+        5.JSX的写法
+        <a href={url}> {title}</a>
+        <div>{name? name:'zhangsan'}</div>
+        <div style={{'color':'red','height':'20px'}}></div>
+        注意: JSX的标签必须被其他标签包裹起来
+       -->
+       <!--
+        组件开发
+        什么是组件
+          组件又称UI组件,组件时一个独立的可以实现一些界面功能的代码片段, 组件可以实现复用
+          1.编写组件
+          var Hello = React.createClass({
+            render() {
+              return {
+                // 代码片段
+              }
+            }
+          })
+          2.渲染组件
+          ReactDOM.render(<Hello/>, document.getElementById('app'))
+        -->
+        <!--
+          数据传递props(属性传值)
+          1. 设置属性值
+            在组件实例化时进行属性设置, 可以将值传入属性内部
+          2.在组件内部接受数据
+          var 变量=this.props.属性名
+          3.设置默认值
+          在React.createClass()中定义默认值. getDefaultProps() {
+            return{}
+          }
+          4.获取标签对中间的内容, 使用this.props.children
+         -->
+
+
+	<script type="text/babel">
+    // JSX和HTML的区别
+    // 由下面的打印内容可知, JSX是一个虚拟的DOM元素, 并不是原生的DOM元素, 可以看到原生DOM元素, JS自动为其加上了许多的属性和方法, 所以导致我们对原生DOm进行操作的时候, 相比于react的虚拟DOM操作更加的缓慢
+    // 使用react进行创建标签, 其效果与JSX是一样的(React.createElement 等价于直接写)
+    var jsx = <div>hello JSX</div>
+    console.log(jsx)
+
+    var div = document.createElement('div')
+    console.dir(div)
+
+    var reactTag = React.createElement('div', {}, '')
+    console.log(reactTag)
+	</script>
+</body>
+</html>

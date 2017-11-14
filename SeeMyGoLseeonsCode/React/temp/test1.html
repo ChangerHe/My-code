@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+	<!-- 
+	ReactDOM语法: 
+		将第一个参数作为JSX的语法进行执行, 并将执行结果放在第二个参数的容器中
+		组件语法:(注意必须是要将script标签的类型转为  type="text/babel") 
+			ReactDOM.render(jsx, 容器)
+	 -->
+	<div id="app"></div>
+	<div id="app1"></div>
+	<script type="text/babel">
+		ReactDOM.render(
+			<h1 id="myid1">hello react</h1>
+			,app
+		)
+
+	</script>
+
+	<!-- 不加类型的语法: -->
+	<script>
+		ReactDOM.render(
+			React.createElement('h1', {id: 'myid'}, 'hello reactjs' )
+			,document.getElementById('app1')
+		)
+
+	</script>
+</body>
+</html>

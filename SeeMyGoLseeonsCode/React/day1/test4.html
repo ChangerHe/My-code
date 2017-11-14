@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+	<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+
+	<script type="text/babel">
+		var NotesList = React.createClass({
+      render() {
+        console.log(this.props.children)
+        return (
+          <ol>
+          {
+            // 更加稳妥的调用父组件内容的方法
+            React.Children.map(this.props.children, (v) => {
+              return <li>{v}</li>
+            })
+            // this.props.children.map((v) => {
+            //   return <li>{v}</li>
+            // })
+          }
+          </ol>
+        )
+      }
+    })
+
+    ReactDOM.render(
+      <NotesList>
+        <span>hello</span>
+        <span>hello</span>
+        <span>hello</span>
+      </NotesList>,
+      document.body
+    )
+	</script>
+</body>
+</html>
