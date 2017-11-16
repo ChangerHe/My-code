@@ -1,36 +1,35 @@
 import React from 'react'
 
-// var data =
+class List extends React.Component {
+  constructor() {
+    super()
+  }
 
-var List = React.createClass({
-  // 设置状态的默认值
-  getInitialState() {
-    return {data: []}
-  },
   render() {
-    var datas = this.state.data
     return (
-      <ul>
-        {datas.map((v, i) => {
-          return <li key={i}>{v.name}</li>
-        })}
-      </ul>
+      <div>
+        <a href="#/index" onClick={this.getRoute}>去首页</a>&nbsp;
+        <a href="#/news" onClick={this.getRoute}>去新闻中心</a>&nbsp;
+        <a href="#/concat" onClick={this.getRoute}>去联系我们</a>
+        <div ref="hook" id='hook'></div>
+      </div>
     )
-  },
-  componentDidMount() {
+  }
+
+  getRoute(e) {
     var that = this
+    var href = e.target.getAttribute('href').slice(2)
     var ajax = new XMLHttpRequest()
-    ajax.open('get', '/components/data/user.json')
-    ajax.onreadystatechange = function () {
-      if (ajax.readyState == 4 && ajax.status == 200) {
-        var data = JSON.parse(ajax.responseText)
-        console.log(typeof data)
-        that.setState({ data })
+    ajax.open( 'get' ,'/page/' + href + '.html')
+    ajax.send()
+    ajax.onreadystatechange = function() {
+      if(ajax.status === 200 && ajax.readyState === 4) {
+        var data = ajax.responseText
+        hook.innerHTML = data
       }
     }
-    ajax.send()
   }
-})
 
+}
 
-module.exports = List
+export default List

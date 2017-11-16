@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './nav'
 
-class List1 extends React.Component {
+class List2 extends React.Component {
   constructor() {
     super()
   }
@@ -10,10 +10,10 @@ class List1 extends React.Component {
     return (
       <div>
         <Nav />
-        <h1>我是main</h1>
+        <h1>我是news</h1>
       </div>
     )
   }
 }
 
-export default List1
+export default List2
