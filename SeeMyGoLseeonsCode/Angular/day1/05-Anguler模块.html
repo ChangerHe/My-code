@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-Anguler模块</title>
+    <script src="../angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+    <h1>当前消息：{{message}}</h1>
+    <h2>当前用户：{{person}}</h2>
+
+    <script>
+        // 1. 创建一个模块（2个参数）
+        //  参数一：模块名称，和ng-app定义的值匹配。
+        //  参数二： 依赖列表（数组）
+        var app = angular.module('myapp',[]);
+        console.log('app:', app);
+
+
+    </script>
+
+    <script >
+        // 2. 获取模块（1个参数）
+        // 参数1： 获取的模块名称
+        var app2 = angular.module("myapp");
+        console.log('app2:',app2);
+        console.log('app1 === app2:',app === app2);
+
+
+        // 3. 使用
+        // 为当前模块，初始化配置
+        app2.run(function($rootScope){
+//           debugger;
+            // $rootScope 即 VM对象
+            console.log(1)
+            // 初始化模型信息
+            $rootScope.message = "我是一个初始化消息！！";
+
+
+            $rootScope.person = {name: 'zs',age:18};
+        });
+    </script>
+
+   <!--
+       小结：
+           1. Angular的模块功能，带来了代码的模块化，避免全局作用域的污染。
+           2. 使用要素
+                1） angular.module(模块名称，依赖列表)   ==》 创建模块
+                2） angular.module(模块名称)   ==》 获取
+                3） 初始化应用信息
+                    angular.module(模块名称).run(function($rootScope){  初始化代码.. })
+
+           3. 页面中就可以使用上面run方法定义的初始化信息。
+
+
+   -->
+</body>
+</html>

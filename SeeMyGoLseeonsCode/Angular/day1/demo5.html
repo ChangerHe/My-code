@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+    <div>
+        <h1>当前消息: {{message}}</h1>
+    </div>
+
+    <script>
+        // 创建一个模块
+        // 参数1: 模块名称, 和ng-app的值匹配
+        // 参数2: 依赖列表(数组)
+        var app = angular.module('myapp', [])
+    </script>
+
+    <script>
+        // 在另一个页面进行获取
+        // 这里的模块名是script标签上面定义的模块名
+        var app2 = angular.module('myapp').run(function($rootScope) {
+            console.log(1)
+            debugger
+        })
+        /* 调用同一个模块,不论是在内部还是外部调用, 其实调用的都是一个对象 */
+        // console.log(app === app2)
+        // console.log(app2.run)
+
+        // 模块的使用
+        // 为当前模块初始化数据
+        // app2.run(function($rootScope) {
+        //     debugger;
+        //     console.log($rootScope);
+        // })
+        // app2.run(['$rootScope', function ($rootScope) {
+        //     console.log($rootScope)
+        //     $rootScope.name = 'hello'
+        // }])
+        console.log(app2)
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <style>
+
+    </style>
+        <script>
+            (function() {
+                var app = angular.module('app', [])
+
+                app.controller('AllChecked', function($scope) {
+                    $scope.allChange = function(e) {
+                        var select_status = $scope.select_all
+                        var personNum = $scope.person.length
+                        for(var i = 0; i < personNum; i++) {
+                            $scope.person[i].selected = select_status
+                        }
+                    }
+                    // $scope.select_one = function() {
+                    //     console.log($scope.selected)
+                    // }
+                    $scope.$watch('person', function(newValue, oldValue) {
+                        var personNum = $scope.person.length
+                        // 被选中的数量
+                        var select_num = 0
+                        // for循环检查的数量
+                        var check_num = 0
+                        for (var i = 0; i < personNum; i++) {
+                            // console.log($scope.person[i].selected)
+                            if($scope.person[i].selected === true) {
+                                check_num++
+                            }
+                            select_num++
+                        }
+                        // 如果循环的数量等于数组的长度, 则表示循环完毕
+                        if(select_num === personNum) {
+                            // console.log(check_num)
+                            if(check_num === personNum) {
+                                $scope.select_all = true
+                            } else {
+                                $scope.select_all = false
+                            }
+                        }
+                    }, true)
+                    $scope.select_all = false
+                    $scope.person = [
+                        {
+                            username: 'Jack0',
+                            checkboxId: 'user1',
+                            selected: true
+                        },
+                        {
+                            username: 'Jack1',
+                            checkboxId: 'user2',
+                            selected: false
+                        },
+                        {
+                            username: 'Jack2',
+                            checkboxId: 'user3',
+                            selected: true
+                        },
+                        {
+                            username: 'Jack3',
+                            checkboxId: 'user4',
+                            selected: true
+                        }
+                    ]
+                })
+            })()
+        </script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="AllChecked">
+        <p>
+            <label for="select_all">全选:</label>
+            <input ng-change='allChange()' ng-model='select_all' type="checkbox" name="all" id="select_all">
+        </p>
+        <p ng-repeat="per in person">
+            <label for="ng-bind='per.ckeckboxId'">{{per.username}}</label>
+            <input type="checkbox" ng-change="select_one()" ng-model="per.selected" id="ng-bind='per.ckeckboxId'">
+        </p>
+        <!-- <p>
+            <label for="select_all">全选:</label>
+            <input ng-change='allChange()' ng-model='select_all' type="checkbox" name="all" id="select_all">
+        </p>
+        <p>
+            <label for="select_one1">单选:</label>
+            <input type="checkbox" name="all" id="select_one1">
+        </p>
+        <p>
+            <label for="select_one2">单选:</label>
+            <input type="checkbox" name="all" id="select_one2">
+        </p>
+        <p>
+            <label for="select_one3">单选:</label>
+            <input type="checkbox" name="all" id="select_one3">
+        </p>
+        <p>
+            <label for="select_one4">单选:</label>
+            <input type="checkbox" name="all" id="select_one4">
+        </p> -->
+    </div>
+</body>
+
+</html>

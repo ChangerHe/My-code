@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        <h2 v-text='message'></h2><span :title='message'>
+            鼠标悬停几秒钟查看此处动态绑定的提示信息
+        </span>
+
+        <h2>我的成绩是: 
+
+            <span v-if='score>=90'>优秀</span>
+            <span v-else='score>=80&&score<90'>不优秀</span>
+        </h2>
+
+        <ul>
+            <li v-for='name in username'>{{name}}</li>
+        </ul>
+
+        <input type="text" v-model='testFonts'>
+        <h2>{{testFonts}}</h2>
+
+        <input type="text" v-on:keydown.13='handleEnter'>
+    </div>
+
+    <script>
+
+        var vm1 = new Vue({
+            el: '#app',
+            data:{
+                message: '我是模型中的消息',
+                score: 89,
+                username: [
+                    '张三', '李四', '玄武'
+                ],
+                testFonts: ''
+            },
+            methods: {
+                handleEnter() {
+                    alert(1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

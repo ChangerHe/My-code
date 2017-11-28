@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../angular-1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-app="">
+    <div>
+        <label for="username">姓名: </label>
+        <input type="text" id="username">
+        <h1 id="test"></h1>
+
+        <!-- angular的表达式 -->
+        <div>------------------------------------</div>
+        <h2>{{100 * 5}}</h2>
+
+        <div ng-init="person='小强'">
+            {{person}}
+        </div>
+        <div ng-init="person={'name':'小强', 'age': 12}">
+            {{person}}
+        </div>
+
+        
+    </div>
+
+    <script>
+        var obj = { 'name': '小强', 'age': 12 }
+        var str = 'abc'
+
+        alert(str.toString())
+        alert(String.prototype.toString.call(str))
+        alert(Object.prototype.toString.call(str))
+    </script>
+</body>
+
+</html>

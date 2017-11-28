@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <style>
+
+    </style>
+        <script>
+            (function(){
+                // 推断式注入.当模块需要的时候, 就引入, 否则不引入
+                // 优点: 可以快速的引入需要的模块, 模块名固定, 方便使用, 模块需要的时候引入, 不需要不引入, 提升性能
+                // 缺点: 模块名固定, 不能更改, 代码无法压缩.因为参数名字无法更改
+                angular.module('app', []).controller('myController', function($scope, $rootScope, $timeout, $interval, $filter) {
+                    console.log(arguments)
+                })
+            })()
+        </script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="myController">
+        
+    </div>
+</body>
+
+</html>

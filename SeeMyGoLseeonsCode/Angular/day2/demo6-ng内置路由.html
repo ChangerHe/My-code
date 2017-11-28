@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <script src="../angular-route.js"></script>
+    <script>
+        (function() {
+            // 在模型对象中引入对应的插件
+            var app = angular.module('app', ['ngRoute'])
+
+            // 配置路由的参数
+            app.config(['$routeProvider', function($routeProvider) {
+                $routeProvider
+                    // 参数1:路由的路径
+                    // 参数2:模板的名称
+                    .when('/home', {
+                        template: '<h1>首页</h1>'
+                    })
+                    .when('/news', {
+                        tempate: '<h1/>新闻<h1>'
+                    })
+                    .otherwise({redirectTo: '/home'})
+            }])
+
+
+            // 内置路由的参数
+            /* 
+                在使用路由进行跳转时, 可以通过冒号来对路由的参数进行处理
+                在跳转到对应的路由地址是, 在最后添加':'来传递参数
+                需要注意的是, 路由传递的参数的值是带冒号的
+             */
+            app.controller('myController', function($scope) {
+                
+            })
+            /* 
+                但是, ng的内置路由是无法进行路由的嵌套的, 所以我们可以考虑使用ui-router
+             */
+        })()
+    </script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="myController" ng-view>
+        
+    </div>
+</body>
+
+</html>

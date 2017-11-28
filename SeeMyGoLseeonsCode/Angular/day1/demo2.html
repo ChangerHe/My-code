@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en" ng-app>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular-1.5.8/angular.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <label for="username">姓名:</label>
+        <input type="text" ng-model="username" id="username">
+        <!-- 获取指定名称的模型值 -->
+        <h1 ng-bind="username"></h1>
+        <!-- 可直接使用表达式的方式进行显示绑定的值 -->
+        <h2>{{username}}</h2>
+
+        <h2>{{100 * 5}}</h2>
+        <h2>{{'100' + '5'}}</h2>
+        <h2>{{'abcd'.length}}</h2>
+        <h2>{{'abcde'.substr(2,3)}}</h2>
+
+
+        <!-- 
+            使用angular应用的三大步
+                在全局添加一个指令ng-app 代表声明这是一个angular应用
+                在页面中引入angular库文件
+                使用ng-model创建一个模型, 然后将值放入angular环境中
+                使用ng-bind来获取angular环境中的值
+         -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+    <div>
+        <h1>全局消息: {{message}}</h1>
+        <div ng-controller="MyController1">
+            <input type="text" ng-bind:value='message'>
+            <h2>局部消息: {{message}}</h2>
+            <button onClick='handleClick()'>按钮1</button>
+            <button ng-click='handleClick()'>按钮2</button>
+            <div ng-controller="MyController2">
+                <h2>局部的局部消息: {{message}}</h2>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('app', [])
+
+        app.run(function($rootScope) {
+            $rootScope.message = 'wosh全局消息'
+            $rootScope.handleClick = function () {
+                alert('被点击了1')
+            }
+        })
+
+        var handleClick = function () {
+            alert('被点击了2')
+        }
+        // 局部初始化
+        // 参数1: 控制器的名称
+        // 参数2: 控制器(子作用域的初始化方法)
+        // app.controller('MyController', function($rootScope) {
+        //     // alert('控制器方法!!')
+        //     $rootScope.message = 'wosh全局消息'
+        // })
+        app.controller('MyController1', function($scope) {
+            // alert('控制器方法!!')
+            $scope.message = 'wosh局部消息'
+            $scope.handleClick = function () {
+                alert('被点击了3')
+            }
+        })
+        app.controller('MyController2', function($scope) {
+            // alert('控制器方法!!')
+            $scope.message = 'wosh局部的局部消息'
+        })
+
+        /* 
+            注: 局部的消息在局部修改之后不会影响到全局的消息
+         */
+    </script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <my-component/>
+        <my-component2/>
+        <my-component3/>
+    </div>
+    <div id="app2">
+        <my-component/>
+    </div>
+
+    <script>
+        // 定义组件
+        // 准备方式
+        // 组件的抽离方式, 为更好的复用组件提供了准备
+        var myComponent = Vue.extend({
+            // 视图代码
+            template: '<h1>hello vue!</h1>'
+        })
+        var myComponent2 = {
+            // 视图代码
+            template: '<h1>hello vue! another vue</h1>'
+        }
+
+
+        Vue.component('my-component',myComponent)
+        Vue.component('my-component2',myComponent2)
+
+        Vue.component('my-component3', {
+            template: '<h1>hello vue! anoanother vue<h1>'
+        })
+
+        // 定义了组件之后, 需要再将全局的Vue实例化出来
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+
+            }
+        })
+        // var app2 = new Vue({
+        //     el: '#app2',
+        //     data: {
+
+        //     }
+        // })
+    </script>
+</body>
+
+</html>

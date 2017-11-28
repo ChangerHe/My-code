@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>自己的内容: {{message}}</h1>
+        <child-com></child-com>
+        <child-com></child-com>
+        <child-com></child-com>
+    </div>
+
+    <template id="tpl">
+        <div>
+            <h2>我是自定义组件 {{count}}</h2>
+            <input type="button" :value="count" @click='count+=1'>
+        </div>
+    </template>
+    <script>
+
+        var data = { count: 1 }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '我是内容'
+            },
+            components: {
+                childCom: {
+                    template: '#tpl',
+                    // 在可复用的场景下, 如果data不是函数会产生变量在不同的组件之间的污染问题
+                    data: function() {
+                        // return {
+                        //     message: '我是子组件的内容'
+                        // }
+                        newData = Object.assign({}, data)
+                        return newData
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

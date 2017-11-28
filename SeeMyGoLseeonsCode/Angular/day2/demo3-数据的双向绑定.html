@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <style>
+        .odd {
+            background: pink;
+        }
+    </style>
+        <script>
+            // 使用IIFE匿名闭包优化作用域
+            (function () {
+                var app = angular.module('app', [])
+
+                app.controller('MyController', function ($scope) {
+                    setInterval(function () {
+                        console.log($scope.message)
+                    }, 1000)
+                })
+            })()
+        </script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="MyController">
+        消息: <input type="text" ng-modle='message'>
+    </div>
+
+</body>
+
+</html>

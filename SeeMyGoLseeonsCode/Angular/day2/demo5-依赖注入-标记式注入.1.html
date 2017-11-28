@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <style>
+
+    </style>
+        <script>
+            (function(){
+                // 标记式注入,不直接根据函数名称进行注入
+                // 对控制器和构造函数做一个说明
+                // 此时可以使用inject方法, 为其传入一个数组即可避免出现压缩出错的情况
+                // 弊端: 会产生全局的作用域污染, 代码复杂度提高了
+                var myController = function (a, b, c, d, e) {
+                    console.log(arguments)
+                }
+                myController.$inject = ['$scope', '$rootScope', '$timeout', '$interval', '$filter']
+                var app = angular.module('app', [])
+                app.controller('myController', myController)
+            })()
+        </script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller="myController">
+        
+    </div>
+</body>
+
+</html>

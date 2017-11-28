@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="username">姓名: </label>
+        <input type="text" id="username">
+        <h1 id="test"></h1>
+    </div>
+
+    <script>
+        var obj = {}
+        var username
+        var doubelBind = Object.defineProperty(obj, 'username', {
+            enumerable: true,
+            configurable: true,
+            get() {
+                // return username.value
+                test.innerHTML = username.value
+            },
+            set() {
+                return 
+            }
+        })
+    </script>
+</body>
+</html>

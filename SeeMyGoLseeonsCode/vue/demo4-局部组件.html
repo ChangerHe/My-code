@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <child /> -->
+        <!-- <outtpl-test /> -->
+        <outtpl-test></outtpl-test>
+        <tpl-inn/>
+    </div>
+
+    <script id="tpl" type="text/html">
+        <div>
+            <h1>我是模板里的内容</h1>
+        </div>
+    </script>
+
+    <!-- <template id="tpl1">
+        <div>
+            <h1>我是template里的内容</h1>
+        </div>
+    </template> -->
+        <template id="tpl1">
+            <div>
+                <h2>标题22222</h2>
+            </div>
+        </template>
+
+    <script>
+        var Child = {
+            template: '<h1>注册一个局部组件</h1>'
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                child: Child ,
+                outtplTest: {
+                    template: document.getElementById('tpl').innerHTML
+                },
+                tplInn: {
+                    // template: '#tpl1'
+                    template: '#tpl1'
+                }
+            }
+        })
+        // console.log(document.getElementById('tpl1').innerHTML)
+        // 全局定义实例, 定义在vue实例外部, 使用Vue.component进行定义
+        // 局部定义在每一个实例配置的内部
+        /* 
+            components: {
+                子组件的名称: 子组件的配置
+            }
+         */
+    </script>
+</body>
+
+</html>

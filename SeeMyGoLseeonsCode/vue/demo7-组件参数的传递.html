@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.8/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <parent content='我是传入的消息' :root='root'></parent>
+    </div>
+
+    <script>
+        // 注意, 子组件必须要定义在父组件之前, 否则会报错
+        var Child = {
+            template: '<h1>我是子组件 : {{message}}</h1>',
+            data() {
+                return {
+                    message: '子组件的消息'
+                }
+            }
+        }
+        var Parent = {
+            template: `
+                <div>
+                    <h1>父组件 : {{message}}</h1>
+                    <h2>{{content}}</h2>
+                    <h2>{{root}}</h2>
+                    <child></child>
+                </div>
+            `,
+            // 外部传递的消息, 必须使用props对外部传入的消息进行定义
+
+            // 如果传入的属性名称为驼峰状, 则在相应的html中则需要转为短杠的方式命名
+            props: {
+                content: '',
+                // message: ''
+            },
+            data() {
+                return {
+                    message: '我是父组件消息'
+                }
+            },
+            components: {
+                Child
+            }
+        }
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                root: '我是根组件'
+            },
+            components: {
+                Parent
+            }
+        })
+    </script>
+</body>
+
+</html>

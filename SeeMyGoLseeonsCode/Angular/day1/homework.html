@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller='MyController'>
+        <!-- ngbind: <span ng-bind="message"></span>
+        表达式 {{message}}
+        class: <span class="ng-bind='message'"></span>
+        <input type="text" ng-model="message1">
+        <h2>{{message1}}</h2>
+        <h1 ng-class='mycss'>我是标签</h1> -->
+        <fieldset style="width: 400px;">
+            <legend>表单验证</legend>
+            <form action="#" method="get">
+                <p><label for="username">姓名:</label><input type="text" id="username" ng-class="classes" ng-required></p>
+                <p><label for="password">密码:</label><input type="password" id="password"></p>
+                <p><input type="button" value="提交" ng-click='onSubmit()'></p>
+            </form>
+        </fieldset>
+        <h1>允许的用户名: root  密码: 123</h1>
+    </div>
+    <script>
+        var app = angular.module('app', [])
+        app.controller('MyController', function($scope) {
+            $scope.onSubmit = function() {
+                alert(1)
+                this.status = false
+            }
+
+            $scope.classes = {
+                'test1': true,
+                test2: true
+            }
+        })
+    </script>
+
+</body>
+
+</html>

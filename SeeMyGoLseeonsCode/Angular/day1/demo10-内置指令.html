@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+    <div ng-controller='MyController'>
+        ngbind: <span ng-bind="message"></span>
+        表达式 {{message}}
+        class: <span class="ng-bind='message'"></span>
+        <input type="text" ng-model="message1">
+        <h2>{{message1}}</h2>
+        <h1 ng-class='mycss'>我是标签</h1>
+    </div>
+    <script>
+        var app = angular.module('app', [])
+        app.controller('MyController', function($scope) {
+            $scope.message = 'Good day'
+            $scope.mycss = {'box': true, 'key': false}
+        })
+        // ng-bind的职责是: 绑定视图到模型, 简单说就是建立视图和模型之间的关系
+    </script>
+
+</body>
+
+</html>

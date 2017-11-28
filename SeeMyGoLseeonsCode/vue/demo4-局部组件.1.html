@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03-组件模板</title>
+</head>
+
+<body>
+    <!-- 第一个盒子 -->
+    <div id="app">
+        <child></child>
+    </div>
+
+    <!-- 模板方式1： 定义包含模板内容标签-->
+    <!--<script type="text/html" id="childTpl">-->
+    <!--<div>-->
+    <!--<h2>标题2</h2>-->
+    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur consequatur deleniti distinctio enim fugit incidunt itaque libero magnam maiores, neque non odit provident, quae quam quas, rerum. Odit, reiciendis.</p>-->
+    <!--</div>-->
+    <!--</script>-->
+
+    <!-- 模板方式2：直接 -->
+    <template id="childTpl">
+        <div>
+            <h2>标题22222</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eaque et ex illo minima nobis qui reiciendis
+                reprehenderit? Ad eligendi harum molestiae possimus quo recusandae repellendus totam. Non quae, ratione!</p>
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+
+        // 创建一个组件
+        var app = new Vue({
+            // 挂载视图
+            el: '#app',
+            // 其他配置
+            components: {
+                // key          :  value
+                // 子组件的名称 :  子组件的配置信息
+                'child': {
+                    //                    template : `
+                    //                            <div>
+                    //                                <h2>标题22222</h2>
+                    //                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eaque et ex illo minima nobis qui reiciendis reprehenderit? Ad eligendi harum molestiae possimus quo recusandae repellendus totam. Non quae, ratione!</p>
+                    //                            </div>`,
+                    template: '#childTpl'
+                    //                    template : document.querySelector('#childTpl').innerHTML
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+    <h1>{{'abce' | uppercase}}</h1>
+    <div ng-controller='myController'>
+
+        <h1>{{name1}}</h1>
+        <h1>{{arr | orderBy: '-'}}</h1>
+        <h1>{{time | date:'yyyy'}}</h1>
+        <h2>{{users | orderBy:'age':true}}</h2>
+         <h2>{{'abcs'| myFilter:''}}</h2>
+         <h1>{{testStr}}</h1>
+    </div>
+
+    <script>
+        var app = angular.module('app', [])
+        app.controller('myController', function($scope, $filter) {
+            // 函数柯里化
+            // $filter(过滤器名称)(参数)
+            $scope.name1 = $filter('uppercase')('Jack')
+            // 数组的排序
+            $scope.arr = [1,2,15,1,12,5]
+            // 时间的过滤器
+            $scope.time = new Date()
+
+            $scope.users = [
+                {
+                    name:'zhangsan1',
+                    age: 13
+                },
+                {
+                    name:'zhangsan2',
+                    age: 123
+                },
+                {
+                    name:'zhangsan3',
+                    age: 23
+                },
+                {
+                    name:'zhangsan4',
+                    age: 11
+                },
+                {
+                    name:'zhangsan5',
+                    age: 22
+                }
+            ]
+
+            $scope.testStr = $filter('myFilter')('jack')
+        })
+
+        // 过滤器只能是全局有效的
+        // 参数1: 过滤器名称
+        // 参数2: 处理函数(使用工厂模式返回一个函数)
+        app.filter('myFilter', function() {
+            return function(input) {
+                return input.slice(0, 1).toUpperCase() + input.slice(1)
+            }
+        })
+    </script>
+
+</body>
+
+</html>

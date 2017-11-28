@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+
+    <template id="tpl">
+    </template>
+    <script>
+        var Parent = {
+            template: '<h1>{{message}}</h1>',
+            data() {
+                return {
+                    message: '111'
+                }
+            },
+            components: {
+                Child
+            }
+        }
+
+        var Child = {
+            template: '<h1>I am child</h1>',
+            data() {
+                return {
+                    message: '222'
+                }
+            },
+            components: {
+
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                Parent
+            }
+        })
+    </script>
+</body>
+
+</html>

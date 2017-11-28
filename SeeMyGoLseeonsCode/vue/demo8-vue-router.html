@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.8/vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            <router-link to='/foo'>to foo</router-link>
+            <router-link to='/bar'>to bar</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        // const vueRouter = Vue.use('vue-router')
+        const Foo = {
+            template: '<h1>foo</h1>'
+        }
+        const Bar = {
+            template: `
+                <div>
+                    <h1>bar</h1>
+                    <router-link to='/bar/compony'>关于公司</router-link>
+                    <router-link to='/bar/us'>关于我们</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        const AboutCompony = {
+            template: '<h1>AboutCompony</h1>'
+        }
+        const AboutUs = {
+            template: '<h1>AboutUs</h1>'
+        }
+        const routes = [
+            {path: '/foo', component: Foo},
+            {
+                path: '/bar', 
+                component: Bar,
+                children: [
+                    {path: 'compony', component: AboutCompony},
+                    {path: 'us', component: AboutUs}
+                ]
+            }
+        ]
+
+        const router = new VueRouter({
+            routes
+        })
+
+        new Vue({
+            router
+        }).$mount('#app')
+
+        /* 
+        
+            步骤: 
+                1. 定义好需要跳转的组件
+                2. 将组件匹配定义的跳转路径
+                3. 实例化VueRouter, 传入对应配置好的路由对象
+                4. 将路由挂载到实例化的Vue对象上
+        */
+    </script>
+</body>
+
+</html>

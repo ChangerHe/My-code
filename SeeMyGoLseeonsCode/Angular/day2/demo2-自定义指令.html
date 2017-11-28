@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <style>
+        .odd {
+            background: pink;
+        }
+    </style>
+    <script>
+        var app = angular.module('app', [])
+        // app.controller('TestController', function($scope) {
+
+        // })
+
+        // 自定义指令
+        /* 
+            指令的名称
+            指令的配置工厂函数
+            自定义指令必须要小写
+            */
+        app.directive('helloworld', function () {
+            return {
+                template: '<h1>Hello World</h1>',
+                // templateUrl: './outtemp.html'
+                // 
+                restrict: 'E',
+                replace: true,
+                /* 
+                    $scope: 定义作用域的参数和方法
+                    dom: 获取原生dom操作元素
+                    param: 获取指令使用时传入的参数
+                 */
+                link: function($scope, dom, param) {
+                    console.log(arguments)
+                    dom.on('click', function() {
+                        console.log('click')
+                        $scope.message = '被点击了'
+                    })
+                }
+            }
+        })
+    </script>
+</head>
+
+<body ng-app="app">
+
+    <!-- <div ng-controller="TestController">
+
+    </div> -->
+    <div helloworld></div>
+    <helloworld></helloworld>
+    <h1>{{message}}</h1>
+
+</body>
+
+</html>

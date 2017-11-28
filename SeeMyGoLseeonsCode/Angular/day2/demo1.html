@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.min.js"></script>
+    <style>
+        .odd {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body ng-app="app">
+
+    <div ng-controller="EmployeeController">
+        <table>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in employeeArr" ng-class="odd">
+                    <td>{{$index+1}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.age}}</td>
+                </tr>
+                <tr>
+                    <td>李四</td>
+                    <td>24</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        /* 
+            使用步骤
+                1.引入核心库
+                2.声明一个angular应用
+                3.创建一个模块
+                4.使用run方法初始化全局
+         */
+        var app = angular.module('app', [])
+        app.controller('EmployeeController', function($scope) {
+            // 需要注意的是,使用ng-repeat循环的数据, 是直接绑定在循环的子元素上的
+            $scope.employeeArr = [
+                {
+                    name: 'zhangsan1',
+                    age: 22
+                },
+                {
+                    name: 'zhangsan2',
+                    age: 22
+                },
+                {
+                    name: 'zhangsan3',
+                    age: 22
+                },
+                {
+                    name: 'zhangsan4',
+                    age: 21
+                }
+            ]
+
+            $scope.odd = function() {
+                console.log($index)
+                if($index%2) {
+                    return false
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

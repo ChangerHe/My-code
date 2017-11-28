@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- 声明标签内部就是一个angular应用, 一个应用有且只有一个ng-app属性 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入angular核心库 -->
+    <script src="../angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+
+
+    <fieldset style="width: 300px" ng-controller="LoginContent">
+        <legend>登陆</legend>
+        <form action="">
+            <label for="username">用户名: </label>
+            <input type="text" id="username" ng-model='username'>
+            <br/>
+            <label for="password">密&emsp;码: </label>
+            <input type="text" id="password" ng-model='password'>
+            <br/>
+            <button ng-click="doSubmit()">提交</button>
+        </form>
+    </fieldset>
+
+    <fieldset style="width: 300px" ng-controller="RegisterContent">
+        <legend>注册</legend>
+        <form action="">
+            <label for="username">用户名: </label>
+            <input type="text" id="username" ng-model='username'>
+            <br/>
+            <label for="password">密&emsp;码: </label>
+            <input type="text" id="password" ng-model="password">
+            <br/>
+            <label for="confirm">确&emsp;认: </label>
+            <input type="text" id="confirm">
+            <br/>
+            <button ng-click="doSubmit()">提交</button>
+        </form>
+    </fieldset>
+
+    <script>
+        var app = angular.module('app', [])
+
+        // 全局初始化
+        app.run(function($rootScope) {
+            $rootScope.message = '全局消息'
+            $rootScope.doSubmit = function() {
+                alert('成功')
+            }
+        })
+
+        // 局部初始化
+        app.controller('LoginContent', function($scope) {
+            $scope.message = '局部消息'
+            $scope.doSubmit = function () {
+                alert('成功')
+            }
+        })
+        // 局部初始化
+        app.controller('RegisterContent', function($scope) {
+            $scope.message = '局部消息'
+            $scope.doSubmit = function () {
+                alert('成功' + $scope.username)
+            }
+        })
+    </script>
+
+</body>
+
+</html>
