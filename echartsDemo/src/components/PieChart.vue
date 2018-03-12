@@ -1,27 +1,45 @@
 <template>
   <div class="hello">
-    111
-    <div class="pieChart"  refs='pieChart'></div>
+    <div class="pieChart"  refs='pie_chart'></div>
   </div>
 </template>
 
 <script>
-import echarts from 'echarts'
-
 export default {
   data () {
     return {
     }
   },
   created () {
-    echarts.init(this.$refs.pieChart).setOption({
+  },
+  mounted () {
+    this.$echarts.init(document.getElementsByClassName('pieChart')[0]).setOption({
       series: {
         type: 'pie',
+        roseType: 'angle',
         data: [
           {name: 'A', value: 1234},
           {name: 'B', value: 1251},
-          {name: 'C', value: 2123}
-        ]
+          {name: 'C', value: 2123},
+          {name: 'D', value: 3213},
+          {name: 'E', value: 2199}
+        ],
+        // 阴影的样式配置
+        itemStyle: {
+          shadowBlur: 200,
+          shadowOffsetX: 0,
+          shadowOffsetY: 100,
+          shadowColor: 'rgba(0,0,0,.5)',
+          // 鼠标hover的时候的高亮样式
+          emphasis: {
+            shadowBlur: 0,
+            shadowColor: '#000'
+          }
+        },
+        backgroundColor: '#900',
+        textStyle: {
+          color: 'rgba(255, 255, 255, .3)'
+        }
       }
     })
   },
