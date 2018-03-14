@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import Greeting from './components/Greeting'
 import Blink from './components/Blink'
 import FlexBlock from './components/FlexBlock'
-import InputBlock from './components/InputBlock'
+// import InputBlock from './components/InputBlock'
 
 
 export default class App extends React.Component {
@@ -21,7 +21,7 @@ uri : 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
         <Greeting userName='Changer He'/>
         <Blink text='lorem adadaddadadadadasda'/>
         <FlexBlock></FlexBlock>
-        <InputBlock></InputBlock>
+        {/* <InputBlock></InputBlock> */}
       </View>
     );
   }
