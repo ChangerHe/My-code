@@ -4,6 +4,7 @@ import Greeting from './components/Greeting'
 import Blink from './components/Blink'
 import FlexBlock from './components/FlexBlock'
 // import InputBlock from './components/InputBlock'
+import ButtonEvent from './components/ButtonEvent'
 
 
 export default class App extends React.Component {
@@ -20,8 +21,9 @@ uri : 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
         <Image source={pic} style={{width: 193, height: 110}}/>
         <Greeting userName='Changer He'/>
         <Blink text='lorem adadaddadadadadasda'/>
-        <FlexBlock></FlexBlock>
+        {/* <FlexBlock></FlexBlock> */}
         {/* <InputBlock></InputBlock> */}
+        <ButtonEvent/>
       </View>
     );
   }
