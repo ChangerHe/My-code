@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {StackNavigator} from 'react-navigation'
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import Greeting from './components/Greeting'
 import Blink from './components/Blink'
@@ -7,16 +8,30 @@ import FlexBlock from './components/FlexBlock'
 import ButtonEvent from './components/ButtonEvent'
 import FlatListCom from './components/FlatListCom'
 
+export default App = StackNavigator({
+  Main: {screen: MainScreen},
+  Profile: {
+    screen: ProfileScreen
+  }
+})
 
-export default class App extends React.Component {
+class MainScreen extends React.Component {
+  static navigationOptions = {
+    title: 'welcome'
+  }
   render() {
+    const {navigate} = this.props.navigation
     let pic = {
 uri : 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     }
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.red}>Open up App.js to start working on your app!</Text>
+          <Text onPress = {
+            () => {
+              navigate('Profile', {name: 'jane'})
+            }
+          } style={styles.red}>Open up App.js to start working on your app!</Text>
           <Text style={styles.bigBlue}>Changes you make will automatically reload.</Text>
           <Text style={[styles.bigBlue, styles.red]}>Shake your phone to open the developer menu.</Text>
           <Text>hello world1111</Text>
@@ -25,11 +40,19 @@ uri : 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
           <Blink text='lorem adadaddadadadadasda'/>
           {/* <FlexBlock></FlexBlock> */}
           {/* <InputBlock></InputBlock> */}
-          <ButtonEvent/>
-          <FlatListCom/>
+          {/* <ButtonEvent/> */}
+          {/* <FlatListCom/> */}
         </View>
       </ScrollView>
     );
+  }
+}
+
+class ProfileScreen extends Component {
+  render() {
+    return (
+      <View>ProfileScreen</View>
+    )
   }
 }
 

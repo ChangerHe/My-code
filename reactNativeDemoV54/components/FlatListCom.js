@@ -22,24 +22,31 @@ class FlatListCom extends Component {
                     </FlatList>
                 </View>
                 {/* 需要有一个独一无二的key, 此渲染问题未解决 */}
-                {/* <View>
+                <View style={{flex: 1, paddingTop: 22}}>
                     <SectionList
                         sections={[
                             {title: 'D', data: ['Devin']},
                             {title: 'J', data: ['Jackson', 'James', 'Jillian', 'Jimmy', 'Joel', 'John', 'Julie']},
                         ]}
                         renderItem={({item}) => {
+                            // Alert.alert(item)
                             return (
-                                <Text keys={item}>{item}</Text>
+                                <View>
+                                    <Text keys={item}>{item}</Text>
+                                </View>
                             )
                         }}
                         renderSectionHeader={({section}) => {
                             return (
-                                <Text keys={section.title}>{section.title}</Text>
+                                <Text style={{paddingTop: 2, paddingLeft: 10, paddingRight: 10, paddingBottom: 2, color: '#090', fontSize: 14, fontWeight: 'bold', backgroundColor: 'rgba(247, 247, 247, 1.0)'}} keys={section.title}>{section.title}</Text>
                             )
                         }}
+                        // 此处需要额外加上key， 否则无法正常渲染
+                        keyExtractor={
+                            (item, index) => index
+                        }
                     />
-                </View> */}
+                </View>
             </View>
         )
     }
